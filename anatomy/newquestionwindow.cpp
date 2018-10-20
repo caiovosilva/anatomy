@@ -35,7 +35,6 @@ void NewQuestionWindow::on_buttonBox_accepted()
 
     Question question = Question(ui->question->toPlainText());
 
-    bool a = ui->respostaCorreta1->isChecked();
     Answer answer = Answer(ui->answer1->toPlainText(), ui->respostaCorreta1->isChecked());
     question.addAnswer(&answer);
     answer = Answer(ui->answer2->toPlainText(), ui->respostaCorreta2->isChecked());
@@ -44,8 +43,6 @@ void NewQuestionWindow::on_buttonBox_accepted()
     question.addAnswer(&answer);
     answer = Answer(ui->answer4->toPlainText(), ui->respostaCorreta4->isChecked());
     question.addAnswer(&answer);
-
-
 }
 
 bool NewQuestionWindow::oneCorrectAnswerSelected()

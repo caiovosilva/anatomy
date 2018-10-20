@@ -7,184 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>671</width>
-    <height>480</height>
+    <height>1185</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>360</y>
-     <width>60</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta:</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="question">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>40</y>
-     <width>411</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="respostaCorreta3">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>280</y>
-     <width>141</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta Correta</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="answer4">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>350</y>
-     <width>411</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="respostaCorreta4">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>360</y>
-     <width>141</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta Correta</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="answer3">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>270</y>
-     <width>411</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>210</y>
-     <width>60</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta:</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="respostaCorreta2">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>210</y>
-     <width>141</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta Correta</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>50</y>
-     <width>60</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pergunta:</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="respostaCorreta1">
-   <property name="geometry">
-    <rect>
-     <x>510</x>
-     <y>140</y>
-     <width>141</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta Correta</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>60</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta:</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="answer1">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>120</y>
-     <width>411</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="answer2">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>200</y>
-     <width>411</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>280</y>
-     <width>60</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Resposta:</string>
-   </property>
-  </widget>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>430</y>
+     <y>450</y>
      <width>174</width>
      <height>34</height>
     </rect>
@@ -192,6 +25,96 @@
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>641</width>
+     <height>381</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Pergunta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTextEdit" name="question"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Resposta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QTextEdit" name="answer1"/>
+    </item>
+    <item row="1" column="2">
+     <widget class="QRadioButton" name="respostaCorreta1">
+      <property name="text">
+       <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Resposta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QTextEdit" name="answer2"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QRadioButton" name="respostaCorreta2">
+      <property name="text">
+       <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Resposta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QTextEdit" name="answer3"/>
+    </item>
+    <item row="3" column="2">
+     <widget class="QRadioButton" name="respostaCorreta3">
+      <property name="text">
+       <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Resposta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QTextEdit" name="answer4"/>
+    </item>
+    <item row="4" column="2">
+     <widget class="QRadioButton" name="respostaCorreta4">
+      <property name="text">
+       <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
