@@ -3,18 +3,19 @@
 
 #include <QList>
 
-#include "answer.h";
+#include "answer.h"
 
 class Question
 {
 public:
-    Question();
+    Question(QString description);
     void addAnswer(Answer *answer);
     void removeAnswer(Answer *answer);
-    QString description;                            //oq fazer? um "get" e um "set" ou colocar como publico??
+    QString description() const;
 
 private:
-    QList<Answer> answers;
+    QString _description;                            //oq fazer? um "get" e um "set" ou colocar como publico??
+    QList<Answer*> answers;
 
 };
 

@@ -1,7 +1,17 @@
 #include "answer.h"
 
 Answer::Answer(QString description, bool isCorrectAnswer) :
-    description(description),
+    _description(description),
     isCorrectAnswer(isCorrectAnswer)
 {
+}
+
+QString Answer::description() const
+{
+    return _description;
+}
+
+bool Answer::operator==(const Answer &aws) const
+{
+    return aws.description() == description();
 }

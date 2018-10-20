@@ -25,17 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    newquestion.cpp \
     mainwindow.cpp \
     answer.cpp \
-    question.cpp
+    question.cpp \
+    newquestionwindow.cpp
 
 HEADERS += \
-    newquestion.h \
     mainwindow.h \
     answer.h \
-    question.h
+    question.h \
+    newquestionwindow.h
 
 FORMS += \
-    newquestion.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    newquestionwindow.ui

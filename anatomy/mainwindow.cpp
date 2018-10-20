@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "newquestion.h"
+#include "newquestionwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,7 +16,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    NewQuestion *newQuestion = new NewQuestion;
+    NewQuestionWindow *newQuestion = new NewQuestionWindow;
     //this->close();
     newQuestion->show();
 }
