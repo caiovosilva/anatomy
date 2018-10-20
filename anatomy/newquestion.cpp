@@ -11,11 +11,6 @@ NewQuestion::NewQuestion(QWidget *parent) :
     ui(new Ui::NewQuestion)
 {
     ui->setupUi(this);
-
-    answerButtons.append(ui->respostaCorreta1);
-    answerButtons.append(ui->respostaCorreta2);
-    answerButtons.append(ui->respostaCorreta3);
-    answerButtons.append(ui->respostaCorreta4);
 }
 
 NewQuestion::~NewQuestion()
@@ -39,8 +34,8 @@ void NewQuestion::on_buttonBox_accepted()
 
 bool NewQuestion::oneCorrectAnswerSelected()
 {
-    foreach(QRadioButton answer, answerButtons)
-        if(answer.isChecked())
-            return true;
+//    foreach(QRadioButton answer, answerButtons)
+//        if(answer.isChecked())
+//            return true;
     return false;
 }
