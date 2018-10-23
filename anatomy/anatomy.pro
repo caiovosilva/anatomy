@@ -28,14 +28,17 @@ SOURCES += \
     mainwindow.cpp \
     answer.cpp \
     question.cpp \
-    newquestionwindow.cpp
+    newquestionwindow.cpp \
+    listquestionswindow.cpp
 
 HEADERS += \
     mainwindow.h \
     answer.h \
     question.h \
-    newquestionwindow.h
+    newquestionwindow.h \
+    listquestionswindow.h
 
 FORMS += \
     mainwindow.ui \
-    newquestionwindow.ui
+    newquestionwindow.ui \
+    listquestionswindow.ui
