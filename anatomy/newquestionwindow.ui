@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>671</width>
-    <height>1185</height>
+    <height>585</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>240</x>
-     <y>600</y>
+     <x>250</x>
+     <y>540</y>
      <width>174</width>
      <height>34</height>
     </rect>
@@ -26,7 +26,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -36,25 +36,8 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>Pergunta:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTextEdit" name="question"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Resposta:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QTextEdit" name="answer1"/>
+    <item row="4" column="1">
+     <widget class="QTextEdit" name="answer4"/>
     </item>
     <item row="1" column="2">
      <widget class="QRadioButton" name="correctAnswer1">
@@ -63,18 +46,25 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_3">
+    <item row="3" column="2">
+     <widget class="QRadioButton" name="correctAnswer3">
       <property name="text">
-       <string>Resposta:</string>
+       <string>Resposta Correta</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QTextEdit" name="answer2"/>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Pergunta:</string>
+      </property>
+      <property name="buddy">
+       <cstring>question</cstring>
+      </property>
+     </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QRadioButton" name="correctAnswer2">
+    <item row="4" column="2">
+     <widget class="QRadioButton" name="correctAnswer4">
       <property name="text">
        <string>Resposta Correta</string>
       </property>
@@ -87,15 +77,22 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QTextEdit" name="answer3"/>
-    </item>
-    <item row="3" column="2">
-     <widget class="QRadioButton" name="correctAnswer3">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Resposta Correta</string>
+       <string>Resposta:</string>
       </property>
      </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Resposta:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTextEdit" name="question"/>
     </item>
     <item row="4" column="0">
      <widget class="QLabel" name="label_5">
@@ -104,11 +101,17 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QTextEdit" name="answer4"/>
+    <item row="3" column="1">
+     <widget class="QTextEdit" name="answer3"/>
     </item>
-    <item row="4" column="2">
-     <widget class="QRadioButton" name="correctAnswer4">
+    <item row="1" column="1">
+     <widget class="QTextEdit" name="answer1"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QTextEdit" name="answer2"/>
+    </item>
+    <item row="2" column="2">
+     <widget class="QRadioButton" name="correctAnswer2">
       <property name="text">
        <string>Resposta Correta</string>
       </property>
@@ -117,6 +120,17 @@
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>question</tabstop>
+  <tabstop>answer1</tabstop>
+  <tabstop>answer2</tabstop>
+  <tabstop>answer3</tabstop>
+  <tabstop>answer4</tabstop>
+  <tabstop>correctAnswer1</tabstop>
+  <tabstop>correctAnswer2</tabstop>
+  <tabstop>correctAnswer3</tabstop>
+  <tabstop>correctAnswer4</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

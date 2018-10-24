@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "newquestionwindow.h"
 #include "listquestionswindow.h"
+#include "playwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,4 +26,10 @@ void MainWindow::on_pushButton_2_clicked()
 {
     ListQuestionsWindow *newWindow = new ListQuestionsWindow;
     newWindow->show();
+}
+
+void MainWindow::on_init_clicked()
+{
+//    PlayWindow *newWindow = new PlayWindow;
+//    newWindow->show();
 }

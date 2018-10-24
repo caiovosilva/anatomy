@@ -16,7 +16,7 @@ ListQuestionsWindow::ListQuestionsWindow(QWidget *parent) :
     m_pTableWidget = new QTableWidget(this);
     m_pTableWidget->setRowCount(10);
     m_pTableWidget->setColumnCount(3);
-    m_TableHeader<<"Pergunta"<<"Name";
+    m_TableHeader<<"Pergunta"<<"Editar";
     m_pTableWidget->setColumnWidth(0,500);
     m_pTableWidget->setHorizontalHeaderLabels(m_TableHeader);
     m_pTableWidget->verticalHeader()->setVisible(false);

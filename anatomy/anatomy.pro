@@ -29,16 +29,21 @@ SOURCES += \
     answer.cpp \
     question.cpp \
     newquestionwindow.cpp \
-    listquestionswindow.cpp
+    listquestionswindow.cpp \
+    playwindow.cpp \
+    anatomyimage.cpp
 
 HEADERS += \
     mainwindow.h \
     answer.h \
     question.h \
     newquestionwindow.h \
-    listquestionswindow.h
+    listquestionswindow.h \
+    playwindow.h \
+    anatomyimage.h
 
 FORMS += \
     mainwindow.ui \
     newquestionwindow.ui \
-    listquestionswindow.ui
+    listquestionswindow.ui \
+    playwindow.ui
