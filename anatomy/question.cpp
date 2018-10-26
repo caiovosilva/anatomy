@@ -1,6 +1,6 @@
 #include "question.h"
 
-Question::Question(QString description, anatomyImage):
+Question::Question(QString description, AnatomyImage *anatomyImage):
     _description(description),
     _anatomyImage(anatomyImage)
 {

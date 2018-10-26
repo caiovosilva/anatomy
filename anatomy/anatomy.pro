@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,7 +31,8 @@ SOURCES += \
     newquestionwindow.cpp \
     listquestionswindow.cpp \
     playwindow.cpp \
-    anatomyimage.cpp
+    anatomyimage.cpp \
+    dbconnection.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     newquestionwindow.h \
     listquestionswindow.h \
     playwindow.h \
-    anatomyimage.h
+    anatomyimage.h \
+    dbconnection.h
 
 FORMS += \
     mainwindow.ui \

@@ -33,16 +33,16 @@ void NewQuestionWindow::on_buttonBox_accepted()
         return;
     }
 
-    Question question = Question(ui->question->toPlainText());
+//    Question question = Question(ui->question->toPlainText());
 
-    Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
-    question.addAnswer(&answer);
-    answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked());
-    question.addAnswer(&answer);
-    answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked());
-    question.addAnswer(&answer);
-    answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked());
-    question.addAnswer(&answer);
+//    Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
+//    question.addAnswer(&answer);
+//    answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked());
+//    question.addAnswer(&answer);
+//    answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked());
+//    question.addAnswer(&answer);
+//    answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked());
+//    question.addAnswer(&answer);
 }
 
 bool NewQuestionWindow::oneCorrectAnswerSelected()
