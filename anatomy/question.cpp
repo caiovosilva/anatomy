@@ -21,3 +21,13 @@ QString Question::description() const
 {
     return _description;
 }
+
+int Question::id() const
+{
+    return _id;
+}
+
+void Question::setId(int id)
+{
+    _id = id;
+}

@@ -32,7 +32,9 @@ SOURCES += \
     listquestionswindow.cpp \
     playwindow.cpp \
     anatomyimage.cpp \
-    dbconnection.cpp
+    dbconnection.cpp \
+    DAO/daoanatomyimage.cpp \
+    DAO/daoanatomyimagesqlite.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -42,7 +44,9 @@ HEADERS += \
     listquestionswindow.h \
     playwindow.h \
     anatomyimage.h \
-    dbconnection.h
+    dbconnection.h \
+    DAO/daoanatomyimage.h \
+    DAO/daoanatomyimagesqlite.h
 
 FORMS += \
     mainwindow.ui \

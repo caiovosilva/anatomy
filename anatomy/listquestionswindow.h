@@ -21,8 +21,8 @@ private slots:
 void cellSelected(int nRow, int nCol);
 
 private:
-    QTableWidget* m_pTableWidget;
-    QStringList m_TableHeader;
+    QTableWidget* _pTableWidget;
+    QStringList _TableHeader;
     Ui::ListQuestionsWindow *ui;
 };
 

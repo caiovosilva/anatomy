@@ -11,11 +11,12 @@ DBConnection *DBConnection::Instance()
 
 QSqlDatabase *DBConnection::Connection()
 {
-    return &mydb;
+    return &_mydb;
 }
 
 DBConnection::DBConnection()
 {
-    mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName(qApp->applicationDirPath()+"/anatomy");
+    _mydb = QSqlDatabase::addDatabase("QSQLITE");
+    _mydb.setDatabaseName(qApp->applicationDirPath()+"/anatomy");
+    _mydb.open();
 }

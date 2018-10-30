@@ -14,7 +14,11 @@ public:
     void removeAnswer(Answer *answer);
     QString description() const;
 
+    int id() const;
+    void setId(int id);
+
 private:
+    int _id;
     QString _description;                            //oq fazer? um "get" e um "set" ou colocar como publico??
     QList<Answer*> _answers;
     AnatomyImage *_anatomyImage;

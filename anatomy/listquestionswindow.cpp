@@ -13,24 +13,24 @@ ListQuestionsWindow::ListQuestionsWindow(QWidget *parent) :
     ui(new Ui::ListQuestionsWindow)
 {
     ui->setupUi(this);
-    m_pTableWidget = new QTableWidget(this);
-    m_pTableWidget->setRowCount(10);
-    m_pTableWidget->setColumnCount(3);
-    m_TableHeader<<"Pergunta"<<"Editar";
-    m_pTableWidget->setColumnWidth(0,500);
-    m_pTableWidget->setHorizontalHeaderLabels(m_TableHeader);
-    m_pTableWidget->verticalHeader()->setVisible(false);
-    m_pTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_pTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-    m_pTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-    m_pTableWidget->setShowGrid(false);
-    m_pTableWidget->setStyleSheet("QTableView {selection-background-color: red;}");
-    m_pTableWidget->setGeometry(QApplication::desktop()->screenGeometry());
+    _pTableWidget = new QTableWidget(this);
+    _pTableWidget->setRowCount(10);
+    _pTableWidget->setColumnCount(3);
+    _TableHeader<<"Pergunta"<<"Editar";
+    _pTableWidget->setColumnWidth(0,500);
+    _pTableWidget->setHorizontalHeaderLabels(_TableHeader);
+    _pTableWidget->verticalHeader()->setVisible(false);
+    _pTableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    _pTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    _pTableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    _pTableWidget->setShowGrid(false);
+    _pTableWidget->setStyleSheet("QTableView {selection-background-color: red;}");
+    _pTableWidget->setGeometry(QApplication::desktop()->screenGeometry());
 
     //insert data
-    m_pTableWidget->setItem(0, 0, new QTableWidgetItem("Hello"));
+    _pTableWidget->setItem(0, 0, new QTableWidgetItem("Hello"));
 
-    connect( m_pTableWidget, SIGNAL( cellDoubleClicked (int, int) ),
+    connect( _pTableWidget, SIGNAL( cellDoubleClicked (int, int) ),
         this, SLOT( cellSelected( int, int ) ) );
 }
 

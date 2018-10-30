@@ -16,7 +16,7 @@ protected:
 
 private:
     static DBConnection* _instance;
-    QSqlDatabase mydb;
+    QSqlDatabase _mydb;
 };
 
 #endif // DBCONNECTION_H

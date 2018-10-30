@@ -9,12 +9,16 @@ class Answer /*: public QObject*/
     //Q_OBJECT
 
 public:
-    Answer(QString _description, bool isCorrectAnswer);
+    Answer(QString description, bool isCorrectAnswer);
     QString description() const;
     bool operator==(const Answer &aws) const;
 
+    int id() const;
+    void setId(int id);
+
 private:
-    bool isCorrectAnswer;
+    int _id;
+    bool _isCorrectAnswer;
     QString _description;
 };
 
