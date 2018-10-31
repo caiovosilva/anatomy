@@ -7,20 +7,24 @@ DAOQuestionSQLITE::DAOQuestionSQLITE()
 
 bool DAOQuestionSQLITE::addQuestion(Question *question)
 {
-    _mydb->open();
-    if(!isOkToPersist(question) || !_mydb->isOpen())
-    {
-        _mydb->close();
+    if(!isOkToPersist(question))
         return false;
-    }
+    _mydb->open();
+    if(!_mydb->isOpen())
+        return false;
+    _mydb->transaction();
+
     QSqlQuery query;
     query.prepare("INSERT INTO question (description, anatomyimage_fk) "
                   "VALUES (:description, :anatomyimage_fk)");
     query.bindValue(":description", question->description());
     query.bindValue(":anatomyimage_fk", question->anatomyimageId());
-    return query.exec();
-//    return(query.exec("INSERT INTO question(description, anatomyimage_fk) VALUES ('"
-//               +question->description()+ ", "+ question->anatomyimageId()+")"));
+
+    bool result = query.exec();
+    question->setId(query.lastInsertId().toInt());
+    _mydb->commit();
+    _mydb->close();
+    return result;
 }
 
 Question DAOQuestionSQLITE::getQuestion(int id)
@@ -42,10 +46,11 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
         qDebug()<<"Not connected to db";
         return questionsList;
     }
+    _mydb->transaction();
 
     query.prepare("SELECT * FROM question WHERE anatomyimage_fk = :id");
     query.bindValue(":id", id);
-   // query.prepare("SELECT * FROM question WHERE anatomyimage_fk = "+QString::number(id));
+
     if(query.exec()){
         Question item;
         while(query.next()){
@@ -55,8 +60,8 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
             questionsList.append(item);
         }
     }
-    qDebug()<<query.lastError().text();
-
+    _mydb->commit();
+    _mydb->close();
     return questionsList;
 }
 

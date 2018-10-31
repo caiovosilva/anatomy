@@ -14,11 +14,12 @@ bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
 
 QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
 {
-    _mydb->open();
     QSqlQuery query;
     QList<AnatomyImage> anatomyList;
     //DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
-
+    _mydb->open();
+    if(!_mydb->open())
+        return anatomyList;
     query.prepare("select * from anatomyimage");
     if(query.exec()){
         AnatomyImage item;
@@ -30,6 +31,8 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
             anatomyList.append(item);
         }
     }
+    _mydb->commit();
+    _mydb->close();
     return anatomyList;
 }
 

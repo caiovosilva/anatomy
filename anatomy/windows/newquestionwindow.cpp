@@ -7,6 +7,7 @@
 #include "model/answer.h"
 #include "DAO/daoanatomyimagesqlite.h"
 #include "DAO/daoquestionsqlite.h"
+#include "DAO/daoanswersqlite.h"
 
 NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     QWidget(parent),
@@ -49,9 +50,14 @@ void NewQuestionWindow::on_buttonBox_accepted()
     Question question = Question(ui->question->toPlainText(), id);
 
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
-    daoQuestion->addQuestion(&question);
-//    Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
-//    question.addAnswer(&answer);
+    if(daoQuestion->addQuestion(&question)){
+            DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
+
+            Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
+            answer.setQuestionId(question.id());
+            *daoAnswer->addAnswer(answer);
+    }
+
 //    answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked());
 //    question.addAnswer(&answer);
 //    answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked());
