@@ -7,9 +7,18 @@ AnatomyImage::AnatomyImage(QString imagePath, QString description):
 
 }
 
+AnatomyImage::AnatomyImage()
+{
+}
+
 QString AnatomyImage::getImagePath() const
 {
     return _imagePath;
+}
+
+void AnatomyImage::setQuestionsList(const QList<Question *> &questionsList)
+{
+    _questionsList = questionsList;
 }
 
 void AnatomyImage::addQuestion(Question *question)
@@ -40,5 +49,15 @@ void AnatomyImage::setId(int id)
 QString AnatomyImage::getDescription() const
 {
     return _description;
+}
+
+void AnatomyImage::setDescription(const QString &description)
+{
+    _description = description;
+}
+
+void AnatomyImage::setImagePath(const QString &imagePath)
+{
+    _imagePath = imagePath;
 }
 

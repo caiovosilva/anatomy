@@ -5,6 +5,7 @@
 #include "playwindow.h"
 
 #include "dbconnection.h"
+#include "DAO/daoanatomyimagesqlite.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,8 +33,6 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_init_clicked()
 {
-    if(DBConnection::Instance()->Connection()->isOpen())
-        ui->label->setText("is open!");
 //    PlayWindow *newWindow = new PlayWindow;
 //    newWindow->show();
 }

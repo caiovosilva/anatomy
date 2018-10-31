@@ -21,7 +21,6 @@ public:
 private:
     QSqlDatabase *_mydb;
 
-
 };
 
 #endif // DAOANATOMYIMAGESQLITE_H

@@ -2,11 +2,13 @@
 #define ANSWER_H
 
 #include <QString>
-//#include <QObject>
 
-class Answer /*: public QObject*/
+#include "question.h"
+
+class Question;
+
+class Answer
 {
-    //Q_OBJECT
 
 public:
     Answer(QString description, bool isCorrectAnswer);
@@ -16,8 +18,12 @@ public:
     int id() const;
     void setId(int id);
 
+    int getQuestionId() const;
+    void setQuestionId(int value);
+
 private:
     int _id;
+    int _questionId;
     bool _isCorrectAnswer;
     QString _description;
 };

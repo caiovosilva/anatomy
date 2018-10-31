@@ -34,7 +34,11 @@ SOURCES += \
     anatomyimage.cpp \
     dbconnection.cpp \
     DAO/daoanatomyimage.cpp \
-    DAO/daoanatomyimagesqlite.cpp
+    DAO/daoanatomyimagesqlite.cpp \
+    DAO/daoanswer.cpp \
+    DAO/daoanswersqlite.cpp \
+    DAO/daoquestion.cpp \
+    DAO/daoquestionsqlite.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -46,7 +50,11 @@ HEADERS += \
     anatomyimage.h \
     dbconnection.h \
     DAO/daoanatomyimage.h \
-    DAO/daoanatomyimagesqlite.h
+    DAO/daoanatomyimagesqlite.h \
+    DAO/daoanswer.h \
+    DAO/daoanswersqlite.h \
+    DAO/daoquestion.h \
+    DAO/daoquestionsqlite.h
 
 FORMS += \
     mainwindow.ui \

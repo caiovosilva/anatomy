@@ -1,10 +1,14 @@
 #include "question.h"
 
-Question::Question(QString description, AnatomyImage *anatomyImage):
+Question::Question(QString description, int anatomyImageId):
     _description(description),
-    _anatomyImage(anatomyImage)
+    _anatomyimageId(anatomyImageId)
 {
 
+}
+
+Question::Question()
+{
 }
 
 void Question::addAnswer(Answer *answer)
@@ -30,4 +34,19 @@ int Question::id() const
 void Question::setId(int id)
 {
     _id = id;
+}
+
+int Question::anatomyimageId() const
+{
+    return _anatomyimageId;
+}
+
+void Question::setAnatomyimageId(int anatomyimageId)
+{
+    _anatomyimageId = anatomyimageId;
+}
+
+void Question::setDescription(const QString &description)
+{
+    _description = description;
 }

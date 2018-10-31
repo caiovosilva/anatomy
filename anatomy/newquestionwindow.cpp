@@ -5,12 +5,23 @@
 
 #include "question.h"
 #include "answer.h"
+#include "DAO/daoanatomyimagesqlite.h"
 
 NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NewQuestionWindow)
 {
     ui->setupUi(this);
+
+    QList<AnatomyImage> anatomyList;
+    DAOAnatomyImage *anatomyDAO = new DAOAnatomyImageSQLITE;
+    anatomyList = anatomyDAO->getAllAnatomyImages();
+    foreach (AnatomyImage item, anatomyList) {
+
+        ui->anatomyComboBox->addItem(item.getDescription());
+
+    }
+    //ui->anatomyComboBox->addItems(anatomyList);
 }
 
 NewQuestionWindow::~NewQuestionWindow()
@@ -58,4 +69,9 @@ bool NewQuestionWindow::allAnswersAndQuestionFilled()
             ui->answer3->toPlainText().isEmpty() || ui->answer4->toPlainText().isEmpty())
         return false;
     return true;
+}
+
+void NewQuestionWindow::on_buttonBox_rejected()
+{
+    this->close();
 }

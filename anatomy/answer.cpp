@@ -25,3 +25,13 @@ void Answer::setId(int id)
 {
     _id = id;
 }
+
+int Answer::getQuestionId() const
+{
+    return _questionId;
+}
+
+void Answer::setQuestionId(int value)
+{
+    _questionId = value;
+}

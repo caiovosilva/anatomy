@@ -5,23 +5,30 @@
 
 #include "answer.h"
 #include "anatomyimage.h"
+
 class AnatomyImage;
+class Answer;
+
 class Question
 {
 public:
-    Question(QString description, AnatomyImage *anatomyImage);
+    Question(QString description, int anatomyImageId);
+    Question();
+
     void addAnswer(Answer *answer);
     void removeAnswer(Answer *answer);
-    QString description() const;
-
     int id() const;
     void setId(int id);
+    QString description() const;
+    void setDescription(const QString &description);
+    int anatomyimageId() const;
+    void setAnatomyimageId(int anatomyimageId);
 
 private:
     int _id;
-    QString _description;                            //oq fazer? um "get" e um "set" ou colocar como publico??
+    QString _description;
     QList<Answer*> _answers;
-    AnatomyImage *_anatomyImage;
+    int _anatomyimageId;
 };
 
 #endif // QUESTION_H

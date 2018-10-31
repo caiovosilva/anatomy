@@ -32,28 +32,18 @@
      <x>10</x>
      <y>40</y>
      <width>641</width>
-     <height>451</height>
+     <height>484</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="4" column="1">
-     <widget class="QTextEdit" name="answer4"/>
-    </item>
-    <item row="1" column="2">
-     <widget class="QRadioButton" name="correctAnswer1">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Resposta Correta</string>
+       <string>Resposta:</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
-     <widget class="QRadioButton" name="correctAnswer3">
-      <property name="text">
-       <string>Resposta Correta</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
        <string>Pergunta:</string>
@@ -63,57 +53,80 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="2">
+    <item row="2" column="2">
+     <widget class="QRadioButton" name="correctAnswer1">
+      <property name="text">
+       <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QTextEdit" name="answer4"/>
+    </item>
+    <item row="5" column="2">
      <widget class="QRadioButton" name="correctAnswer4">
       <property name="text">
        <string>Resposta Correta</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="2" column="1">
+     <widget class="QTextEdit" name="answer1"/>
+    </item>
+    <item row="4" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
        <string>Resposta:</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="4" column="1">
+     <widget class="QTextEdit" name="answer3"/>
+    </item>
+    <item row="3" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
        <string>Resposta:</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_2">
+    <item row="3" column="1">
+     <widget class="QTextEdit" name="answer2"/>
+    </item>
+    <item row="3" column="2">
+     <widget class="QRadioButton" name="correctAnswer2">
       <property name="text">
-       <string>Resposta:</string>
+       <string>Resposta Correta</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="1">
      <widget class="QTextEdit" name="question"/>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QLabel" name="label_5">
       <property name="text">
        <string>Resposta:</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QTextEdit" name="answer3"/>
-    </item>
-    <item row="1" column="1">
-     <widget class="QTextEdit" name="answer1"/>
-    </item>
-    <item row="2" column="1">
-     <widget class="QTextEdit" name="answer2"/>
-    </item>
-    <item row="2" column="2">
-     <widget class="QRadioButton" name="correctAnswer2">
+    <item row="4" column="2">
+     <widget class="QRadioButton" name="correctAnswer3">
       <property name="text">
        <string>Resposta Correta</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="anatomyComboBox"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_6">
+      <property name="text">
+       <string>Tarefa:</string>
+      </property>
+      <property name="buddy">
+       <cstring>question</cstring>
       </property>
      </widget>
     </item>

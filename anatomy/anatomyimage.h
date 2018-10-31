@@ -10,16 +10,19 @@ class AnatomyImage
 {
 public:
     AnatomyImage(QString imagePath, QString description);
+    AnatomyImage();
 
-    QString getImagePath() const;
     void addQuestion(Question *question);
     void removeQuestion(Question *question);
-    QList<Question *> getQuestionsList() const;
 
+    QList<Question *> getQuestionsList() const;
+    void setQuestionsList(const QList<Question *> &questionsList);
     int getId() const;
     void setId(int id);
-
     QString getDescription() const;
+    void setDescription(const QString &description);
+    void setImagePath(const QString &imagePath);
+    QString getImagePath() const;
 
 private:
     int _id;
