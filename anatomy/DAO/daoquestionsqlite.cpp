@@ -1,18 +1,26 @@
 #include "daoquestionsqlite.h"
-#include "anatomyimage.h"
 
 DAOQuestionSQLITE::DAOQuestionSQLITE()
 {
-
+    _mydb = DBConnection::Instance()->Connection();
 }
 
 bool DAOQuestionSQLITE::addQuestion(Question *question)
 {
-    if(!isOkToPersist(question))
+    _mydb->open();
+    if(!isOkToPersist(question) || !_mydb->isOpen())
+    {
+        _mydb->close();
         return false;
+    }
     QSqlQuery query;
-    return(query.exec("INSERT INTO question(description, anatomyimage_fk) VALUES ('"
-               +question->description()+ ", "+ question->anatomyimageId()+")"));
+    query.prepare("INSERT INTO question (description, anatomyimage_fk) "
+                  "VALUES (:description, :anatomyimage_fk)");
+    query.bindValue(":description", question->description());
+    query.bindValue(":anatomyimage_fk", question->anatomyimageId());
+    return query.exec();
+//    return(query.exec("INSERT INTO question(description, anatomyimage_fk) VALUES ('"
+//               +question->description()+ ", "+ question->anatomyimageId()+")"));
 }
 
 Question DAOQuestionSQLITE::getQuestion(int id)
@@ -27,9 +35,18 @@ bool DAOQuestionSQLITE::deleteQuestion(Question *question)
 
 QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
 {
+    _mydb->open();
     QSqlQuery query;
     QList<Question> questionsList;
-    if(query.exec("SELECT * FROM questions WHERE anatomyimage_fk = "+id)){
+    if(!_mydb->isOpen()){
+        qDebug()<<"Not connected to db";
+        return questionsList;
+    }
+
+    query.prepare("SELECT * FROM question WHERE anatomyimage_fk = :id");
+    query.bindValue(":id", id);
+   // query.prepare("SELECT * FROM question WHERE anatomyimage_fk = "+QString::number(id));
+    if(query.exec()){
         Question item;
         while(query.next()){
             item.setId(query.value(0).toInt());
@@ -38,6 +55,8 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
             questionsList.append(item);
         }
     }
+    qDebug()<<query.lastError().text();
+
     return questionsList;
 }
 

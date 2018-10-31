@@ -11,12 +11,17 @@ Question::Question()
 {
 }
 
-void Question::addAnswer(Answer *answer)
+bool Question::operator==(const Question &question) const
+{
+    return (question.description() == description());
+}
+
+void Question::addAnswer(Answer answer)
 {
     _answers.append(answer);
 }
 
-void Question::removeAnswer(Answer *answer)
+void Question::removeAnswer(Answer answer)
 {
     _answers.removeOne(answer);
 }

@@ -16,24 +16,24 @@ QString AnatomyImage::getImagePath() const
     return _imagePath;
 }
 
-void AnatomyImage::setQuestionsList(const QList<Question *> &questionsList)
+QList<Question> AnatomyImage::getQuestionsList() const
+{
+    return _questionsList;
+}
+
+void AnatomyImage::setQuestionsList(const QList<Question> &questionsList)
 {
     _questionsList = questionsList;
 }
 
-void AnatomyImage::addQuestion(Question *question)
+void AnatomyImage::addQuestion(Question question)
 {
     _questionsList.append(question);
 }
 
-void AnatomyImage::removeQuestion(Question *question)
+void AnatomyImage::removeQuestion(Question question)
 {
     _questionsList.removeOne(question);
-}
-
-QList<Question *> AnatomyImage::getQuestionsList() const
-{
-    return _questionsList;
 }
 
 int AnatomyImage::getId() const

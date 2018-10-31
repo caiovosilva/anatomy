@@ -25,36 +25,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    mainwindow.cpp \
-    answer.cpp \
-    question.cpp \
-    newquestionwindow.cpp \
-    listquestionswindow.cpp \
-    playwindow.cpp \
-    anatomyimage.cpp \
-    dbconnection.cpp \
     DAO/daoanatomyimage.cpp \
     DAO/daoanatomyimagesqlite.cpp \
     DAO/daoanswer.cpp \
     DAO/daoanswersqlite.cpp \
     DAO/daoquestion.cpp \
-    DAO/daoquestionsqlite.cpp
+    DAO/daoquestionsqlite.cpp \
+    DAO/dbconnection.cpp \
+    model/answer.cpp \
+    model/question.cpp \
+    model/anatomyimage.cpp \
+    windows/listquestionswindow.cpp \
+    windows/mainwindow.cpp \
+    windows/newquestionwindow.cpp \
+    windows/playwindow.cpp
 
 HEADERS += \
-    mainwindow.h \
-    answer.h \
-    question.h \
-    newquestionwindow.h \
-    listquestionswindow.h \
-    playwindow.h \
-    anatomyimage.h \
-    dbconnection.h \
     DAO/daoanatomyimage.h \
     DAO/daoanatomyimagesqlite.h \
     DAO/daoanswer.h \
     DAO/daoanswersqlite.h \
     DAO/daoquestion.h \
-    DAO/daoquestionsqlite.h
+    DAO/daoquestionsqlite.h \
+    DAO/dbconnection.h \
+    model/answer.h \
+    model/question.h \
+    model/anatomyimage.h \
+    windows/listquestionswindow.h \
+    windows/mainwindow.h \
+    windows/playwindow.h \
+    windows/newquestionwindow.h
 
 FORMS += \
     mainwindow.ui \

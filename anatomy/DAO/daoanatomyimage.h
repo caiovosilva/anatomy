@@ -3,7 +3,7 @@
 
 #include <QList>
 
-#include "anatomyimage.h"
+#include "model/anatomyimage.h"
 
 class DAOAnatomyImage
 {

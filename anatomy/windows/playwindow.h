@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "anatomyimage.h"
+#include "model/anatomyimage.h"
 
 namespace Ui {
 class PlayWindow;

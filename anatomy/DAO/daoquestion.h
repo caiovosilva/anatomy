@@ -1,7 +1,7 @@
 #ifndef DAOQUESTION_H
 #define DAOQUESTION_H
 
-#include "question.h"
+#include "model/question.h"
 
 class DAOQuestion
 {

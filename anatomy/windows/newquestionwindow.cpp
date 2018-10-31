@@ -3,9 +3,10 @@
 
 #include <QMessageBox>
 
-#include "question.h"
-#include "answer.h"
+#include "model/question.h"
+#include "model/answer.h"
 #include "DAO/daoanatomyimagesqlite.h"
+#include "DAO/daoquestionsqlite.h"
 
 NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     QWidget(parent),
@@ -15,13 +16,13 @@ NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
 
     QList<AnatomyImage> anatomyList;
     DAOAnatomyImage *anatomyDAO = new DAOAnatomyImageSQLITE;
+    DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
     anatomyList = anatomyDAO->getAllAnatomyImages();
+
     foreach (AnatomyImage item, anatomyList) {
-
-        ui->anatomyComboBox->addItem(item.getDescription());
-
+        item.setQuestionsList(questionsDAO->getQuestionsByAnatomyImageId(item.getId()));
+        ui->anatomyComboBox->addItem(item.getDescription(), item.getId());
     }
-    //ui->anatomyComboBox->addItems(anatomyList);
 }
 
 NewQuestionWindow::~NewQuestionWindow()
@@ -44,8 +45,11 @@ void NewQuestionWindow::on_buttonBox_accepted()
         return;
     }
 
-//    Question question = Question(ui->question->toPlainText());
+    int id = ui->anatomyComboBox->currentData().toInt();
+    Question question = Question(ui->question->toPlainText(), id);
 
+    DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
+    daoQuestion->addQuestion(&question);
 //    Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
 //    question.addAnswer(&answer);
 //    answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked());

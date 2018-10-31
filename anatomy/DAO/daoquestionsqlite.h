@@ -1,8 +1,9 @@
 #ifndef DAOQUESTIONSQLITE_H
 #define DAOQUESTIONSQLITE_H
 
-#include "question.h"
+#include "model/question.h"
 #include "daoquestion.h"
+#include "dbconnection.h"
 
 #include <QtSql>
 
@@ -21,6 +22,7 @@ public:
 
 private:
     bool isOkToPersist(Question *question);
+    QSqlDatabase *_mydb;
 
 };
 

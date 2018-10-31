@@ -4,7 +4,7 @@
 #include "listquestionswindow.h"
 #include "playwindow.h"
 
-#include "dbconnection.h"
+#include "DAO/dbconnection.h"
 #include "DAO/daoanatomyimagesqlite.h"
 
 MainWindow::MainWindow(QWidget *parent) :
