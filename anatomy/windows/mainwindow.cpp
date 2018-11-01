@@ -3,7 +3,7 @@
 #include "newquestionwindow.h"
 #include "listquestionswindow.h"
 #include "playwindow.h"
-
+#include "entrieswindow.h"
 #include "DAO/dbconnection.h"
 #include "DAO/daoanatomyimagesqlite.h"
 
@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    NewQuestionWindow *newWindow = new NewQuestionWindow;
+    EntriesWindow *newWindow = new EntriesWindow;
     newWindow->show();
 }
 

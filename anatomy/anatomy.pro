@@ -38,7 +38,13 @@ SOURCES += \
     windows/listquestionswindow.cpp \
     windows/mainwindow.cpp \
     windows/newquestionwindow.cpp \
-    windows/playwindow.cpp
+    windows/playwindow.cpp \
+    model/modality.cpp \
+    model/anatomicalregion.cpp \
+    windows/entrieswindow.cpp \
+    DAO/daomodality.cpp \
+    DAO/daomodalitysqlite.cpp \
+    windows/newmodalitywindow.cpp
 
 HEADERS += \
     DAO/daoanatomyimage.h \
@@ -54,10 +60,18 @@ HEADERS += \
     windows/listquestionswindow.h \
     windows/mainwindow.h \
     windows/playwindow.h \
-    windows/newquestionwindow.h
+    windows/newquestionwindow.h \
+    model/modality.h \
+    model/anatomicalregion.h \
+    windows/entrieswindow.h \
+    DAO/daomodality.h \
+    DAO/daomodalitysqlite.h \
+    windows/newmodalitywindow.h
 
 FORMS += \
     mainwindow.ui \
     newquestionwindow.ui \
     listquestionswindow.ui \
-    playwindow.ui
+    playwindow.ui \
+    entrieswindow.ui \
+    newmodalitywindow.ui

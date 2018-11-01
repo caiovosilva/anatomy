@@ -15,9 +15,9 @@ public:
     // DAOAnswer interface
 public:
     bool addAnswer(Answer *answer);
-    Answer getAnswer(int id);
-    Answer getAnswerByQuestion(int id);
-    bool deleteAnswer(Answer *answer);
+//    Answer getAnswer(int id);
+//    Answer getAnswerByQuestion(int id);
+//    bool deleteAnswer(Answer *answer);
 
 private:
     QSqlDatabase *_mydb;

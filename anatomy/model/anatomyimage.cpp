@@ -11,6 +11,11 @@ AnatomyImage::AnatomyImage()
 {
 }
 
+bool AnatomyImage::operator==(const AnatomyImage &image) const
+{
+    return image.getDescription() == getDescription();
+}
+
 QString AnatomyImage::getImagePath() const
 {
     return _imagePath;

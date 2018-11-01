@@ -25,15 +25,15 @@ bool DAOQuestionSQLITE::addQuestion(Question *question)
     return result;
 }
 
-Question DAOQuestionSQLITE::getQuestion(int id)
-{
+//Question DAOQuestionSQLITE::getQuestion(int id)
+//{
 
-}
+//}
 
-bool DAOQuestionSQLITE::deleteQuestion(Question *question)
-{
+//bool DAOQuestionSQLITE::deleteQuestion(Question *question)
+//{
 
-}
+//}
 
 QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
 {

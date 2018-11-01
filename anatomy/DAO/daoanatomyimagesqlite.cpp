@@ -7,10 +7,10 @@ DAOAnatomyImageSQLITE::DAOAnatomyImageSQLITE()
     _mydb = DBConnection::Instance()->Connection();
 }
 
-bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
-{
+//bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
+//{
 
-}
+//}
 
 QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
 {
@@ -36,12 +36,12 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
     return anatomyList;
 }
 
-AnatomyImage DAOAnatomyImageSQLITE::getAnatomyImage(int id)
-{
+//AnatomyImage DAOAnatomyImageSQLITE::getAnatomyImage(int id)
+//{
 
-}
+//}
 
-bool DAOAnatomyImageSQLITE::deleteAnatomyImage(AnatomyImage *anatomyImage)
-{
+//bool DAOAnatomyImageSQLITE::deleteAnatomyImage(AnatomyImage *anatomyImage)
+//{
 
-}
+//}

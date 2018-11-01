@@ -11,6 +11,7 @@ class AnatomyImage
 public:
     AnatomyImage(QString imagePath, QString description);
     AnatomyImage();
+    bool operator==(const AnatomyImage &image) const;
 
     void addQuestion(Question question);
     void removeQuestion(Question question);

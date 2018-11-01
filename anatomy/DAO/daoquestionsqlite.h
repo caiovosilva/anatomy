@@ -15,8 +15,8 @@ public:
     // DAOQuestion interface
 public:
     bool addQuestion(Question *question);
-    Question getQuestion(int id);
-    bool deleteQuestion(Question *question);
+//    Question getQuestion(int id);
+//    bool deleteQuestion(Question *question);
     QList<Question> getQuestionsByAnatomyImageId(int id);
     bool updateQuestion(Question *question);
 

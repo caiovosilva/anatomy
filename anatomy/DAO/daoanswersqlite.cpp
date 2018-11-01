@@ -26,17 +26,17 @@ bool DAOAnswerSQLITE::addAnswer(Answer *answer)
     return result;
 }
 
-Answer DAOAnswerSQLITE::getAnswer(int id)
-{
+//Answer DAOAnswerSQLITE::getAnswer(int id)
+//{
 
-}
+//}
 
-Answer DAOAnswerSQLITE::getAnswerByQuestion(int id)
-{
+//Answer DAOAnswerSQLITE::getAnswerByQuestion(int id)
+//{
 
-}
+//}
 
-bool DAOAnswerSQLITE::deleteAnswer(Answer *answer)
-{
+//bool DAOAnswerSQLITE::deleteAnswer(Answer *answer)
+//{
 
-}
+//}

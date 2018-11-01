@@ -13,10 +13,10 @@ public:
 
     // DAOAnatomyImage interface
 public:
-    bool addAnatomyImage(AnatomyImage *anatomyImage);
+    //bool addAnatomyImage(AnatomyImage *anatomyImage);
     QList<AnatomyImage> getAllAnatomyImages();
-    AnatomyImage getAnatomyImage(int id);
-    bool deleteAnatomyImage(AnatomyImage *anatomyImage);
+//    AnatomyImage getAnatomyImage(int id);
+//    bool deleteAnatomyImage(AnatomyImage *anatomyImage);
 
 private:
     QSqlDatabase *_mydb;
