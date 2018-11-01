@@ -18,6 +18,8 @@ public:
     Question getQuestion(int id);
     bool deleteQuestion(Question *question);
     QList<Question> getQuestionsByAnatomyImageId(int id);
+    bool updateQuestion(Question *question);
+
 
 
 private:

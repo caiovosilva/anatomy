@@ -10,6 +10,7 @@ public:
     virtual Question getQuestion(int id) = 0;
     virtual QList<Question> getQuestionsByAnatomyImageId(int id) = 0;
     virtual bool deleteQuestion(Question* question) = 0;
+    virtual bool updateQuestion(Question *question) = 0;
 };
 
 #endif // DAOQUESTION_H

@@ -25,12 +25,15 @@ public:
     void setDescription(const QString &description);
     int anatomyimageId() const;
     void setAnatomyimageId(int anatomyimageId);
+    int correctAnswerId() const;
+    void setCorrectAnswerId(int correctAnswerId);
 
 private:
     int _id;
     QString _description;
     QList<Answer> _answers;
     int _anatomyimageId;
+    int _correctAnswerId;
 };
 
 #endif // QUESTION_H

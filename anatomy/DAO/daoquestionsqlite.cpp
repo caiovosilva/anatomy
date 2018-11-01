@@ -62,3 +62,24 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
     _mydb->close();
     return questionsList;
 }
+
+bool DAOQuestionSQLITE::updateQuestion(Question *question)
+{
+    _mydb->open();
+    if(!_mydb->isOpen())
+        return false;
+    _mydb->transaction();
+
+    QSqlQuery query;
+    query.prepare("UPDATE question SET description = :description, anatomyimage_fk = :anatomyimage_fk, "
+                  "correctAnswer_fk = :correctAnswer_fk WHERE id = :id");
+    query.bindValue(":description", question->description());
+    query.bindValue(":anatomyimage_fk", question->anatomyimageId());
+    query.bindValue(":correctAnswer_fk", question->correctAnswerId());
+    query.bindValue(":id", question->id());
+
+    bool result = query.exec();
+    _mydb->commit();
+    _mydb->close();
+    return result;
+}

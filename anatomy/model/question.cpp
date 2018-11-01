@@ -51,6 +51,16 @@ void Question::setAnatomyimageId(int anatomyimageId)
     _anatomyimageId = anatomyimageId;
 }
 
+int Question::correctAnswerId() const
+{
+    return _correctAnswerId;
+}
+
+void Question::setCorrectAnswerId(int correctAnswerId)
+{
+    _correctAnswerId = correctAnswerId;
+}
+
 void Question::setDescription(const QString &description)
 {
     _description = description;

@@ -83,12 +83,22 @@ void NewQuestionWindow::saveQuestion()
             Answer answer;
             answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked(), question.id());
             daoAnswer->addAnswer(&answer);
+            if(answer.isCorrectAnswer())
+                question.setCorrectAnswerId(answer.id());
             answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked(), question.id());
             daoAnswer->addAnswer(&answer);
+            if(answer.isCorrectAnswer())
+                question.setCorrectAnswerId(answer.id());
             answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked(), question.id());
             daoAnswer->addAnswer(&answer);
+            if(answer.isCorrectAnswer())
+                question.setCorrectAnswerId(answer.id());
             answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked(), question.id());
             daoAnswer->addAnswer(&answer);
+            if(answer.isCorrectAnswer())
+                question.setCorrectAnswerId(answer.id());
+
+            daoQuestion->updateQuestion(&question);
     }
 }
 
