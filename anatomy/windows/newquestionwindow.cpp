@@ -31,7 +31,34 @@ NewQuestionWindow::~NewQuestionWindow()
     delete ui;
 }
 
-void NewQuestionWindow::on_buttonBox_accepted()
+bool NewQuestionWindow::oneCorrectAnswerSelected()
+{
+    if(ui->correctAnswer1->isChecked()|| ui->correctAnswer2->isChecked() || ui->correctAnswer3->isChecked() || ui->correctAnswer4->isChecked())
+        return true;
+    return false;
+}
+
+bool NewQuestionWindow::allAnswersAndQuestionFilled()
+{
+    if(ui->question->toPlainText().isEmpty() || ui->answer1->toPlainText().isEmpty() || ui->answer2->toPlainText().isEmpty() ||
+            ui->answer3->toPlainText().isEmpty() || ui->answer4->toPlainText().isEmpty())
+        return false;
+    return true;
+}
+
+void NewQuestionWindow::on_cancelButton_clicked()
+{
+    this->close();
+
+}
+
+void NewQuestionWindow::on_saveButton_clicked()
+{
+    saveQuestion();
+    on_cancelButton_clicked();
+}
+
+void NewQuestionWindow::saveQuestion()
 {
     if(!oneCorrectAnswerSelected())
     {
@@ -50,38 +77,29 @@ void NewQuestionWindow::on_buttonBox_accepted()
     Question question = Question(ui->question->toPlainText(), id);
 
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
-    if(daoQuestion->addQuestion(&question)){
+    if(daoQuestion->addQuestion(&question))
+    {
             DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
-
-            Answer answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked());
-            answer.setQuestionId(question.id());
-            *daoAnswer->addAnswer(answer);
+            Answer answer;
+            answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked(), question.id());
+            daoAnswer->addAnswer(&answer);
+            answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked(), question.id());
+            daoAnswer->addAnswer(&answer);
+            answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked(), question.id());
+            daoAnswer->addAnswer(&answer);
+            answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked(), question.id());
+            daoAnswer->addAnswer(&answer);
     }
-
-//    answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked());
-//    question.addAnswer(&answer);
-//    answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked());
-//    question.addAnswer(&answer);
-//    answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked());
-//    question.addAnswer(&answer);
 }
 
-bool NewQuestionWindow::oneCorrectAnswerSelected()
+void NewQuestionWindow::on_saveAndContinueButton_clicked()
 {
-    if(ui->correctAnswer1->isChecked()|| ui->correctAnswer2->isChecked() || ui->correctAnswer3->isChecked() || ui->correctAnswer4->isChecked())
-        return true;
-    return false;
-}
+    saveQuestion();
 
-bool NewQuestionWindow::allAnswersAndQuestionFilled()
-{
-    if(ui->question->toPlainText().isEmpty() || ui->answer1->toPlainText().isEmpty() || ui->answer2->toPlainText().isEmpty() ||
-            ui->answer3->toPlainText().isEmpty() || ui->answer4->toPlainText().isEmpty())
-        return false;
-    return true;
-}
+    ui->answer1->clear();
+    ui->answer2->clear();
+    ui->answer3->clear();
+    ui->answer4->clear();
+    ui->question->clear();
 
-void NewQuestionWindow::on_buttonBox_rejected()
-{
-    this->close();
 }

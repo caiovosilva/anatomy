@@ -11,15 +11,18 @@ class Answer
 {
 
 public:
-    Answer(QString description, bool isCorrectAnswer);
-    QString description() const;
+    Answer(QString description, bool isCorrectAnswer, int questionId);
+    Answer();
     bool operator==(const Answer &aws) const;
 
     int id() const;
     void setId(int id);
-
     int getQuestionId() const;
     void setQuestionId(int value);
+    bool isCorrectAnswer() const;
+    void setIsCorrectAnswer(bool isCorrectAnswer);
+    QString getDescription() const;
+    void setDescription(const QString &description);
 
 private:
     int _id;

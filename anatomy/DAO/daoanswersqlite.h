@@ -10,7 +10,7 @@ class DAOAnswerSQLITE : public DAOAnswer
 {
 
 public:
-    explicit DAOAnswerSQLITE(QObject *parent = nullptr);
+    explicit DAOAnswerSQLITE();
 
     // DAOAnswer interface
 public:

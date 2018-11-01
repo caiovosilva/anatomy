@@ -16,10 +16,17 @@ public:
     ~NewQuestionWindow();
 
 private slots:
-    void on_buttonBox_accepted();
-    void on_buttonBox_rejected();
+//    void on_buttonBox_accepted();
+//    void on_buttonBox_rejected();
+
+    void on_cancelButton_clicked();
+
+    void on_saveButton_clicked();
+
+    void on_saveAndContinueButton_clicked();
 
 private:
+    void saveQuestion();
     bool oneCorrectAnswerSelected();
     bool allAnswersAndQuestionFilled();
     Ui::NewQuestionWindow *ui;

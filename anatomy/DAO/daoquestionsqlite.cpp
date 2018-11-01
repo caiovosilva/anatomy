@@ -7,8 +7,6 @@ DAOQuestionSQLITE::DAOQuestionSQLITE()
 
 bool DAOQuestionSQLITE::addQuestion(Question *question)
 {
-    if(!isOkToPersist(question))
-        return false;
     _mydb->open();
     if(!_mydb->isOpen())
         return false;
@@ -63,9 +61,4 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
     _mydb->commit();
     _mydb->close();
     return questionsList;
-}
-
-bool DAOQuestionSQLITE::isOkToPersist(Question *question)
-{
-    return(!(question->description().isNull() || question->description().isEmpty()));
 }

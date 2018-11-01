@@ -21,7 +21,6 @@ public:
 
 
 private:
-    bool isOkToPersist(Question *question);
     QSqlDatabase *_mydb;
 
 };
