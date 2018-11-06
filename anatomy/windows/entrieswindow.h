@@ -18,6 +18,8 @@ public:
 private slots:
     void on_newModalityButton_clicked();
 
+    void on_newAnatomicalRegionButton_clicked();
+
 private:
     Ui::EntriesWindow *ui;
 };

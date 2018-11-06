@@ -24,21 +24,21 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="newQuestionButton">
       <property name="text">
        <string>Adicionar Questão</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="newAnatomyImageButton">
       <property name="text">
        <string>Adicionar Imagem Anatômica</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="newAnatomicalRegionButton">
       <property name="text">
        <string>Adicionar Região Anatômica</string>
       </property>

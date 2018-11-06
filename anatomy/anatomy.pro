@@ -44,7 +44,10 @@ SOURCES += \
     windows/entrieswindow.cpp \
     DAO/daomodality.cpp \
     DAO/daomodalitysqlite.cpp \
-    windows/newmodalitywindow.cpp
+    windows/newmodalitywindow.cpp \
+    windows/newanatomicalregionwindow.cpp \
+    DAO/daoanatomicalregion.cpp \
+    DAO/daoanatomicalregionsqlite.cpp
 
 HEADERS += \
     DAO/daoanatomyimage.h \
@@ -66,7 +69,10 @@ HEADERS += \
     windows/entrieswindow.h \
     DAO/daomodality.h \
     DAO/daomodalitysqlite.h \
-    windows/newmodalitywindow.h
+    windows/newmodalitywindow.h \
+    windows/newanatomicalregionwindow.h \
+    DAO/daoanatomicalregion.h \
+    DAO/daoanatomicalregionsqlite.h
 
 FORMS += \
     mainwindow.ui \
@@ -74,4 +80,5 @@ FORMS += \
     listquestionswindow.ui \
     playwindow.ui \
     entrieswindow.ui \
-    newmodalitywindow.ui
+    newmodalitywindow.ui \
+    newanatomicalregionwindow.ui

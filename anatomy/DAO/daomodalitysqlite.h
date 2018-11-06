@@ -17,6 +17,7 @@ private:
     // DAOModality interface
 public:
     bool addModality(Modality *modality);
+    QList<Modality> getAllModalities();
 };
 
 #endif // DAOMODALITYSQLITE_H

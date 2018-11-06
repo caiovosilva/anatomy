@@ -73,8 +73,8 @@ void NewQuestionWindow::saveQuestion()
         return;
     }
 
-    int id = ui->anatomyComboBox->currentData().toInt();
-    Question question = Question(ui->question->toPlainText(), id);
+    int AnatomyImageId = ui->anatomyComboBox->currentData().toInt();
+    Question question = Question(ui->question->toPlainText(), AnatomyImageId);
 
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
     if(daoQuestion->addQuestion(&question))

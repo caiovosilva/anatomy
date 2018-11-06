@@ -14,10 +14,16 @@ public:
     void setDescription(const QString &value);
     QList<AnatomyImage> getImageList() const;
     void setImageList(const QList<AnatomyImage> &value);
+    int getId() const;
+    void setId(int id);
+    int getModalityId() const;
+    void setModalityId(int value);
 
 private:
+    int _id;
     QList<AnatomyImage> imageList;
     QString description;
+    int modalityId;
 };
 
 #endif // ANATOMICALREGION_H
