@@ -1,8 +1,7 @@
 #include "anatomyimage.h"
 
-AnatomyImage::AnatomyImage(QString imagePath, QString description):
-    _imagePath(imagePath),
-    _description(description)
+AnatomyImage::AnatomyImage(QString imagePath):
+    _imagePath(imagePath)
 {
 
 }
@@ -13,7 +12,7 @@ AnatomyImage::AnatomyImage()
 
 bool AnatomyImage::operator==(const AnatomyImage &image) const
 {
-    return image.getDescription() == getDescription();
+    return image.getImagePath() == getImagePath();
 }
 
 QString AnatomyImage::getImagePath() const
@@ -29,6 +28,16 @@ QList<Question> AnatomyImage::getQuestionsList() const
 void AnatomyImage::setQuestionsList(const QList<Question> &questionsList)
 {
     _questionsList = questionsList;
+}
+
+int AnatomyImage::getAssignmentId() const
+{
+    return _assignmentId;
+}
+
+void AnatomyImage::setAssignmentId(int assignmentId)
+{
+    _assignmentId = assignmentId;
 }
 
 void AnatomyImage::addQuestion(Question question)
@@ -49,16 +58,6 @@ int AnatomyImage::getId() const
 void AnatomyImage::setId(int id)
 {
     _id = id;
-}
-
-QString AnatomyImage::getDescription() const
-{
-    return _description;
-}
-
-void AnatomyImage::setDescription(const QString &description)
-{
-    _description = description;
 }
 
 void AnatomyImage::setImagePath(const QString &imagePath)

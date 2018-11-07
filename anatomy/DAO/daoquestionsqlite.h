@@ -4,14 +4,12 @@
 #include "model/question.h"
 #include "daoquestion.h"
 #include "dbconnection.h"
+#include "DAO/daoclass.h"
 
 #include <QtSql>
 
-class DAOQuestionSQLITE : public DAOQuestion
+class DAOQuestionSQLITE : public DAOQuestion, public DAOClass
 {
-public:
-    DAOQuestionSQLITE();
-
     // DAOQuestion interface
 public:
     bool addQuestion(Question *question);
@@ -19,11 +17,6 @@ public:
 //    bool deleteQuestion(Question *question);
     QList<Question> getQuestionsByAnatomyImageId(int id);
     bool updateQuestion(Question *question);
-
-
-
-private:
-    QSqlDatabase *_mydb;
 
 };
 

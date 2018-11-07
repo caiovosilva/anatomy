@@ -5,13 +5,10 @@
 
 #include "dbconnection.h"
 #include "daoanswer.h"
+#include "DAO/daoclass.h"
 
-class DAOAnswerSQLITE : public DAOAnswer
+class DAOAnswerSQLITE : public DAOAnswer, public DAOClass
 {
-
-public:
-    explicit DAOAnswerSQLITE();
-
     // DAOAnswer interface
 public:
     bool addAnswer(Answer *answer);
@@ -19,8 +16,6 @@ public:
 //    Answer getAnswerByQuestion(int id);
 //    bool deleteAnswer(Answer *answer);
 
-private:
-    QSqlDatabase *_mydb;
 };
 
 #endif // DAOANSWERSQLITE_H

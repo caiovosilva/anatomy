@@ -1,13 +1,7 @@
 #include "daoquestionsqlite.h"
 
-DAOQuestionSQLITE::DAOQuestionSQLITE()
-{
-    _mydb = DBConnection::Instance()->Connection();
-}
-
 bool DAOQuestionSQLITE::addQuestion(Question *question)
 {
-    _mydb->open();
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
@@ -21,7 +15,6 @@ bool DAOQuestionSQLITE::addQuestion(Question *question)
     bool result = query.exec();
     question->setId(query.lastInsertId().toInt());
     _mydb->commit();
-    _mydb->close();
     return result;
 }
 
@@ -37,7 +30,6 @@ bool DAOQuestionSQLITE::addQuestion(Question *question)
 
 QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
 {
-    _mydb->open();
     QSqlQuery query;
     QList<Question> questionsList;
     if(!_mydb->isOpen()){
@@ -58,13 +50,11 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
         }
     }
     _mydb->commit();
-    _mydb->close();
     return questionsList;
 }
 
 bool DAOQuestionSQLITE::updateQuestion(Question *question)
 {
-    _mydb->open();
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
@@ -79,6 +69,5 @@ bool DAOQuestionSQLITE::updateQuestion(Question *question)
 
     bool result = query.exec();
     _mydb->commit();
-    _mydb->close();
     return result;
 }

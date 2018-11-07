@@ -9,7 +9,7 @@ class Question;
 class AnatomyImage
 {
 public:
-    AnatomyImage(QString imagePath, QString description);
+    AnatomyImage(QString imagePath);
     AnatomyImage();
     bool operator==(const AnatomyImage &image) const;
 
@@ -18,18 +18,24 @@ public:
 
     int getId() const;
     void setId(int id);
+
     QString getDescription() const;
     void setDescription(const QString &description);
+
     void setImagePath(const QString &imagePath);
     QString getImagePath() const;
+
     QList<Question> getQuestionsList() const;
     void setQuestionsList(const QList<Question> &questionsList);
+
+    int getAssignmentId() const;
+    void setAssignmentId(int assignmentId);
 
 private:
     int _id;
     QString _imagePath;
-    QString _description;
     QList<Question> _questionsList;
+    int _assignmentId;
 };
 
 #endif // ANATOMYIMAGE_H

@@ -25,11 +25,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    DAO/daoanatomyimage.cpp \
     DAO/daoanatomyimagesqlite.cpp \
-    DAO/daoanswer.cpp \
     DAO/daoanswersqlite.cpp \
-    DAO/daoquestion.cpp \
     DAO/daoquestionsqlite.cpp \
     DAO/dbconnection.cpp \
     model/answer.cpp \
@@ -42,13 +39,15 @@ SOURCES += \
     model/modality.cpp \
     model/anatomicalregion.cpp \
     windows/entrieswindow.cpp \
-    DAO/daomodality.cpp \
     DAO/daomodalitysqlite.cpp \
     windows/newmodalitywindow.cpp \
     windows/newanatomicalregionwindow.cpp \
-    DAO/daoanatomicalregion.cpp \
     DAO/daoanatomicalregionsqlite.cpp \
-    windows/newanatomyimagewindow.cpp
+    windows/newanatomyimagewindow.cpp \
+    newassignmentwindow.cpp \
+    model/assignment.cpp \
+    DAO/daoassignmentsqlite.cpp \
+    DAO/daoclass.cpp
 
 HEADERS += \
     DAO/daoanatomyimage.h \
@@ -74,7 +73,12 @@ HEADERS += \
     windows/newanatomicalregionwindow.h \
     DAO/daoanatomicalregion.h \
     DAO/daoanatomicalregionsqlite.h \
-    windows/newanatomyimagewindow.h
+    windows/newanatomyimagewindow.h \
+    newassignmentwindow.h \
+    model/assignment.h \
+    DAO/daoassignment.h \
+    DAO/daoassignmentsqlite.h \
+    DAO/daoclass.h
 
 FORMS += \
     mainwindow.ui \
@@ -84,4 +88,5 @@ FORMS += \
     entrieswindow.ui \
     newmodalitywindow.ui \
     newanatomicalregionwindow.ui \
-    newanatomyimagewindow.ui
+    newanatomyimagewindow.ui \
+    newassignmentwindow.ui

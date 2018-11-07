@@ -22,7 +22,7 @@ NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
 
     foreach (AnatomyImage item, anatomyList) {
         item.setQuestionsList(questionsDAO->getQuestionsByAnatomyImageId(item.getId()));
-        ui->anatomyComboBox->addItem(item.getDescription(), item.getId());
+        ui->anatomyComboBox->addItem(item.getImagePath(), item.getId());
     }
 }
 

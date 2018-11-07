@@ -5,6 +5,7 @@
 #include "newmodalitywindow.h"
 #include "newanatomicalregionwindow.h"
 #include "newanatomyimagewindow.h"
+#include "newassignmentwindow.h"
 
 EntriesWindow::EntriesWindow(QWidget *parent) :
     QWidget(parent),
@@ -31,9 +32,9 @@ void EntriesWindow::on_newAnatomicalRegionButton_clicked()
     newWindow->show();
 }
 
-void EntriesWindow::on_newAnatomyImageButton_clicked()
+void EntriesWindow::on_newAssignmentButton_clicked()
 {
-    NewAnatomyImageWindow *newWindow = new NewAnatomyImageWindow;
-    newWindow->setWindowTitle("Nova Imagem Anatômica");
+    NewAssignmentWindow *newWindow = new NewAssignmentWindow;
+    newWindow->setWindowTitle("Nova Tarefa");
     newWindow->show();
 }

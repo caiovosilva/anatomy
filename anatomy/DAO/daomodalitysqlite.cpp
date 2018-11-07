@@ -1,14 +1,7 @@
 #include "daomodalitysqlite.h"
 
-DAOModalitySQLITE::DAOModalitySQLITE()
-{
-    _mydb = DBConnection::Instance()->Connection();
-
-}
-
 bool DAOModalitySQLITE::addModality(Modality *modality)
 {
-    _mydb->open();
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
@@ -19,7 +12,6 @@ bool DAOModalitySQLITE::addModality(Modality *modality)
 
     bool result = query.exec();
     _mydb->commit();
-    _mydb->close();
     return result;
 }
 
@@ -27,7 +19,6 @@ QList<Modality> DAOModalitySQLITE::getAllModalities()
 {
     QSqlQuery query;
     QList<Modality> modalitiesList;
-    _mydb->open();
     if(!_mydb->open())
         return modalitiesList;
     _mydb->transaction();
@@ -42,6 +33,5 @@ QList<Modality> DAOModalitySQLITE::getAllModalities()
         }
     }
     _mydb->commit();
-    _mydb->close();
     return modalitiesList;
 }

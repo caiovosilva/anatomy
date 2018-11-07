@@ -31,9 +31,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="newAnatomyImageButton">
+     <widget class="QPushButton" name="newAssignmentButton">
       <property name="text">
-       <string>Adicionar Imagem Anatômica</string>
+       <string>Adicionar Tarefa</string>
       </property>
      </widget>
     </item>

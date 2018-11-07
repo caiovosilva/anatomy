@@ -8,8 +8,10 @@ class Modality
 public:
     Modality(QString description);
     Modality();
+
     int getId() const;
     void setId(int value);
+
     QString getDescription() const;
     void setDescription(const QString &value);
 

@@ -17,10 +17,13 @@ public:
 
     int id() const;
     void setId(int id);
+
     int getQuestionId() const;
     void setQuestionId(int value);
+
     bool isCorrectAnswer() const;
     void setIsCorrectAnswer(bool isCorrectAnswer);
+
     QString getDescription() const;
     void setDescription(const QString &description);
 

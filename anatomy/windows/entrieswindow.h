@@ -20,7 +20,7 @@ private slots:
 
     void on_newAnatomicalRegionButton_clicked();
 
-    void on_newAnatomyImageButton_clicked();
+    void on_newAssignmentButton_clicked();
 
 private:
     Ui::EntriesWindow *ui;

@@ -6,15 +6,10 @@
 #include "dbconnection.h"
 #include "model/anatomicalregion.h"
 #include "daoanatomicalregion.h"
+#include "DAO/daoclass.h"
 
-class DAOAnatomicalRegionSQLITE : public DAOAnatomicalRegion
+class DAOAnatomicalRegionSQLITE : public DAOAnatomicalRegion, public DAOClass
 {
-public:
-    DAOAnatomicalRegionSQLITE();
-
-private:
-    QSqlDatabase *_mydb;
-
     // DAOAnatomicalRegion interface
 public:
     bool addAnatomicalRegion(AnatomicalRegion *anatomicalRegion);

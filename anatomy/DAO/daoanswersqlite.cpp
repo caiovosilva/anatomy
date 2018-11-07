@@ -1,13 +1,7 @@
 #include "daoanswersqlite.h"
 
-DAOAnswerSQLITE::DAOAnswerSQLITE()
-{
-    _mydb = DBConnection::Instance()->Connection();
-}
-
 bool DAOAnswerSQLITE::addAnswer(Answer *answer)
 {
-    _mydb->open();
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
@@ -22,7 +16,6 @@ bool DAOAnswerSQLITE::addAnswer(Answer *answer)
     bool result = query.exec();
     answer->setId(query.lastInsertId().toInt());
     _mydb->commit();
-    _mydb->close();
     return result;
 }
 

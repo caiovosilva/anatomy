@@ -19,12 +19,16 @@ public:
 
     void addAnswer(Answer answer);
     void removeAnswer(Answer answer);
+
     int id() const;
     void setId(int id);
+
     QString description() const;
     void setDescription(const QString &description);
+
     int anatomyimageId() const;
     void setAnatomyimageId(int anatomyimageId);
+
     int correctAnswerId() const;
     void setCorrectAnswerId(int correctAnswerId);
 

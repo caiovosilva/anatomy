@@ -1,13 +1,7 @@
 #include "daoanatomicalregionsqlite.h"
 
-DAOAnatomicalRegionSQLITE::DAOAnatomicalRegionSQLITE()
-{
-    _mydb = DBConnection::Instance()->Connection();
-}
-
 bool DAOAnatomicalRegionSQLITE::addAnatomicalRegion(AnatomicalRegion *anatomicalRegion)
 {
-    _mydb->open();
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
@@ -19,7 +13,6 @@ bool DAOAnatomicalRegionSQLITE::addAnatomicalRegion(AnatomicalRegion *anatomical
 
     bool result = query.exec();
     _mydb->commit();
-    _mydb->close();
     return result;
 }
 
@@ -27,7 +20,6 @@ QList<AnatomicalRegion> DAOAnatomicalRegionSQLITE::getAnatomicalRegionByModality
 {
     QSqlQuery query;
     QList<AnatomicalRegion> AnatomicalRegionList;
-    _mydb->open();
     if(!_mydb->isOpen()){
         return AnatomicalRegionList;
     }
@@ -46,6 +38,5 @@ QList<AnatomicalRegion> DAOAnatomicalRegionSQLITE::getAnatomicalRegionByModality
         }
     }
     _mydb->commit();
-    _mydb->close();
     return AnatomicalRegionList;
 }
