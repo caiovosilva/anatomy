@@ -22,6 +22,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     EntriesWindow *newWindow = new EntriesWindow;
+    newWindow->setWindowTitle("Cadastros");
     newWindow->show();
 }
 

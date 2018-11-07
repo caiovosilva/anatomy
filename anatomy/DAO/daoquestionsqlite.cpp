@@ -41,7 +41,6 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
     QSqlQuery query;
     QList<Question> questionsList;
     if(!_mydb->isOpen()){
-        qDebug()<<"Not connected to db";
         return questionsList;
     }
     _mydb->transaction();

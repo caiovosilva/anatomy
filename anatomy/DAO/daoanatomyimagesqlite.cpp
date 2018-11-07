@@ -20,6 +20,8 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
     _mydb->open();
     if(!_mydb->open())
         return anatomyList;
+    _mydb->transaction();
+
     query.prepare("select * from anatomyimage");
     if(query.exec()){
         AnatomyImage item;

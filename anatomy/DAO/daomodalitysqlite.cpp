@@ -30,6 +30,7 @@ QList<Modality> DAOModalitySQLITE::getAllModalities()
     _mydb->open();
     if(!_mydb->open())
         return modalitiesList;
+    _mydb->transaction();
 
     query.prepare("select * from modality");
     if(query.exec()){
