@@ -7,10 +7,10 @@ bool DAOQuestionSQLITE::addQuestion(Question *question)
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO question (description, anatomyimage_fk) "
-                  "VALUES (:description, :anatomyimage_fk)");
+    query.prepare("INSERT INTO question (description, assignment_fk) "
+                  "VALUES (:description, :assignment_fk)");
     query.bindValue(":description", question->description());
-    query.bindValue(":anatomyimage_fk", question->anatomyimageId());
+    query.bindValue(":assignment_fk", question->assignmentId());
 
     bool result = query.exec();
     question->setId(query.lastInsertId().toInt());
@@ -28,7 +28,7 @@ bool DAOQuestionSQLITE::addQuestion(Question *question)
 
 //}
 
-QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
+QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
 {
     QSqlQuery query;
     QList<Question> questionsList;
@@ -45,7 +45,7 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
         while(query.next()){
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
-            item.setAnatomyimageId(query.value(2).toInt());
+            item.setAssignmentId(query.value(2).toInt());
             questionsList.append(item);
         }
     }
@@ -60,10 +60,10 @@ bool DAOQuestionSQLITE::updateQuestion(Question *question)
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("UPDATE question SET description = :description, anatomyimage_fk = :anatomyimage_fk, "
+    query.prepare("UPDATE question SET description = :description, assignment_fk = :assignment_fk, "
                   "correctAnswer_fk = :correctAnswer_fk WHERE id = :id");
     query.bindValue(":description", question->description());
-    query.bindValue(":anatomyimage_fk", question->anatomyimageId());
+    query.bindValue(":assignment_fk", question->assignmentId());
     query.bindValue(":correctAnswer_fk", question->correctAnswerId());
     query.bindValue(":id", question->id());
 

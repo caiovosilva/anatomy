@@ -44,10 +44,10 @@ SOURCES += \
     windows/newanatomicalregionwindow.cpp \
     DAO/daoanatomicalregionsqlite.cpp \
     windows/newanatomyimagewindow.cpp \
-    newassignmentwindow.cpp \
     model/assignment.cpp \
     DAO/daoassignmentsqlite.cpp \
-    DAO/daoclass.cpp
+    DAO/daoclass.cpp \
+    windows/newassignmentwindow.cpp
 
 HEADERS += \
     DAO/daoanatomyimage.h \
@@ -74,11 +74,11 @@ HEADERS += \
     DAO/daoanatomicalregion.h \
     DAO/daoanatomicalregionsqlite.h \
     windows/newanatomyimagewindow.h \
-    newassignmentwindow.h \
     model/assignment.h \
     DAO/daoassignment.h \
     DAO/daoassignmentsqlite.h \
-    DAO/daoclass.h
+    DAO/daoclass.h \
+    windows/newassignmentwindow.h
 
 FORMS += \
     mainwindow.ui \

@@ -13,17 +13,11 @@ public:
     AnatomyImage();
     bool operator==(const AnatomyImage &image) const;
 
-    void addQuestion(Question question);
-    void removeQuestion(Question question);
-
     int getId() const;
     void setId(int id);
 
     void setImagePath(const QString &imagePath);
     QString getImagePath() const;
-
-    QList<Question> getQuestionsList() const;
-    void setQuestionsList(const QList<Question> &questionsList);
 
     int getAssignmentId() const;
     void setAssignmentId(int assignmentId);
@@ -31,7 +25,6 @@ public:
 private:
     int _id;
     QString _imagePath;
-    QList<Question> _questionsList;
     int _assignmentId;
 };
 

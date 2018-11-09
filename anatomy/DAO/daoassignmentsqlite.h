@@ -12,6 +12,8 @@ class DAOAssignmentSQLITE : public DAOAssignment, public DAOClass
     // DAOAssignment interface
 public:
     bool addAssignment(Assignment *assignment);
+    QList<Assignment> getAllAssignments();
+    QList<Assignment> getAssignmentsByAnatomicalRegion(int anatomicalRegionId);
 };
 
 #endif // DAOASSIGNMENTSQLITE_H

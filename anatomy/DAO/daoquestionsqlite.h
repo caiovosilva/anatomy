@@ -15,7 +15,7 @@ public:
     bool addQuestion(Question *question);
 //    Question getQuestion(int id);
 //    bool deleteQuestion(Question *question);
-    QList<Question> getQuestionsByAnatomyImageId(int id);
+    QList<Question> getQuestionsByAssignmentId(int id);
     bool updateQuestion(Question *question);
 
 };

@@ -7,7 +7,7 @@ class DAOQuestion
 {
 public:
     virtual bool addQuestion(Question *question) = 0;
-    virtual QList<Question> getQuestionsByAnatomyImageId(int id) = 0;
+    virtual QList<Question> getQuestionsByAssignmentId(int id) = 0;
     virtual bool updateQuestion(Question *question) = 0;
 //    virtual Question getQuestion(int id) = 0;
 //    virtual bool deleteQuestion(Question* question) = 0;

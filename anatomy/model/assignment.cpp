@@ -50,3 +50,24 @@ void Assignment::setAnatomicalRegionId(int value)
 {
     _anatomicalRegionId = value;
 }
+
+QList<Question> Assignment::getQuestionsList() const
+{
+    return _questionsList;
+}
+
+void Assignment::setQuestionsList(const QList<Question> &questionsList)
+{
+    _questionsList = questionsList;
+}
+
+void Assignment::addQuestion(Question question)
+{
+    _questionsList.append(question);
+}
+
+void Assignment::removeQuestion(Question question)
+{
+    _questionsList.removeOne(question);
+}
+

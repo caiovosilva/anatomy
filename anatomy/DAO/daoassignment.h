@@ -7,7 +7,8 @@ class DAOAssignment
 {
 public:
     virtual bool addAssignment(Assignment *assignment) = 0;
-//    virtual QList<Modality> getAllAssignments() = 0;
+    virtual QList<Assignment> getAllAssignments() = 0;
+    virtual QList<Assignment> getAssignmentsByAnatomicalRegion(int anatomicalRegionId) = 0;
 //    virtual Modality getAssignment(int id) = 0;
 //    virtual bool deleteAssignment(Modality* modality) = 0;
 };

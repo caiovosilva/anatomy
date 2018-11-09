@@ -4,7 +4,9 @@
 #include <QString>
 #include <QList>
 
+#include "model/question.h"
 #include "anatomyimage.h"
+
 class AnatomyImage;
 
 class Assignment
@@ -25,10 +27,16 @@ public:
     int getAnatomicalRegionId() const;
     void setAnatomicalRegionId(int value);
 
+    QList<Question> getQuestionsList() const;
+    void setQuestionsList(const QList<Question> &questionsList);
+    void addQuestion(Question question);
+    void removeQuestion(Question question);
+
 private:
     int _id;
     QString _description;
     QList<AnatomyImage> _anatomyImageList;
+    QList<Question> _questionsList;
     int _anatomicalRegionId;
 };
 

@@ -25,6 +25,10 @@ private slots:
 
     void on_saveAndContinueButton_clicked();
 
+    void on_modalitiesComboBox_currentIndexChanged(int index);
+
+    void on_anatomicalRegionComboBox_currentIndexChanged(int index);
+
 private:
     void saveQuestion();
     bool oneCorrectAnswerSelected();

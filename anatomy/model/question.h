@@ -12,7 +12,7 @@ class Answer;
 class Question
 {
 public:
-    Question(QString description, int anatomyImageId);
+    Question(QString description, int assignmentId);
     Question();
 
     bool operator==(const Question &question) const;
@@ -26,17 +26,17 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
-    int anatomyimageId() const;
-    void setAnatomyimageId(int anatomyimageId);
-
     int correctAnswerId() const;
     void setCorrectAnswerId(int correctAnswerId);
+
+    int assignmentId() const;
+    void setAssignmentId(int assignmentId);
 
 private:
     int _id;
     QString _description;
     QList<Answer> _answers;
-    int _anatomyimageId;
+    int _assignmentId;
     int _correctAnswerId;
 };
 

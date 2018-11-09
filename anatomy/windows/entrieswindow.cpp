@@ -38,3 +38,10 @@ void EntriesWindow::on_newAssignmentButton_clicked()
     newWindow->setWindowTitle("Nova Tarefa");
     newWindow->show();
 }
+
+void EntriesWindow::on_newQuestionButton_clicked()
+{
+    NewQuestionWindow *newWindow = new NewQuestionWindow;
+    newWindow->setWindowTitle("Nova Questão");
+    newWindow->show();
+}

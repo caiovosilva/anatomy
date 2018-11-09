@@ -1,8 +1,8 @@
 #include "question.h"
 
-Question::Question(QString description, int anatomyImageId):
+Question::Question(QString description, int assignmentId):
     _description(description),
-    _anatomyimageId(anatomyImageId)
+    _assignmentId(assignmentId)
 {
 
 }
@@ -41,16 +41,6 @@ void Question::setId(int id)
     _id = id;
 }
 
-int Question::anatomyimageId() const
-{
-    return _anatomyimageId;
-}
-
-void Question::setAnatomyimageId(int anatomyimageId)
-{
-    _anatomyimageId = anatomyimageId;
-}
-
 int Question::correctAnswerId() const
 {
     return _correctAnswerId;
@@ -59,6 +49,16 @@ int Question::correctAnswerId() const
 void Question::setCorrectAnswerId(int correctAnswerId)
 {
     _correctAnswerId = correctAnswerId;
+}
+
+int Question::assignmentId() const
+{
+    return _assignmentId;
+}
+
+void Question::setAssignmentId(int assignmentId)
+{
+    _assignmentId = assignmentId;
 }
 
 void Question::setDescription(const QString &description)

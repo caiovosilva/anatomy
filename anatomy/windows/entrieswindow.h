@@ -22,6 +22,8 @@ private slots:
 
     void on_newAssignmentButton_clicked();
 
+    void on_newQuestionButton_clicked();
+
 private:
     Ui::EntriesWindow *ui;
 };

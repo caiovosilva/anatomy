@@ -5,9 +5,13 @@
 
 #include "model/question.h"
 #include "model/answer.h"
-#include "DAO/daoanatomyimagesqlite.h"
+#include "model/assignment.h"
+#include "DAO/daoassignmentsqlite.h"
 #include "DAO/daoquestionsqlite.h"
 #include "DAO/daoanswersqlite.h"
+#include "model/modality.h"
+#include "DAO/daomodalitysqlite.h"
+#include "DAO/daoanatomicalregionsqlite.h"
 
 NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     QWidget(parent),
@@ -15,14 +19,13 @@ NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QList<AnatomyImage> anatomyList;
-    DAOAnatomyImage *anatomyDAO = new DAOAnatomyImageSQLITE;
-    DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
-    anatomyList = anatomyDAO->getAllAnatomyImages();
 
-    foreach (AnatomyImage item, anatomyList) {
-        item.setQuestionsList(questionsDAO->getQuestionsByAnatomyImageId(item.getId()));
-        ui->anatomyComboBox->addItem(item.getImagePath(), item.getId());
+    QList<Modality> modalitiesList;
+    DAOModality *daoModality = new DAOModalitySQLITE;
+    modalitiesList = daoModality->getAllModalities();
+
+    foreach (Modality item, modalitiesList) {
+        ui->modalitiesComboBox->addItem(item.getDescription(), item.getId());
     }
 }
 
@@ -73,8 +76,8 @@ void NewQuestionWindow::saveQuestion()
         return;
     }
 
-    int AnatomyImageId = ui->anatomyComboBox->currentData().toInt();
-    Question question = Question(ui->question->toPlainText(), AnatomyImageId);
+    int assignmentId = ui->assignmentComboBox->currentData().toInt();
+    Question question = Question(ui->question->toPlainText(), assignmentId);
 
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
     if(daoQuestion->addQuestion(&question))
@@ -112,4 +115,34 @@ void NewQuestionWindow::on_saveAndContinueButton_clicked()
     ui->answer4->clear();
     ui->question->clear();
 
+}
+
+void NewQuestionWindow::on_modalitiesComboBox_currentIndexChanged(int index)
+{
+    int modalityId = ui->modalitiesComboBox->currentData().toInt();
+
+    QList<AnatomicalRegion> anatomicalRegionList;
+    DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
+    anatomicalRegionList = daoAnatomicalRegion->getAnatomicalRegionByModalityId(modalityId);
+
+    ui->anatomicalRegionComboBox->clear();
+    foreach (AnatomicalRegion item, anatomicalRegionList) {
+        ui->anatomicalRegionComboBox->addItem(item.getDescription(), item.getId());
+    }
+}
+
+void NewQuestionWindow::on_anatomicalRegionComboBox_currentIndexChanged(int index)
+{
+    int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
+
+    QList<Assignment> assignmentList;
+    DAOAssignment *assignmentDAO = new DAOAssignmentSQLITE;
+    DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
+    assignmentList = assignmentDAO->getAssignmentsByAnatomicalRegion(anatomicalRegionId);
+
+    ui->assignmentComboBox->clear();
+    foreach (Assignment item, assignmentList) {
+        item.setQuestionsList(questionsDAO->getQuestionsByAssignmentId(item.id()));
+        ui->assignmentComboBox->addItem(item.description(), item.id());
+    }
 }
