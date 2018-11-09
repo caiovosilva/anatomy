@@ -11,6 +11,7 @@ class Assignment
 {
 public:
     Assignment();
+    Assignment(QString description, int anatomicalRegionId);
 
     int id() const;
     void setId(int id);
@@ -21,10 +22,14 @@ public:
     QList<AnatomyImage> getAnatomyImageList() const;
     void setAnatomyImageList(const QList<AnatomyImage> &value);
 
+    int getAnatomicalRegionId() const;
+    void setAnatomicalRegionId(int value);
+
 private:
     int _id;
     QString _description;
-    QList<AnatomyImage> anatomyImageList;
+    QList<AnatomyImage> _anatomyImageList;
+    int _anatomicalRegionId;
 };
 
 #endif // ASSIGNMENT_H

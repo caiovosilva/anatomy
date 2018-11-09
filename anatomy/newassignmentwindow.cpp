@@ -2,6 +2,7 @@
 #include "ui_newassignmentwindow.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 NewAssignmentWindow::NewAssignmentWindow(QWidget *parent) :
     QWidget(parent),
@@ -31,6 +32,7 @@ void NewAssignmentWindow::on_findFileButton_clicked()
     QDir dir(qApp->applicationDirPath());
     for( int i=0; i<anatomyImagesPath.size(); i++)
     {
+        QString aaaa = dir.relativeFilePath(anatomyImagesPath[i]);
         anatomyImagesPath[i] =  dir.relativeFilePath(anatomyImagesPath[i]);
     }
 }
@@ -47,4 +49,30 @@ void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
     foreach (AnatomicalRegion item, anatomicalRegionList) {
         ui->anatomicalRegionComboBox->addItem(item.getDescription(), item.getId());
     }
+}
+
+void NewAssignmentWindow::on_saveButton_clicked()
+{
+    int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
+    Assignment assignment = Assignment(ui->descriptionText->toPlainText(), anatomicalRegionId);
+
+    DAOAssignment *daoAssignment = new DAOAssignmentSQLITE;
+    bool result = daoAssignment->addAssignment(&assignment);
+
+    int assignmentId =  assignment.id();
+    DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+    for( int i=0; i<anatomyImagesPath.size(); i++)
+    {
+        AnatomyImage anatomyImage(anatomyImagesPath[i], assignmentId);
+        result = result && daoAnatomyImage->addAnatomyImage(&anatomyImage);
+    }
+
+    if(!result)
+    {
+        QMessageBox msg(QMessageBox::Critical, "Erro", "Ocorreu um erro ao adicionar tarefa!");
+        msg.exec();
+        return;
+    }
+    this->close();
+
 }

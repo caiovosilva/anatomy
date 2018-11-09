@@ -7,10 +7,12 @@ bool DAOAssignmentSQLITE::addAssignment(Assignment *assignment)
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO modality (description) VALUES (:description)");
-    //query.bindValue(":description", assignment->get());
+    query.prepare("INSERT INTO assignment (description, anatomicalRegion_fk) VALUES (:description, :anatomicalRegion_fk)");
+    query.bindValue(":description", assignment->description());
+    query.bindValue(":anatomicalRegion_fk", assignment->getAnatomicalRegionId());
 
     bool result = query.exec();
+    assignment->setId(query.lastInsertId().toInt());
     _mydb->commit();
     return result;
 }

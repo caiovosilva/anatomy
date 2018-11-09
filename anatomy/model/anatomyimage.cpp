@@ -1,7 +1,8 @@
 #include "anatomyimage.h"
 
-AnatomyImage::AnatomyImage(QString imagePath):
-    _imagePath(imagePath)
+AnatomyImage::AnatomyImage(QString imagePath, int assignmentId):
+    _imagePath(imagePath),
+    _assignmentId(assignmentId)
 {
 
 }

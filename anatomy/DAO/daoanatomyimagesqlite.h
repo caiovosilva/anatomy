@@ -11,7 +11,7 @@ class DAOAnatomyImageSQLITE : public DAOAnatomyImage, public DAOClass
 {
     // DAOAnatomyImage interface
 public:
-    //bool addAnatomyImage(AnatomyImage *anatomyImage);
+    bool addAnatomyImage(AnatomyImage *anatomyImage);
     QList<AnatomyImage> getAllAnatomyImages();
 //    AnatomyImage getAnatomyImage(int id);
 //    bool deleteAnatomyImage(AnatomyImage *anatomyImage);

@@ -2,10 +2,21 @@
 //#include "daoquestionsqlite.h"
 //#include "model/question.h"
 
-//bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
-//{
+bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
+{
+    if(!_mydb->isOpen())
+        return false;
+    _mydb->transaction();
 
-//}
+    QSqlQuery query;
+    query.prepare("INSERT INTO anatomyImage (imagePath, assignment_fk) VALUES (:imagePath, :assignment_fk)");
+    query.bindValue(":imagePath", anatomyImage->getImagePath());
+    query.bindValue(":assignment_fk", anatomyImage->getAssignmentId());
+
+    bool result = query.exec();
+    _mydb->commit();
+    return result;
+}
 
 QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
 {

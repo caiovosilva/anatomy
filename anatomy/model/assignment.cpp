@@ -5,6 +5,12 @@ Assignment::Assignment()
 
 }
 
+Assignment::Assignment(QString description, int anatomicalRegionId):
+    _description(description),
+    _anatomicalRegionId(anatomicalRegionId)
+{
+}
+
 int Assignment::id() const
 {
     return _id;
@@ -27,10 +33,20 @@ void Assignment::setDescription(const QString &description)
 
 QList<AnatomyImage> Assignment::getAnatomyImageList() const
 {
-    return anatomyImageList;
+    return _anatomyImageList;
 }
 
 void Assignment::setAnatomyImageList(const QList<AnatomyImage> &value)
 {
-    anatomyImageList = value;
+    _anatomyImageList = value;
+}
+
+int Assignment::getAnatomicalRegionId() const
+{
+    return _anatomicalRegionId;
+}
+
+void Assignment::setAnatomicalRegionId(int value)
+{
+    _anatomicalRegionId = value;
 }
