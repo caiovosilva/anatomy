@@ -6,10 +6,10 @@
 #include "model/question.h"
 #include "model/answer.h"
 #include "model/assignment.h"
+#include "model/modality.h"
 #include "DAO/daoassignmentsqlite.h"
 #include "DAO/daoquestionsqlite.h"
 #include "DAO/daoanswersqlite.h"
-#include "model/modality.h"
 #include "DAO/daomodalitysqlite.h"
 #include "DAO/daoanatomicalregionsqlite.h"
 
@@ -25,7 +25,7 @@ NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        ui->modalitiesComboBox->addItem(item.getDescription(), item.getId());
+        ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
 }
 
@@ -57,23 +57,24 @@ void NewQuestionWindow::on_cancelButton_clicked()
 
 void NewQuestionWindow::on_saveButton_clicked()
 {
-    saveQuestion();
-    on_cancelButton_clicked();
+    if(saveQuestion())
+        on_cancelButton_clicked();
 }
 
-void NewQuestionWindow::saveQuestion()
+bool NewQuestionWindow::saveQuestion()
 {
+
     if(!oneCorrectAnswerSelected())
     {
         QMessageBox msg(QMessageBox::Critical, "Erro", "Selecione uma resposta correta.");
         msg.exec();
-        return;
+        return false;
     }
     if(!allAnswersAndQuestionFilled())
     {
         QMessageBox msg(QMessageBox::Critical, "Erro", "Preencha a pergunta e todos os campos de respostas.");
         msg.exec();
-        return;
+        return false;
     }
 
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
@@ -103,17 +104,17 @@ void NewQuestionWindow::saveQuestion()
 
             daoQuestion->updateQuestion(&question);
     }
+    return true;
 }
 
 void NewQuestionWindow::on_saveAndContinueButton_clicked()
 {
-    saveQuestion();
-
-    ui->answer1->clear();
-    ui->answer2->clear();
-    ui->answer3->clear();
-    ui->answer4->clear();
-    ui->question->clear();
+    if(saveQuestion())
+        ui->answer1->clear();
+        ui->answer2->clear();
+        ui->answer3->clear();
+        ui->answer4->clear();
+        ui->question->clear();
 
 }
 
@@ -127,7 +128,7 @@ void NewQuestionWindow::on_modalitiesComboBox_currentIndexChanged(int index)
 
     ui->anatomicalRegionComboBox->clear();
     foreach (AnatomicalRegion item, anatomicalRegionList) {
-        ui->anatomicalRegionComboBox->addItem(item.getDescription(), item.getId());
+        ui->anatomicalRegionComboBox->addItem(item.description(), item.id());
     }
 }
 

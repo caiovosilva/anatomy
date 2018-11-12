@@ -30,7 +30,7 @@ private slots:
     void on_anatomicalRegionComboBox_currentIndexChanged(int index);
 
 private:
-    void saveQuestion();
+    bool saveQuestion();
     bool oneCorrectAnswerSelected();
     bool allAnswersAndQuestionFilled();
     Ui::NewQuestionWindow *ui;

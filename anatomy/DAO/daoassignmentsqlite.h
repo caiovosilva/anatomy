@@ -14,6 +14,7 @@ public:
     bool addAssignment(Assignment *assignment);
     QList<Assignment> getAllAssignments();
     QList<Assignment> getAssignmentsByAnatomicalRegion(int anatomicalRegionId);
+    Assignment getAssignmentById(int id);
 };
 
 #endif // DAOASSIGNMENTSQLITE_H

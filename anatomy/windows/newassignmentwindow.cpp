@@ -15,7 +15,7 @@ NewAssignmentWindow::NewAssignmentWindow(QWidget *parent) :
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        ui->modalityComboBox->addItem(item.getDescription(), item.getId());
+        ui->modalityComboBox->addItem(item.description(), item.id());
     }
 }
 
@@ -47,7 +47,7 @@ void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
 
     ui->anatomicalRegionComboBox->clear();
     foreach (AnatomicalRegion item, anatomicalRegionList) {
-        ui->anatomicalRegionComboBox->addItem(item.getDescription(), item.getId());
+        ui->anatomicalRegionComboBox->addItem(item.description(), item.id());
     }
 }
 

@@ -9,7 +9,7 @@ Modality::Modality()
 {
 }
 
-int Modality::getId() const
+int Modality::id() const
 {
     return _id;
 }
@@ -19,7 +19,7 @@ void Modality::setId(int value)
     _id = value;
 }
 
-QString Modality::getDescription() const
+QString Modality::description() const
 {
     return _description;
 }

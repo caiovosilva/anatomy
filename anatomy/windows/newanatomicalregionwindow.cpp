@@ -14,7 +14,7 @@ NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(QWidget *parent) :
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        ui->modalitiesComboBox->addItem(item.getDescription(), item.getId());
+        ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
 
 }

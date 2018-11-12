@@ -1,4 +1,6 @@
 #include "daoassignmentsqlite.h"
+#include "daoanatomyimagesqlite.h"
+#include "daoquestionsqlite.h"
 
 bool DAOAssignmentSQLITE::addAssignment(Assignment *assignment)
 {
@@ -9,7 +11,7 @@ bool DAOAssignmentSQLITE::addAssignment(Assignment *assignment)
     QSqlQuery query;
     query.prepare("INSERT INTO assignment (description, anatomicalRegion_fk) VALUES (:description, :anatomicalRegion_fk)");
     query.bindValue(":description", assignment->description());
-    query.bindValue(":anatomicalRegion_fk", assignment->getAnatomicalRegionId());
+    query.bindValue(":anatomicalRegion_fk", assignment->anatomicalRegionId());
 
     bool result = query.exec();
     assignment->setId(query.lastInsertId().toInt());
@@ -62,4 +64,29 @@ QList<Assignment> DAOAssignmentSQLITE::getAssignmentsByAnatomicalRegion(int anat
     }
     _mydb->commit();
     return assignmentsList;
+}
+
+Assignment DAOAssignmentSQLITE::getAssignmentById(int id)
+{
+    QSqlQuery query;
+    Assignment item;
+    if(!_mydb->open())
+        return item;
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM assignment WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+        while(query.next())
+        {
+            item.setId(query.value(0).toInt());
+            item.setDescription(query.value(1).toString());
+            item.setAnatomicalRegionId(query.value(2).toInt());
+        }
+    }
+    DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+    item.setAnatomyImageList(daoAnatomyImage->getAllAnatomyImagesByAssignmentId(item.id()));
+
+    _mydb->commit();
+    return item;
 }

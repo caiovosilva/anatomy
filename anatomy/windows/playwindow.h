@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "model/anatomyimage.h"
+#include "model/assignment.h"
 
 namespace Ui {
 class PlayWindow;
@@ -14,12 +14,12 @@ class PlayWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PlayWindow(AnatomyImage anatomyImage, QWidget *parent = 0);
+    explicit PlayWindow(int assignmentId, QWidget *parent = 0);
     ~PlayWindow();
 
 private:
     Ui::PlayWindow *ui;
-    AnatomyImage _anatomyImage;
+    Assignment _assignment;
 };
 
 #endif // PLAYWINDOW_H

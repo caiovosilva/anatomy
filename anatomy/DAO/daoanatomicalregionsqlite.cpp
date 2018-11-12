@@ -8,8 +8,8 @@ bool DAOAnatomicalRegionSQLITE::addAnatomicalRegion(AnatomicalRegion *anatomical
 
     QSqlQuery query;
     query.prepare("INSERT INTO anatomicalregion (description, modality_fk) VALUES (:description, :modality_fk)");
-    query.bindValue(":description", anatomicalRegion->getDescription());
-    query.bindValue(":modality_fk", anatomicalRegion->getModalityId());
+    query.bindValue(":description", anatomicalRegion->description());
+    query.bindValue(":modality_fk", anatomicalRegion->modalityId());
 
     bool result = query.exec();
     _mydb->commit();

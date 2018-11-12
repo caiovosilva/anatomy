@@ -13,15 +13,15 @@ AnatomyImage::AnatomyImage()
 
 bool AnatomyImage::operator==(const AnatomyImage &image) const
 {
-    return image.getImagePath() == getImagePath();
+    return image.imagePath() == imagePath();
 }
 
-QString AnatomyImage::getImagePath() const
+QString AnatomyImage::imagePath() const
 {
     return _imagePath;
 }
 
-int AnatomyImage::getAssignmentId() const
+int AnatomyImage::assignmentId() const
 {
     return _assignmentId;
 }
@@ -31,7 +31,7 @@ void AnatomyImage::setAssignmentId(int assignmentId)
     _assignmentId = assignmentId;
 }
 
-int AnatomyImage::getId() const
+int AnatomyImage::id() const
 {
     return _id;
 }

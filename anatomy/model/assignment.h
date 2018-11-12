@@ -21,13 +21,13 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
-    QList<AnatomyImage> getAnatomyImageList() const;
+    QList<AnatomyImage> anatomyImageList() const;
     void setAnatomyImageList(const QList<AnatomyImage> &value);
 
-    int getAnatomicalRegionId() const;
+    int anatomicalRegionId() const;
     void setAnatomicalRegionId(int value);
 
-    QList<Question> getQuestionsList() const;
+    QList<Question> questionsList() const;
     void setQuestionsList(const QList<Question> &questionsList);
     void addQuestion(Question question);
     void removeQuestion(Question question);

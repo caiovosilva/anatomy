@@ -11,7 +11,7 @@ bool DAOAnswerSQLITE::addAnswer(Answer *answer)
                   "VALUES (:description, :isCorrectAnswer, :question_fk)");
     query.bindValue(":description", answer->getDescription());
     query.bindValue(":isCorrectAnswer", answer->isCorrectAnswer());
-    query.bindValue(":question_fk", answer->getQuestionId());
+    query.bindValue(":question_fk", answer->questionId());
 
     bool result = query.exec();
     answer->setId(query.lastInsertId().toInt());

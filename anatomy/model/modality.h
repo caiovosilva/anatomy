@@ -9,10 +9,10 @@ public:
     Modality(QString description);
     Modality();
 
-    int getId() const;
+    int id() const;
     void setId(int value);
 
-    QString getDescription() const;
+    QString description() const;
     void setDescription(const QString &value);
 
 private:

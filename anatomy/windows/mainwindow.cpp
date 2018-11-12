@@ -6,12 +6,17 @@
 #include "entrieswindow.h"
 #include "DAO/dbconnection.h"
 #include "DAO/daoanatomyimagesqlite.h"
+#include "assignmentchooser.h"
+
+#include <QDialog>
+#include <QDialogButtonBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Início");
 }
 
 MainWindow::~MainWindow()
@@ -29,11 +34,13 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
     ListQuestionsWindow *newWindow = new ListQuestionsWindow;
+    newWindow->setWindowTitle("Questões");
     newWindow->show();
 }
 
 void MainWindow::on_init_clicked()
 {
-//    PlayWindow *newWindow = new PlayWindow;
-//    newWindow->show();
+    AssignmentChooser *newWindow = new AssignmentChooser;
+    newWindow->setWindowTitle("Escolha Uma Tarefa");
+    newWindow->show();
 }

@@ -13,13 +13,13 @@ public:
     AnatomyImage();
     bool operator==(const AnatomyImage &image) const;
 
-    int getId() const;
+    int id() const;
     void setId(int id);
 
     void setImagePath(const QString &imagePath);
-    QString getImagePath() const;
+    QString imagePath() const;
 
-    int getAssignmentId() const;
+    int assignmentId() const;
     void setAssignmentId(int assignmentId);
 
 private:

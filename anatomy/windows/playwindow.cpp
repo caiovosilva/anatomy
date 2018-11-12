@@ -3,12 +3,16 @@
 
 #include <QPixmap>
 
-PlayWindow::PlayWindow(AnatomyImage anatomyImage, QWidget *parent) :
+#include "DAO/daoassignmentsqlite.h"
+
+PlayWindow::PlayWindow(int assignmentId, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::PlayWindow),
-    _anatomyImage(anatomyImage)
+    ui(new Ui::PlayWindow)
 {
     ui->setupUi(this);
+
+    DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
+    _assignment = daoAssignmet->getAssignmentById(assignmentId);
 
     QPixmap map(qApp->applicationDirPath()+"/images/coluna/AP.png"); // use qradiobutton in a qbuttongroup or a qcombobox.
     ui->image->setPixmap(map);

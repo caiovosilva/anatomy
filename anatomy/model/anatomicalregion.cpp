@@ -7,35 +7,35 @@ AnatomicalRegion::AnatomicalRegion()
 
 void AnatomicalRegion::addImage(AnatomyImage image)
 {
-    imageList.append(image);
+    _imageList.append(image);
 }
 
 void AnatomicalRegion::removeImage(AnatomyImage image)
 {
-    imageList.removeOne(image);
+    _imageList.removeOne(image);
 }
 
-QString AnatomicalRegion::getDescription() const
+QString AnatomicalRegion::description() const
 {
-    return description;
+    return _description;
 }
 
 void AnatomicalRegion::setDescription(const QString &value)
 {
-    description = value;
+    _description = value;
 }
 
-QList<AnatomyImage> AnatomicalRegion::getImageList() const
+QList<AnatomyImage> AnatomicalRegion::imageList() const
 {
-    return imageList;
+    return _imageList;
 }
 
 void AnatomicalRegion::setImageList(const QList<AnatomyImage> &value)
 {
-    imageList = value;
+    _imageList = value;
 }
 
-int AnatomicalRegion::getId() const
+int AnatomicalRegion::id() const
 {
     return _id;
 }
@@ -45,12 +45,12 @@ void AnatomicalRegion::setId(int id)
     _id = id;
 }
 
-int AnatomicalRegion::getModalityId() const
+int AnatomicalRegion::modalityId() const
 {
-    return modalityId;
+    return _modalityId;
 }
 
 void AnatomicalRegion::setModalityId(int value)
 {
-    modalityId = value;
+    _modalityId = value;
 }

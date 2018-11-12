@@ -26,7 +26,7 @@ void Answer::setId(int id)
     _id = id;
 }
 
-int Answer::getQuestionId() const
+int Answer::questionId() const
 {
     return _questionId;
 }

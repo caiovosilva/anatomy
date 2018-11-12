@@ -8,7 +8,7 @@ bool DAOModalitySQLITE::addModality(Modality *modality)
 
     QSqlQuery query;
     query.prepare("INSERT INTO modality (description) VALUES (:description)");
-    query.bindValue(":description", modality->getDescription());
+    query.bindValue(":description", modality->description());
 
     bool result = query.exec();
     _mydb->commit();

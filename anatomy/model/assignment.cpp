@@ -31,7 +31,7 @@ void Assignment::setDescription(const QString &description)
     _description = description;
 }
 
-QList<AnatomyImage> Assignment::getAnatomyImageList() const
+QList<AnatomyImage> Assignment::anatomyImageList() const
 {
     return _anatomyImageList;
 }
@@ -41,7 +41,7 @@ void Assignment::setAnatomyImageList(const QList<AnatomyImage> &value)
     _anatomyImageList = value;
 }
 
-int Assignment::getAnatomicalRegionId() const
+int Assignment::anatomicalRegionId() const
 {
     return _anatomicalRegionId;
 }
@@ -51,7 +51,7 @@ void Assignment::setAnatomicalRegionId(int value)
     _anatomicalRegionId = value;
 }
 
-QList<Question> Assignment::getQuestionsList() const
+QList<Question> Assignment::questionsList() const
 {
     return _questionsList;
 }

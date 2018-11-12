@@ -18,7 +18,7 @@ public:
     int id() const;
     void setId(int id);
 
-    int getQuestionId() const;
+    int questionId() const;
     void setQuestionId(int value);
 
     bool isCorrectAnswer() const;

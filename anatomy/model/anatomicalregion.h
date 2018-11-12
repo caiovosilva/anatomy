@@ -12,23 +12,23 @@ public:
     void addImage(AnatomyImage image);
     void removeImage(AnatomyImage image);
 
-    QString getDescription() const;
+    QString description() const;
     void setDescription(const QString &value);
 
-    QList<AnatomyImage> getImageList() const;
+    QList<AnatomyImage> imageList() const;
     void setImageList(const QList<AnatomyImage> &value);
 
-    int getId() const;
+    int id() const;
     void setId(int id);
 
-    int getModalityId() const;
+    int modalityId() const;
     void setModalityId(int value);
 
 private:
     int _id;
-    QList<AnatomyImage> imageList;
-    QString description;
-    int modalityId;
+    QList<AnatomyImage> _imageList;
+    QString _description;
+    int _modalityId;
 };
 
 #endif // ANATOMICALREGION_H
