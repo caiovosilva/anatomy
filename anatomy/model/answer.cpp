@@ -13,7 +13,7 @@ Answer::Answer()
 
 bool Answer::operator==(const Answer &aws) const
 {
-    return aws.getDescription() == getDescription();
+    return aws.description() == description();
 }
 
 int Answer::id() const
@@ -46,7 +46,7 @@ void Answer::setIsCorrectAnswer(bool isCorrectAnswer)
     _isCorrectAnswer = isCorrectAnswer;
 }
 
-QString Answer::getDescription() const
+QString Answer::description() const
 {
     return _description;
 }

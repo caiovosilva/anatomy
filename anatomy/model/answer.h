@@ -24,7 +24,7 @@ public:
     bool isCorrectAnswer() const;
     void setIsCorrectAnswer(bool isCorrectAnswer);
 
-    QString getDescription() const;
+    QString description() const;
     void setDescription(const QString &description);
 
 private:

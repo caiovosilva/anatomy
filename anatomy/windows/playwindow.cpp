@@ -13,13 +13,14 @@ PlayWindow::PlayWindow(int assignmentId, QWidget *parent) :
     _assignment = daoAssignmet->getAssignmentById(assignmentId);
 
     foreach (AnatomyImage anatomyimage, _assignment.anatomyImageList()) {
-       images.append(QPixmap(qApp->applicationDirPath()+"/"+anatomyimage.imagePath()));
+       _images.append(QPixmap(qApp->applicationDirPath()+"/"+anatomyimage.imagePath()));
     }
     QPixmap map(qApp->applicationDirPath()+"/images/coluna/AP.png"); // use qradiobutton in a qbuttongroup or a qcombobox.
     ui->image->setScaledContents(true);
     ui->image->setPixmap(map);
     ui->image->show();
-    currentImageIndex = 0;
+    _currentImageIndex = 0;
+    fillQuestions();
 }
 
 PlayWindow::~PlayWindow()
@@ -29,12 +30,36 @@ PlayWindow::~PlayWindow()
 
 void PlayWindow::on_rightArrowButton_clicked()
 {
-    if(currentImageIndex<images.size()-1)
-        ui->image->setPixmap(images[++currentImageIndex]);
+    if(_currentImageIndex<_images.size()-1)
+        ui->image->setPixmap(_images[++_currentImageIndex]);
 }
 
 void PlayWindow::on_leftArrowButton_clicked()
 {
-    if(currentImageIndex>0)
-        ui->image->setPixmap(images[--currentImageIndex]);
+    if(_currentImageIndex>0)
+        ui->image->setPixmap(_images[--_currentImageIndex]);
+}
+
+void PlayWindow::fillQuestions()
+{
+    int line =0;
+    int column = 0;
+    QGridLayout *grid = new QGridLayout;
+
+    foreach (Question item, _assignment.questionsList()) {
+        QGroupBox *groupBox = new QGroupBox(item.description());
+        QHBoxLayout *hbox = new QHBoxLayout;
+        foreach (Answer answer, item.answers()) {
+            QRadioButton *aws = new QRadioButton(answer.description());
+            hbox->addWidget(aws);
+        }
+        groupBox->setLayout(hbox);
+        grid->addWidget(groupBox,line++, column);
+        _answers.append(groupBox);
+    }
+
+    QWidget *client = new QWidget;
+    ui->questionsScrollArea->setWidgetResizable(true);
+    ui->questionsScrollArea->setWidget(client);
+    client->setLayout(grid);
 }

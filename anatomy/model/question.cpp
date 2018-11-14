@@ -61,6 +61,16 @@ void Question::setAssignmentId(int assignmentId)
     _assignmentId = assignmentId;
 }
 
+QList<Answer> Question::answers() const
+{
+    return _answers;
+}
+
+void Question::setAnswers(const QList<Answer> &answers)
+{
+    _answers = answers;
+}
+
 void Question::setDescription(const QString &description)
 {
     _description = description;

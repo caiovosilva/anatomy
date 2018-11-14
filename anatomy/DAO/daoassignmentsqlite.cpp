@@ -86,6 +86,8 @@ Assignment DAOAssignmentSQLITE::getAssignmentById(int id)
     }
     DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
     item.setAnatomyImageList(daoAnatomyImage->getAllAnatomyImagesByAssignmentId(item.id()));
+    DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
+    item.setQuestionsList(daoQuestion->getQuestionsByAssignmentId(item.id()));
 
     _mydb->commit();
     return item;

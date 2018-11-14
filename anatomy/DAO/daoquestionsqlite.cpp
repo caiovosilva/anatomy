@@ -1,4 +1,5 @@
 #include "daoquestionsqlite.h"
+#include "daoanswersqlite.h"
 
 bool DAOQuestionSQLITE::addQuestion(Question *question)
 {
@@ -37,7 +38,7 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
     }
     _mydb->transaction();
 
-    query.prepare("SELECT * FROM question WHERE anatomyimage_fk = :id");
+    query.prepare("SELECT * FROM question WHERE assignment_fk = :id");
     query.bindValue(":id", id);
 
     if(query.exec()){
@@ -46,8 +47,13 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             item.setAssignmentId(query.value(2).toInt());
+            item.setCorrectAnswerId(query.value(3).toInt());
             questionsList.append(item);
         }
+    }
+    DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
+    for (int var = 0; var < questionsList.size(); var++) {
+        questionsList[var].setAnswers(daoAnswer->getAnswersByQuestionId(questionsList[var].id()));
     }
     _mydb->commit();
     return questionsList;

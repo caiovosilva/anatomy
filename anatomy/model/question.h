@@ -32,6 +32,9 @@ public:
     int assignmentId() const;
     void setAssignmentId(int assignmentId);
 
+    QList<Answer> answers() const;
+    void setAnswers(const QList<Answer> &answers);
+
 private:
     int _id;
     QString _description;
