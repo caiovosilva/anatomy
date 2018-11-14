@@ -109,12 +109,13 @@ bool NewQuestionWindow::saveQuestion()
 
 void NewQuestionWindow::on_saveAndContinueButton_clicked()
 {
-    if(saveQuestion())
+    if(saveQuestion()){
         ui->answer1->clear();
         ui->answer2->clear();
         ui->answer3->clear();
         ui->answer4->clear();
         ui->question->clear();
+    }
 
 }
 
