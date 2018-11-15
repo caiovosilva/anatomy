@@ -47,19 +47,50 @@ void PlayWindow::fillQuestions()
     QGridLayout *grid = new QGridLayout;
 
     foreach (Question item, _assignment.questionsList()) {
+        QButtonGroup *buttonGroup = new QButtonGroup;
         QGroupBox *groupBox = new QGroupBox(item.description());
         QHBoxLayout *hbox = new QHBoxLayout;
-        foreach (Answer answer, item.answers()) {
+
+        foreach (Answer answer, item.answers())
+        {
             QRadioButton *aws = new QRadioButton(answer.description());
+            buttonGroup->addButton(aws, answer.id());
             hbox->addWidget(aws);
         }
         groupBox->setLayout(hbox);
         grid->addWidget(groupBox,line++, column);
-        _answers.append(groupBox);
+        _answers.append(buttonGroup);
     }
 
     QWidget *client = new QWidget;
     ui->questionsScrollArea->setWidgetResizable(true);
     ui->questionsScrollArea->setWidget(client);
     client->setLayout(grid);
+}
+
+void PlayWindow::on_buttonBox_accepted()
+{
+    QString result;
+    for (int i = 0; i < _answers.size(); i++)
+    {
+        if(_answers[i]->checkedId()<0)
+        {
+            QMessageBox msg(QMessageBox::Critical, "Erro", "Responda todas as perguntas!");
+            msg.exec();
+            return;
+        }
+    }
+
+    QList<Question> questions = _assignment.questionsList();
+    Answer correctAnswer;
+    for (int i = 0; i < _answers.size(); i++)
+    {
+        foreach (Answer aws, questions[i].answers())
+            if(aws.isCorrectAnswer())
+                correctAnswer = aws;
+        if(correctAnswer.id()==_answers[i]->checkedId())
+            result += "Ponto "+questions[i].description()+ "Correto\n";
+        else
+            result += "Ponto "+questions[i].description()+ "Errado! A resposta certa é "+correctAnswer.description()+"\n";
+    }
 }

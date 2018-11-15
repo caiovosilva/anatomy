@@ -41,16 +41,6 @@ void Question::setId(int id)
     _id = id;
 }
 
-int Question::correctAnswerId() const
-{
-    return _correctAnswerId;
-}
-
-void Question::setCorrectAnswerId(int correctAnswerId)
-{
-    _correctAnswerId = correctAnswerId;
-}
-
 int Question::assignmentId() const
 {
     return _assignmentId;

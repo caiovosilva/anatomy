@@ -3,8 +3,10 @@
 
 #include <QWidget>
 #include <QPixmap>
+#include <QButtonGroup>
 #include <QGroupBox>
 #include <QRadioButton>
+#include <QMessageBox>
 
 #include "model/assignment.h"
 
@@ -23,13 +25,14 @@ public:
 private slots:
     void on_rightArrowButton_clicked();
     void on_leftArrowButton_clicked();
+    void on_buttonBox_accepted();
 
 private:
     Ui::PlayWindow *ui;
     Assignment _assignment;
     QList<QPixmap> _images;
     int _currentImageIndex;
-    QList<QGroupBox> _answers;
+    QList<QButtonGroup*> _answers;
     void fillQuestions();
 };
 

@@ -26,9 +26,6 @@ public:
     QString description() const;
     void setDescription(const QString &description);
 
-    int correctAnswerId() const;
-    void setCorrectAnswerId(int correctAnswerId);
-
     int assignmentId() const;
     void setAssignmentId(int assignmentId);
 
@@ -40,7 +37,6 @@ private:
     QString _description;
     QList<Answer> _answers;
     int _assignmentId;
-    int _correctAnswerId;
 };
 
 #endif // QUESTION_H

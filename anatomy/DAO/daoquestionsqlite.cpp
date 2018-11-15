@@ -33,26 +33,27 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
 {
     QSqlQuery query;
     QList<Question> questionsList;
-    if(!_mydb->isOpen()){
+    if(!_mydb->isOpen())
         return questionsList;
-    }
     _mydb->transaction();
 
     query.prepare("SELECT * FROM question WHERE assignment_fk = :id");
     query.bindValue(":id", id);
 
-    if(query.exec()){
+    if(query.exec())
+    {
         Question item;
-        while(query.next()){
+        while(query.next())
+        {
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             item.setAssignmentId(query.value(2).toInt());
-            item.setCorrectAnswerId(query.value(3).toInt());
             questionsList.append(item);
         }
     }
     DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
-    for (int var = 0; var < questionsList.size(); var++) {
+    for (int var = 0; var < questionsList.size(); var++)
+    {
         questionsList[var].setAnswers(daoAnswer->getAnswersByQuestionId(questionsList[var].id()));
     }
     _mydb->commit();
@@ -67,10 +68,9 @@ bool DAOQuestionSQLITE::updateQuestion(Question *question)
 
     QSqlQuery query;
     query.prepare("UPDATE question SET description = :description, assignment_fk = :assignment_fk, "
-                  "correctAnswer_fk = :correctAnswer_fk WHERE id = :id");
+                  "WHERE id = :id");
     query.bindValue(":description", question->description());
     query.bindValue(":assignment_fk", question->assignmentId());
-    query.bindValue(":correctAnswer_fk", question->correctAnswerId());
     query.bindValue(":id", question->id());
 
     bool result = query.exec();

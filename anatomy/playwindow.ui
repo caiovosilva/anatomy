@@ -81,6 +81,19 @@
     </property>
    </widget>
   </widget>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>600</y>
+     <width>174</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
