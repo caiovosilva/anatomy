@@ -65,7 +65,7 @@ void AssignmentChooser::on_anatomicalRegionComboBox_currentIndexChanged(int inde
 void AssignmentChooser::on_buttonBox_accepted()
 {
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
-    PlayWindow *newWindow = new PlayWindow(assignmentId);
+    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
     newWindow->setWindowTitle("Tarefa");
     newWindow->show();
 

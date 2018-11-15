@@ -48,7 +48,8 @@ SOURCES += \
     DAO/daoassignmentsqlite.cpp \
     DAO/daoclass.cpp \
     windows/newassignmentwindow.cpp \
-    windows/assignmentchooser.cpp
+    windows/assignmentchooser.cpp \
+    windows/reportwindow.cpp
 
 HEADERS += \
     DAO/daoanatomyimage.h \
@@ -80,7 +81,8 @@ HEADERS += \
     DAO/daoassignmentsqlite.h \
     DAO/daoclass.h \
     windows/newassignmentwindow.h \
-    windows/assignmentchooser.h
+    windows/assignmentchooser.h \
+    windows/reportwindow.h
 
 FORMS += \
     mainwindow.ui \
@@ -92,4 +94,5 @@ FORMS += \
     newanatomicalregionwindow.ui \
     newanatomyimagewindow.ui \
     newassignmentwindow.ui \
-    assignmentchooser.ui
+    assignmentchooser.ui \
+    reportwindow.ui

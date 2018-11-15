@@ -2,8 +2,12 @@
 #include "ui_playwindow.h"
 
 #include "DAO/daoassignmentsqlite.h"
+#include "reportwindow.h"
 
-PlayWindow::PlayWindow(int assignmentId, QWidget *parent) :
+#include <QDateTime>
+
+PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
+    _studentName(studentName),
     QWidget(parent),
     ui(new Ui::PlayWindow)
 {
@@ -70,7 +74,6 @@ void PlayWindow::fillQuestions()
 
 void PlayWindow::on_buttonBox_accepted()
 {
-    QString result;
     for (int i = 0; i < _answers.size(); i++)
     {
         if(_answers[i]->checkedId()<0)
@@ -80,6 +83,12 @@ void PlayWindow::on_buttonBox_accepted()
             return;
         }
     }
+    QString result;
+    int correctAnswers = 0;
+    QDateTime dateTime = QDateTime::currentDateTime();
+    result = "Aluno: "+_studentName+"\n";
+    result += "Data: "+dateTime.date().toString("dd/MM/yyyy")+"\n";
+    result += "Horário: "+dateTime.time().toString("HH:mm")+"\n";
 
     QList<Question> questions = _assignment.questionsList();
     Answer correctAnswer;
@@ -89,8 +98,22 @@ void PlayWindow::on_buttonBox_accepted()
             if(aws.isCorrectAnswer())
                 correctAnswer = aws;
         if(correctAnswer.id()==_answers[i]->checkedId())
-            result += "Ponto "+questions[i].description()+ "Correto\n";
+        {
+            result += "Ponto "+questions[i].description()+ " Correto.\n";
+            correctAnswers++;
+        }
         else
-            result += "Ponto "+questions[i].description()+ "Errado! A resposta certa é "+correctAnswer.description()+"\n";
+            result += "Ponto "+questions[i].description()+ " Errado! A resposta certa é "+correctAnswer.description()+".\n";
     }
+
+    result += "Você acertou "+QString::number(correctAnswers)+" de "+QString::number(questions.size())+" perguntas.";
+    ReportWindow *newWindow = new ReportWindow(result);
+    newWindow->setWindowTitle("Relatório");
+    newWindow->show();
+    this->close();
+}
+
+void PlayWindow::on_buttonBox_rejected()
+{
+    this->close();
 }
