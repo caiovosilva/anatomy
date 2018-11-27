@@ -1,4 +1,4 @@
 # anatomy
-Software para estudo da anatomia seccional apliacada a ressonância magnética.
+Software para estudo da anatomia seccional aplicada a ressonância magnética.
 
 Projeto de Iniciação Científica do IFBA.
