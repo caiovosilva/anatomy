@@ -1,4 +1,5 @@
 # anatomy
-Software para estudo da anatomia seccional apliacada a ressonância magnética.
 
-Projeto de Iniciação Científica do IFBA.
+Development of a Software for the study of sectional anatomy applied to magnetic resonance imaging.
+
+Undergraduate Research Project at Federal Institute of Education, Science, and Technology of Bahia (IFBA).
