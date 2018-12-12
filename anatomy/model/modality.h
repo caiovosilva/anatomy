@@ -8,6 +8,7 @@ class Modality
 public:
     Modality(QString description);
     Modality();
+    ~Modality();
 
     int id() const;
     void setId(int value);

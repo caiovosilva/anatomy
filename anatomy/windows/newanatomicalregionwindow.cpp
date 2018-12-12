@@ -17,6 +17,7 @@ NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(QWidget *parent) :
         ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
 
+    delete daoModality;
 }
 
 NewAnatomicalRegionWindow::~NewAnatomicalRegionWindow()
@@ -48,5 +49,7 @@ void NewAnatomicalRegionWindow::on_saveButton_clicked()
         msg.exec();
         return;
     }
+
+    delete daoAnatomicalRegion;
     this->close();
 }

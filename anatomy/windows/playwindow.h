@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QDateTime>
 #include <QTime>
-
+#include <QGridLayout>
 #include "DAO/daoassignmentsqlite.h"
 #include "reportwindow.h"
 #include "model/assignment.h"
@@ -42,6 +42,10 @@ private:
     QString _studentName;
     void fillQuestions();
     QTime _startTime;
+    QGridLayout *_grid;
+    QButtonGroup *_buttonGroup;
+    QGroupBox *_groupBox;
+    QHBoxLayout *_hbox;
 };
 
 #endif // PLAYWINDOW_H

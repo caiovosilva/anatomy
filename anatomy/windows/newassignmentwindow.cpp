@@ -17,6 +17,8 @@ NewAssignmentWindow::NewAssignmentWindow(QWidget *parent) :
     foreach (Modality item, modalitiesList) {
         ui->modalityComboBox->addItem(item.description(), item.id());
     }
+
+    delete daoModality;
 }
 
 NewAssignmentWindow::~NewAssignmentWindow()
@@ -26,13 +28,13 @@ NewAssignmentWindow::~NewAssignmentWindow()
 
 void NewAssignmentWindow::on_findFileButton_clicked()
 {
+    QString applicationDirPath = qApp->applicationDirPath();
     anatomyImagesPath = QFileDialog::getOpenFileNames(this, tr("Escolha Imagens"),
-                                                          qApp->applicationDirPath()+"/images",
+                                                          applicationDirPath+"/images",
                                                           "Image Files (*.png *.jpg *.bmp)");
-    QDir dir(qApp->applicationDirPath());
+    QDir dir(applicationDirPath);
     for( int i=0; i<anatomyImagesPath.size(); i++)
     {
-        QString aaaa = dir.relativeFilePath(anatomyImagesPath[i]);
         anatomyImagesPath[i] =  dir.relativeFilePath(anatomyImagesPath[i]);
     }
 }
@@ -49,6 +51,8 @@ void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
     foreach (AnatomicalRegion item, anatomicalRegionList) {
         ui->anatomicalRegionComboBox->addItem(item.description(), item.id());
     }
+
+    delete daoAnatomicalRegion;
 }
 
 void NewAssignmentWindow::on_saveButton_clicked()

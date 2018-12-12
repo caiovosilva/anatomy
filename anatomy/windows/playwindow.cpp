@@ -21,10 +21,13 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     _currentImageIndex = 0;
     fillQuestions();
     _startTime = QTime::currentTime();
+
+    delete daoAssignmet;
 }
 
 PlayWindow::~PlayWindow()
 {
+    delete _grid;
     delete ui;
 }
 
@@ -44,28 +47,28 @@ void PlayWindow::fillQuestions()
 {
     int line =0;
     int column = 0;
-    QGridLayout *grid = new QGridLayout;
+    _grid = new QGridLayout;
 
     foreach (Question item, _assignment.questionsList()) {
-        QButtonGroup *buttonGroup = new QButtonGroup;
-        QGroupBox *groupBox = new QGroupBox(item.description());
-        QHBoxLayout *hbox = new QHBoxLayout;
+        _buttonGroup = new QButtonGroup;
+        _groupBox = new QGroupBox(item.description());
+        _hbox = new QHBoxLayout;
 
         foreach (Answer answer, item.answers())
         {
             QRadioButton *aws = new QRadioButton(answer.description());
-            buttonGroup->addButton(aws, answer.id());
-            hbox->addWidget(aws);
+            _buttonGroup->addButton(aws, answer.id());
+            _hbox->addWidget(aws);
         }
-        groupBox->setLayout(hbox);
-        grid->addWidget(groupBox,line++, column);
-        _answers.append(buttonGroup);
+        _groupBox->setLayout(_hbox);
+        _grid->addWidget(_groupBox,line++, column);
+        _answers.append(_buttonGroup);
     }
 
     QWidget *client = new QWidget;
     ui->questionsScrollArea->setWidgetResizable(true);
     ui->questionsScrollArea->setWidget(client);
-    client->setLayout(grid);
+    client->setLayout(_grid);
 }
 
 void PlayWindow::on_buttonBox_accepted()

@@ -25,6 +25,8 @@ AssignmentChooser::AssignmentChooser(QWidget *parent) :
     foreach (Modality item, modalitiesList) {
         ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
+
+    delete daoModality;
 }
 
 AssignmentChooser::~AssignmentChooser()
@@ -44,6 +46,8 @@ void AssignmentChooser::on_modalitiesComboBox_currentIndexChanged(int index)
     foreach (AnatomicalRegion item, anatomicalRegionList) {
         ui->anatomicalRegionComboBox->addItem(item.description(), item.id());
     }
+
+    delete daoAnatomicalRegion;
 }
 
 void AssignmentChooser::on_anatomicalRegionComboBox_currentIndexChanged(int index)

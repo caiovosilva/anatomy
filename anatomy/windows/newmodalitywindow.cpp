@@ -38,5 +38,7 @@ void NewModalityWindow::on_saveButton_clicked()
         msg.exec();
         return;
     }
+
+    delete daoModality;
     this->close();
 }

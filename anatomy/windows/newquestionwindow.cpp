@@ -27,6 +27,8 @@ NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
     foreach (Modality item, modalitiesList) {
         ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
+
+    delete daoModality;
 }
 
 NewQuestionWindow::~NewQuestionWindow()

@@ -9,6 +9,11 @@ Modality::Modality()
 {
 }
 
+Modality::~Modality()
+{
+
+}
+
 int Modality::id() const
 {
     return _id;
