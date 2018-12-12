@@ -3,6 +3,12 @@
 
 #include <QWidget>
 #include <QString>
+#include <QPrinter>
+#include <QLabel>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QTextDocument>
+
 
 namespace Ui {
 class ReportWindow;
@@ -17,7 +23,10 @@ public:
     ~ReportWindow();
 
 private slots:
-    void on_saveButton_clicked();
+
+    void on_saveButtonTxt_clicked();
+
+    void on_pushButtonPdf_clicked();
 
 private:
     Ui::ReportWindow *ui;

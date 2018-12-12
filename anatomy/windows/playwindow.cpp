@@ -1,11 +1,6 @@
 #include "playwindow.h"
 #include "ui_playwindow.h"
 
-#include "DAO/daoassignmentsqlite.h"
-#include "reportwindow.h"
-
-#include <QDateTime>
-
 PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     _studentName(studentName),
     QWidget(parent),
@@ -25,6 +20,7 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     ui->image->show();
     _currentImageIndex = 0;
     fillQuestions();
+    _startTime = QTime::currentTime();
 }
 
 PlayWindow::~PlayWindow()
@@ -86,10 +82,12 @@ void PlayWindow::on_buttonBox_accepted()
     QString result;
     int correctAnswers = 0;
     QDateTime dateTime = QDateTime::currentDateTime();
-    result = "Aluno: "+_studentName+"\n";
-    result += "Data: "+dateTime.date().toString("dd/MM/yyyy")+"\n";
-    result += "Horário: "+dateTime.time().toString("HH:mm")+"\n";
-
+    result = "Aluno: " + _studentName+"\n";
+    result += "Data: " + dateTime.date().toString("dd/MM/yyyy")+"\n";
+    result += "Horário: " + dateTime.time().toString("HH:mm")+"\n";
+    int secondsToFinish = _startTime.secsTo(dateTime.time());
+    QTime timer(0,0,secondsToFinish);
+    result += "Tempo necessário: " + timer.toString("HH:mm:ss")+"\n";
     QList<Question> questions = _assignment.questionsList();
     Answer correctAnswer;
     for (int i = 0; i < _answers.size(); i++)
@@ -107,6 +105,7 @@ void PlayWindow::on_buttonBox_accepted()
     }
 
     result += "Você acertou "+QString::number(correctAnswers)+" de "+QString::number(questions.size())+" perguntas.";
+
     ReportWindow *newWindow = new ReportWindow(result);
     newWindow->setWindowTitle("Relatório");
     newWindow->show();

@@ -25,16 +25,23 @@
         <x>0</x>
         <y>0</y>
         <width>589</width>
-        <height>380</height>
+        <height>340</height>
        </rect>
       </property>
      </widget>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="saveButton">
+    <widget class="QPushButton" name="saveButtonTxt">
      <property name="text">
-      <string>Salvar</string>
+      <string>Salvar .txt</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButtonPdf">
+     <property name="text">
+      <string>Salvar .Pdf</string>
      </property>
     </widget>
    </item>

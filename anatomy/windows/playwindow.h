@@ -7,7 +7,11 @@
 #include <QGroupBox>
 #include <QRadioButton>
 #include <QMessageBox>
+#include <QDateTime>
+#include <QTime>
 
+#include "DAO/daoassignmentsqlite.h"
+#include "reportwindow.h"
 #include "model/assignment.h"
 
 namespace Ui {
@@ -37,6 +41,7 @@ private:
     QList<QButtonGroup*> _answers;
     QString _studentName;
     void fillQuestions();
+    QTime _startTime;
 };
 
 #endif // PLAYWINDOW_H
