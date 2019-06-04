@@ -17,7 +17,9 @@ QSqlDatabase *DBConnection::Connection()
 DBConnection::DBConnection()
 {
     _mydb = QSqlDatabase::addDatabase("QSQLITE");
+    QString appDir = qApp->applicationDirPath();
+    if(!QDir(appDir+ "/database").exists())
+        QDir().mkdir(appDir+ "/database");
     _mydb.setDatabaseName(qApp->applicationDirPath()+"/database/anatomy.db");
     _mydb.open();
-
 }
