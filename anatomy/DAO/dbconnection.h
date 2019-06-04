@@ -17,6 +17,7 @@ protected:
 private:
     static DBConnection* _instance;
     QSqlDatabase _mydb;
+    void CreateTables();
 };
 
 #endif // DBCONNECTION_H
