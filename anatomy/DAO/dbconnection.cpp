@@ -41,7 +41,7 @@ void DBConnection::CreateTables()
     if( !qry.exec() )
         qDebug() << qry.lastError();
 
-    qry.prepare( "CREATE TABLE IF NOT EXISTS `anatomyImage` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `imagePath` TEXT NOT NULL, `assignment_fk` INTEGER NOT NULL, FOREIGN KEY(`assignment_fk`) REFERENCES `assignment`(`id`) )" );
+    qry.prepare( "CREATE TABLE `anatomyimage` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `image` BLOB NOT NULL, `assignment_fk` INTEGER NOT NULL, FOREIGN KEY(`assignment_fk`) REFERENCES `assignment`(`id`) )" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
 

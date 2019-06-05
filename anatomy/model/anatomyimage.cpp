@@ -45,4 +45,3 @@ void AnatomyImage::setImagePath(const QString &imagePath)
 {
     _imagePath = imagePath;
 }
-

@@ -14,7 +14,7 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     foreach (AnatomyImage anatomyimage, _assignment.anatomyImageList()) {
        _images.append(QPixmap(qApp->applicationDirPath()+"/"+anatomyimage.imagePath()));
     }
-    QPixmap map(qApp->applicationDirPath()+"/images/coluna/AP.png"); // use qradiobutton in a qbuttongroup or a qcombobox.
+    QPixmap map(qApp->applicationDirPath()+"/images/coluna/AP.png");
     ui->image->setScaledContents(true);
     ui->image->setPixmap(map);
     ui->image->show();
