@@ -1,6 +1,8 @@
 #include "exportassignment.h"
 #include "ui_exportassignment.h"
 
+#include <QFileDialog>
+
 #include "model/question.h"
 #include "model/answer.h"
 #include "model/assignment.h"
@@ -36,6 +38,9 @@ ExportAssignment::~ExportAssignment()
 void ExportAssignment::on_buttonBox_accepted()
 {
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
+    DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
+    Assignment  assignment = daoAssignmet->getAssignmentById(assignmentId);
+    ConvertAssignmentToJson(assignment);
 //    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
 //    newWindow->setWindowTitle("Tarefa");
 //    newWindow->show();
@@ -55,6 +60,51 @@ void ExportAssignment::on_modalityComboBox_currentIndexChanged(int index)
     }
 
     delete daoAnatomicalRegion;
+}
+
+QJsonArray ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
+{
+    QJsonObject recordObject;
+    recordObject.insert("Description", QJsonValue::fromVariant(assignment.description()));
+
+    QJsonArray imagesArray;
+    foreach (AnatomyImage anatomyImage, assignment.anatomyImageList()) {
+        imagesArray.push_back(QTextCodec::codecForMib(1015)->toUnicode(anatomyImage.image()));
+    }
+    recordObject.insert("Images", imagesArray);
+
+    QJsonArray questionsArray;
+    foreach (Question question, assignment.questionsList()) {
+        QJsonObject questionObject;
+        questionObject.insert("Description", QJsonValue::fromVariant(question.description()));
+
+        QJsonArray answersArray;
+        foreach (Answer answer, question.answers()) {
+            QJsonObject asw;
+            asw.insert("Description", QJsonValue::fromVariant(answer.description()));
+            asw.insert("IsCorrectAnswer", QJsonValue::fromVariant(answer.isCorrectAnswer()));
+            answersArray.push_back(asw);
+        }
+
+        questionObject.insert("Answers", answersArray);
+        questionsArray.push_back(questionObject);
+    }
+    recordObject.insert("Questions", questionsArray);
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Salvar Arquivo"),
+                               assignment.description(),
+                               tr("JSON (*.json"));
+
+    QFile saveFile(fileName);
+
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+           qWarning("Couldn't open save file.");
+       }
+
+    QJsonDocument saveDoc(recordObject);
+        saveFile.write(saveDoc.toJson());
+
+
 }
 
 void ExportAssignment::on_anatomicalRegionComboBox_currentIndexChanged(int index)
