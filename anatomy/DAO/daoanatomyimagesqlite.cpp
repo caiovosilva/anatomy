@@ -9,8 +9,8 @@ bool DAOAnatomyImageSQLITE::addAnatomyImage(AnatomyImage *anatomyImage)
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO anatomyImage (imagePath, assignment_fk) VALUES (:imagePath, :assignment_fk)");
-    query.bindValue(":imagePath", anatomyImage->imagePath());
+    query.prepare("INSERT INTO anatomyImage (image, assignment_fk) VALUES (:image, :assignment_fk)");
+    query.bindValue(":image", anatomyImage->image());
     query.bindValue(":assignment_fk", anatomyImage->assignmentId());
 
     bool result = query.exec();
@@ -31,7 +31,7 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImages()
         AnatomyImage item;
         while(query.next()){
             item.setId(query.value(0).toInt());
-            item.setImagePath(query.value(1).toString());
+            item.setImage(query.value(1).toByteArray());
             item.setAssignmentId(query.value(2).toInt());
             anatomyList.append(item);
         }
@@ -55,7 +55,7 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImagesByAssignmentId(int
         AnatomyImage item;
         while(query.next()){
             item.setId(query.value(0).toInt());
-            item.setImagePath(query.value(1).toString());
+            item.setImage(query.value(1).toByteArray());
             item.setAssignmentId(query.value(2).toInt());
             anatomyList.append(item);
         }

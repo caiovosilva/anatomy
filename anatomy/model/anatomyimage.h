@@ -4,27 +4,28 @@
 #include <QString>
 #include <QList>
 #include "question.h"
+#include <QPixmap>
 class Question;
 
 class AnatomyImage
 {
 public:
-    AnatomyImage(QString imagePath, int assignmentId);
+    AnatomyImage(QByteArray image, int assignmentId);
     AnatomyImage();
     bool operator==(const AnatomyImage &image) const;
 
     int id() const;
     void setId(int id);
 
-    void setImagePath(const QString &imagePath);
-    QString imagePath() const;
-
     int assignmentId() const;
     void setAssignmentId(int assignmentId);
 
+    QByteArray image() const;
+    void setImage(const QByteArray &image);
+
 private:
     int _id;
-    QString _imagePath;
+    QByteArray _image;
     int _assignmentId;
 };
 

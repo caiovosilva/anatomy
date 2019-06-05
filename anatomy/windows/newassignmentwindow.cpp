@@ -31,12 +31,12 @@ void NewAssignmentWindow::on_findFileButton_clicked()
     QString applicationDirPath = qApp->applicationDirPath();
     anatomyImagesPath = QFileDialog::getOpenFileNames(this, tr("Escolha Imagens"),
                                                           applicationDirPath+"/images",
-                                                          "Image Files (*.png *.jpg *.bmp)");
-    QDir dir(applicationDirPath);
-    for( int i=0; i<anatomyImagesPath.size(); i++)
-    {
-        anatomyImagesPath[i] =  dir.relativeFilePath(anatomyImagesPath[i]);
-    }
+                                                          "Image Files (*.png)");
+//    QDir dir(applicationDirPath);
+//    for( int i=0; i<anatomyImagesPath.size(); i++)
+//    {
+//        anatomyImagesPath[i] =  dir.relativeFilePath(anatomyImagesPath[i]);
+//    }
 }
 
 void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
@@ -67,7 +67,12 @@ void NewAssignmentWindow::on_saveButton_clicked()
     DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
     for( int i=0; i<anatomyImagesPath.size(); i++)
     {
-        AnatomyImage anatomyImage(anatomyImagesPath[i], assignmentId);
+        QPixmap inPixmap = QPixmap(anatomyImagesPath[i]);
+        QByteArray inByteArray;
+        QBuffer inBuffer( &inByteArray );
+        inBuffer.open( QIODevice::WriteOnly );
+        inPixmap.save( &inBuffer, "PNG" ); // write inPixmap into inByteArray in PNG format
+        AnatomyImage anatomyImage(inByteArray, assignmentId);
         result = result && daoAnatomyImage->addAnatomyImage(&anatomyImage);
     }
 

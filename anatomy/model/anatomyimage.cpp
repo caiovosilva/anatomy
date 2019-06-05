@@ -1,7 +1,7 @@
 #include "anatomyimage.h"
 
-AnatomyImage::AnatomyImage(QString imagePath, int assignmentId):
-    _imagePath(imagePath),
+AnatomyImage::AnatomyImage(QByteArray image, int assignmentId):
+    _image(image),
     _assignmentId(assignmentId)
 {
 
@@ -13,13 +13,10 @@ AnatomyImage::AnatomyImage()
 
 bool AnatomyImage::operator==(const AnatomyImage &image) const
 {
-    return image.imagePath() == imagePath();
+    return image.id() == id();
 }
 
-QString AnatomyImage::imagePath() const
-{
-    return _imagePath;
-}
+
 
 int AnatomyImage::assignmentId() const
 {
@@ -31,6 +28,16 @@ void AnatomyImage::setAssignmentId(int assignmentId)
     _assignmentId = assignmentId;
 }
 
+QByteArray AnatomyImage::image() const
+{
+    return _image;
+}
+
+void AnatomyImage::setImage(const QByteArray &image)
+{
+    _image = image;
+}
+
 int AnatomyImage::id() const
 {
     return _id;
@@ -39,9 +46,4 @@ int AnatomyImage::id() const
 void AnatomyImage::setId(int id)
 {
     _id = id;
-}
-
-void AnatomyImage::setImagePath(const QString &imagePath)
-{
-    _imagePath = imagePath;
 }

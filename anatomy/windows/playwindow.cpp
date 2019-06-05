@@ -12,11 +12,12 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     _assignment = daoAssignmet->getAssignmentById(assignmentId);
 
     foreach (AnatomyImage anatomyimage, _assignment.anatomyImageList()) {
-       _images.append(QPixmap(qApp->applicationDirPath()+"/"+anatomyimage.imagePath()));
+        QPixmap outPixmap = QPixmap();
+        outPixmap.loadFromData(anatomyimage.image());
+       _images.append(outPixmap);
     }
-    QPixmap map(qApp->applicationDirPath()+"/images/coluna/AP.png");
     ui->image->setScaledContents(true);
-    ui->image->setPixmap(map);
+    ui->image->setPixmap(_images[0]);
     ui->image->show();
     _currentImageIndex = 0;
     fillQuestions();
