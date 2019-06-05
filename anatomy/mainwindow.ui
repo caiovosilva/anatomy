@@ -32,7 +32,7 @@
     <item>
      <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string>Listar Questões</string>
+       <string>Exportar Tarefas</string>
       </property>
      </widget>
     </item>
@@ -44,7 +44,7 @@
      <x>0</x>
      <y>0</y>
      <width>637</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

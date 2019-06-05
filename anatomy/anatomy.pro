@@ -6,6 +6,7 @@
 
 QT       += printsupport
 QT       += core gui sql
+QT       += widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -33,7 +34,6 @@ SOURCES += \
     model/answer.cpp \
     model/question.cpp \
     model/anatomyimage.cpp \
-    windows/listquestionswindow.cpp \
     windows/mainwindow.cpp \
     windows/newquestionwindow.cpp \
     windows/playwindow.cpp \
@@ -63,7 +63,6 @@ HEADERS += \
     model/answer.h \
     model/question.h \
     model/anatomyimage.h \
-    windows/listquestionswindow.h \
     windows/mainwindow.h \
     windows/playwindow.h \
     windows/newquestionwindow.h \
@@ -88,7 +87,6 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     newquestionwindow.ui \
-    listquestionswindow.ui \
     playwindow.ui \
     entrieswindow.ui \
     newmodalitywindow.ui \

@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "newquestionwindow.h"
-#include "listquestionswindow.h"
 #include "playwindow.h"
 #include "entrieswindow.h"
 #include "DAO/dbconnection.h"
@@ -33,9 +32,9 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    ListQuestionsWindow *newWindow = new ListQuestionsWindow;
-    newWindow->setWindowTitle("Questões");
-    newWindow->show();
+    //ListQuestionsWindow *newWindow = new ListQuestionsWindow;
+//    newWindow->setWindowTitle("Questões");
+//    newWindow->show();
 }
 
 void MainWindow::on_init_clicked()
