@@ -1,5 +1,5 @@
-#include "assignmentchooser.h"
-#include "ui_assignmentchooser.h"
+#include "exportassignment.h"
+#include "ui_exportassignment.h"
 
 #include "model/question.h"
 #include "model/answer.h"
@@ -10,11 +10,10 @@
 #include "DAO/daoanswersqlite.h"
 #include "DAO/daomodalitysqlite.h"
 #include "DAO/daoanatomicalregionsqlite.h"
-#include "playwindow.h"
 
-AssignmentChooser::AssignmentChooser(QWidget *parent) :
+ExportAssignment::ExportAssignment(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::AssignmentChooser)
+    ui(new Ui::ExportAssignment)
 {
     ui->setupUi(this);
 
@@ -23,20 +22,28 @@ AssignmentChooser::AssignmentChooser(QWidget *parent) :
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        ui->modalitiesComboBox->addItem(item.description(), item.id());
+        ui->modalityComboBox->addItem(item.description(), item.id());
     }
 
     delete daoModality;
 }
 
-AssignmentChooser::~AssignmentChooser()
+ExportAssignment::~ExportAssignment()
 {
     delete ui;
 }
 
-void AssignmentChooser::on_modalitiesComboBox_currentIndexChanged(int index)
+void ExportAssignment::on_buttonBox_accepted()
 {
-    int modalityId = ui->modalitiesComboBox->currentData().toInt();
+    int assignmentId = ui->assignmentComboBox->currentData().toInt();
+//    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
+//    newWindow->setWindowTitle("Tarefa");
+//    newWindow->show();
+}
+
+void ExportAssignment::on_modalityComboBox_currentIndexChanged(int index)
+{
+    int modalityId = ui->modalityComboBox->currentData().toInt();
 
     QList<AnatomicalRegion> anatomicalRegionList;
     DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
@@ -50,7 +57,7 @@ void AssignmentChooser::on_modalitiesComboBox_currentIndexChanged(int index)
     delete daoAnatomicalRegion;
 }
 
-void AssignmentChooser::on_anatomicalRegionComboBox_currentIndexChanged(int index)
+void ExportAssignment::on_anatomicalRegionComboBox_currentIndexChanged(int index)
 {
     int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
 
@@ -64,12 +71,4 @@ void AssignmentChooser::on_anatomicalRegionComboBox_currentIndexChanged(int inde
         item.setQuestionsList(questionsDAO->getQuestionsByAssignmentId(item.id()));
         ui->assignmentComboBox->addItem(item.description(), item.id());
     }
-}
-
-void AssignmentChooser::on_buttonBox_accepted()
-{
-    int assignmentId = ui->assignmentComboBox->currentData().toInt();
-    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
-    newWindow->setWindowTitle("Tarefa");
-    newWindow->show();
 }

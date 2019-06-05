@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    exportassignment.cpp \
         main.cpp \
     DAO/daoanatomyimagesqlite.cpp \
     DAO/daoanswersqlite.cpp \
@@ -60,6 +61,7 @@ HEADERS += \
     DAO/daoquestion.h \
     DAO/daoquestionsqlite.h \
     DAO/dbconnection.h \
+    exportassignment.h \
     model/answer.h \
     model/question.h \
     model/anatomyimage.h \
@@ -85,6 +87,7 @@ HEADERS += \
     windows/reportwindow.h
 
 FORMS += \
+    exportassignment.ui \
     mainwindow.ui \
     newquestionwindow.ui \
     playwindow.ui \

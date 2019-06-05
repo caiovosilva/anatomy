@@ -24,16 +24,9 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QPushButton" name="newQuestionButton">
+     <widget class="QPushButton" name="newModalityButton">
       <property name="text">
-       <string>Adicionar Questão</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="newAssignmentButton">
-      <property name="text">
-       <string>Adicionar Tarefa</string>
+       <string>Adicionar Modalidade</string>
       </property>
      </widget>
     </item>
@@ -45,9 +38,16 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="newModalityButton">
+     <widget class="QPushButton" name="newAssignmentButton">
       <property name="text">
-       <string>Adicionar Modalidade</string>
+       <string>Adicionar Tarefa</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="newQuestionButton">
+      <property name="text">
+       <string>Adicionar Questão</string>
       </property>
      </widget>
     </item>
