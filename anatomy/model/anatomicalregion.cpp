@@ -9,16 +9,6 @@ AnatomicalRegion::AnatomicalRegion(QString description):
 {
 }
 
-void AnatomicalRegion::addImage(AnatomyImage image)
-{
-    _imageList.append(image);
-}
-
-void AnatomicalRegion::removeImage(AnatomyImage image)
-{
-    _imageList.removeOne(image);
-}
-
 QString AnatomicalRegion::description() const
 {
     return _description;
@@ -27,16 +17,6 @@ QString AnatomicalRegion::description() const
 void AnatomicalRegion::setDescription(const QString &value)
 {
     _description = value;
-}
-
-QList<AnatomyImage> AnatomicalRegion::imageList() const
-{
-    return _imageList;
-}
-
-void AnatomicalRegion::setImageList(const QList<AnatomyImage> &value)
-{
-    _imageList = value;
 }
 
 int AnatomicalRegion::id() const

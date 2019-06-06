@@ -10,14 +10,8 @@ public:
     AnatomicalRegion();
     AnatomicalRegion(QString description);
 
-    void addImage(AnatomyImage image);
-    void removeImage(AnatomyImage image);
-
     QString description() const;
     void setDescription(const QString &value);
-
-    QList<AnatomyImage> imageList() const;
-    void setImageList(const QList<AnatomyImage> &value);
 
     int id() const;
     void setId(int id);
