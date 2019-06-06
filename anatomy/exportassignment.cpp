@@ -40,7 +40,9 @@ void ExportAssignment::on_buttonBox_accepted()
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
     DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
     Assignment  assignment = daoAssignmet->getAssignmentById(assignmentId);
-    ConvertAssignmentToJson(assignment);
+
+    QJsonObject jsonObject = ConvertAssignmentToJson(assignment);
+    DownloadAssignment(jsonObject, assignment.description());
 //    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
 //    newWindow->setWindowTitle("Tarefa");
 //    newWindow->show();
@@ -62,7 +64,7 @@ void ExportAssignment::on_modalityComboBox_currentIndexChanged(int index)
     delete daoAnatomicalRegion;
 }
 
-QJsonArray ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
+QJsonObject ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
 {
     QJsonObject recordObject;
     recordObject.insert("Description", QJsonValue::fromVariant(assignment.description()));
@@ -91,20 +93,18 @@ QJsonArray ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
     }
     recordObject.insert("Questions", questionsArray);
 
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Salvar Arquivo"),
-                               assignment.description(),
-                               tr("JSON (*.json"));
+    return recordObject;
+}
+
+void ExportAssignment::DownloadAssignment(QJsonObject &jsonObject, QString title)
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Salvar Arquivo"), title+".json");
 
     QFile saveFile(fileName);
-
-    if (!saveFile.open(QIODevice::WriteOnly)) {
-           qWarning("Couldn't open save file.");
-       }
-
-    QJsonDocument saveDoc(recordObject);
-        saveFile.write(saveDoc.toJson());
-
-
+    if (!saveFile.open(QIODevice::WriteOnly))
+        qWarning("Couldn't open save file.");
+    QJsonDocument saveDoc(jsonObject);
+    saveFile.write(saveDoc.toJson());
 }
 
 void ExportAssignment::on_anatomicalRegionComboBox_currentIndexChanged(int index)

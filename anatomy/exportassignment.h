@@ -19,14 +19,13 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
-    void on_modalitiesComboBox_currentIndexChanged(int index);
     void on_anatomicalRegionComboBox_currentIndexChanged(int index);
     void on_modalityComboBox_currentIndexChanged(int index);
 
 private:
     Ui::ExportAssignment *ui;
-    QJsonArray ConvertAssignmentToJson(Assignment &assignment);
-    void DownloadAssignment(QJsonArray);
+    QJsonObject ConvertAssignmentToJson(Assignment &assignment);
+    void DownloadAssignment(QJsonObject &jsonObject, QString title);
 };
 
 #endif // EXPORTASSIGNMENT_H
