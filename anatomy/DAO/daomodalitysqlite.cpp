@@ -26,7 +26,7 @@ QList<Modality> DAOModalitySQLITE::getAllModalities()
     query.prepare("select * from modality");
     if(query.exec()){
         Modality item;
-        while(query.next()){
+        while(query.next()) {
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             modalitiesList.append(item);
@@ -34,4 +34,24 @@ QList<Modality> DAOModalitySQLITE::getAllModalities()
     }
     _mydb->commit();
     return modalitiesList;
+}
+
+Modality DAOModalitySQLITE::getModalityById(int id)
+{
+    QSqlQuery query;
+    Modality item;
+    if(!_mydb->open())
+        return item;
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM modality WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        while(query.next()) {
+            item.setId(query.value(0).toInt());
+            item.setDescription(query.value(1).toString());
+        }
+
+    _mydb->commit();
+    return item;
 }

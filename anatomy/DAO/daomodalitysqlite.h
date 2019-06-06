@@ -13,6 +13,7 @@ class DAOModalitySQLITE : public DAOModality, public DAOClass
 public:
     bool addModality(Modality *modality);
     QList<Modality> getAllModalities();
+    Modality getModalityById(int id);
 };
 
 #endif // DAOMODALITYSQLITE_H

@@ -14,6 +14,8 @@ class DAOAnatomicalRegionSQLITE : public DAOAnatomicalRegion, public DAOClass
 public:
     bool addAnatomicalRegion(AnatomicalRegion *anatomicalRegion);
     QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId);
+    AnatomicalRegion getAnatomicalRegionById(int id);
+
 };
 
 #endif // DAOANATOMICALREGIONSQLITE_H

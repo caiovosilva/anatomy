@@ -93,6 +93,16 @@ QJsonObject ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
     }
     recordObject.insert("Questions", questionsArray);
 
+    AnatomicalRegion anatomicalRegion;
+    DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
+    anatomicalRegion = daoAnatomicalRegion->getAnatomicalRegionById(assignment.anatomicalRegionId());
+    recordObject.insert("AnatomicalRegionDescription", anatomicalRegion.description());
+
+    Modality modality;
+    DAOModality *daoModality = new DAOModalitySQLITE;
+    modality = daoModality->getModalityById(anatomicalRegion.modalityId());
+    recordObject.insert("ModalityDescription", modality.description());
+
     return recordObject;
 }
 
