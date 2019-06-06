@@ -7,6 +7,10 @@
 #include "DAO/daoanatomyimagesqlite.h"
 #include "assignmentchooser.h"
 #include "exportassignment.h"
+#include "DAO/daoanatomicalregionsqlite.h"
+#include "DAO/daomodalitysqlite.h"
+#include "DAO/daoassignmentsqlite.h"
+#include "DAO/daoquestionsqlite.h"
 
 #include <QDialog>
 #include <QDialogButtonBox>
@@ -44,3 +48,35 @@ void MainWindow::on_init_clicked()
     newWindow->setWindowTitle("Escolha Uma Tarefa");
     newWindow->show();
 }
+
+void MainWindow::on_importPushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Selecione a Tarefa"), "JSON (*.json)");
+    QJsonDocument assignmentDocument = LoadJson(fileName);
+    SaveAssignmentFromJSON(assignmentDocument.object());
+}
+
+QJsonDocument MainWindow::LoadJson(QString &fileName)
+{
+    QFile jsonFile(fileName);
+    jsonFile.open(QFile::ReadOnly);
+    return QJsonDocument().fromJson(jsonFile.readAll());
+}
+
+bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
+{
+    DAOModality *daoModality = new DAOModalitySQLITE();
+    DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE();
+
+    Modality modality = Modality(jsonObject["ModalityDescription"].toString());
+    daoModality->addModality(&modality);
+
+    AnatomicalRegion anatomicalRegion = AnatomicalRegion(jsonObject["AnatomicalRegionDescription"].toString());
+    anatomicalRegion.setModalityId(daoModality->getModalityByDescription(modality.description()).id());
+    daoAnatomicalRegion->addAnatomicalRegion(&anatomicalRegion);
+
+//    Name = json["name"].toString();
+//      mLevel = json["level"].toDouble();
+//      mClassType = ClassType(qRound(json["classType"].toDouble()));
+}
+

@@ -8,6 +8,7 @@ class AnatomicalRegion
 {
 public:
     AnatomicalRegion();
+    AnatomicalRegion(QString description);
 
     void addImage(AnatomyImage image);
     void removeImage(AnatomyImage image);

@@ -22,8 +22,13 @@ private slots:
 
     void on_init_clicked();
 
+    void on_importPushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QJsonDocument LoadJson(QString &fileName);
+    bool SaveAssignmentFromJSON(QJsonObject jsonObject);
+
 };
 
 #endif // MAINWINDOW_H

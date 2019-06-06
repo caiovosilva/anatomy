@@ -2,7 +2,11 @@
 
 AnatomicalRegion::AnatomicalRegion()
 {
+}
 
+AnatomicalRegion::AnatomicalRegion(QString description):
+    _description(description)
+{
 }
 
 void AnatomicalRegion::addImage(AnatomyImage image)

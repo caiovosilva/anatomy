@@ -29,7 +29,7 @@ NewAssignmentWindow::~NewAssignmentWindow()
 void NewAssignmentWindow::on_findFileButton_clicked()
 {
     QString applicationDirPath = qApp->applicationDirPath();
-    anatomyImagesPath = QFileDialog::getOpenFileNames(this, tr("Escolha Imagens"),
+    anatomyImagesPath = QFileDialog::getOpenFileNames(this, tr("Selecione as Imagens"),
                                                           applicationDirPath+"/images",
                                                           "Image Files (*.png)");
 //    QDir dir(applicationDirPath);

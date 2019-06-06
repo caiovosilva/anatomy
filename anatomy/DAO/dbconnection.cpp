@@ -29,11 +29,11 @@ void DBConnection::CreateTables()
 {
     QSqlQuery qry;
 
-    qry.prepare( "CREATE TABLE IF NOT EXISTS `modality` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL )" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS `modality` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL UNIQUE )" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
 
-    qry.prepare( "CREATE TABLE `anatomicalregion` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL, `modality_fk` INTEGER NOT NULL,FOREIGN KEY(`modality_fk`) REFERENCES `modality`(`id`))" );
+    qry.prepare( "CREATE TABLE `anatomicalregion` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL UNIQUE, `modality_fk` INTEGER NOT NULL,FOREIGN KEY(`modality_fk`) REFERENCES `modality`(`id`))" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
 
