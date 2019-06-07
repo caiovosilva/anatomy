@@ -71,17 +71,7 @@ QJsonObject ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
     recordObject.insert("Description", QJsonValue::fromVariant(assignment.description()));
 
     QJsonArray imagesArray;
-   // QString s_data, aaa, bbb, ccc, ddd;
     foreach (AnatomyImage anatomyImage, assignment.anatomyImageList()) {
-//        s_data = QString::fromLatin1(anatomyImage.image());
-//        aaa = QTextCodec::codecForMib(1015)->toUnicode(anatomyImage.image());
-//        bbb = QTextCodec::codecForMib(1014)->toUnicode(anatomyImage.image());
-//        ccc = QString(anatomyImage.image().toBase64());
-//        ddd = QTextCodec::codecForMib(106)->toUnicode(anatomyImage.image());
-//        //qWarning() << anatomyImage.image();
-//        qWarning() << QString::fromUtf8(anatomyImage.image());
-//        qWarning() << anatomyImage.image();
-//        qWarning() << anatomyImage.image();
         imagesArray.push_back(QString(anatomyImage.image().toBase64()));
     }
     recordObject.insert("Images", imagesArray);
