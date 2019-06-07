@@ -92,7 +92,9 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
 
     for (int imageIndex = 0; imageIndex < imagesArray.size(); ++imageIndex) {
         AnatomyImage image;
-        QByteArray img = imagesArray[imageIndex].toString().toLatin1();
+        QByteArray ba;
+        ba.append(imagesArray[imageIndex].toString());
+        QByteArray img = QByteArray::fromBase64(ba);
         image.setImage(img);
         image.setAssignmentId(assignment.id());
         daoAnatomyImage->addAnatomyImage(&image);
