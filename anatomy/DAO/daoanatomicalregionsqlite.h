@@ -15,6 +15,8 @@ public:
     bool addAnatomicalRegion(AnatomicalRegion *anatomicalRegion);
     QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId);
     AnatomicalRegion getAnatomicalRegionById(int id);
+    AnatomicalRegion getAnatomicalRegionByDescription(QString description);
+
 
 };
 

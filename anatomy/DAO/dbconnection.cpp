@@ -37,7 +37,7 @@ void DBConnection::CreateTables()
     if( !qry.exec() )
         qDebug() << qry.lastError();
 
-    qry.prepare( "CREATE TABLE IF NOT EXISTS `assignment` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL, `anatomicalRegion_fk` INTEGER NOT NULL, FOREIGN KEY(`anatomicalRegion_fk`) REFERENCES `anatomicalregion`(`id`) )" );
+    qry.prepare( "CREATE TABLE IF NOT EXISTS `assignment` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL UNIQUE, `anatomicalRegion_fk` INTEGER NOT NULL, FOREIGN KEY(`anatomicalRegion_fk`) REFERENCES `anatomicalregion`(`id`) )" );
     if( !qry.exec() )
         qDebug() << qry.lastError();
 

@@ -70,8 +70,10 @@ QJsonObject ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
     recordObject.insert("Description", QJsonValue::fromVariant(assignment.description()));
 
     QJsonArray imagesArray;
+    QString s_data;
     foreach (AnatomyImage anatomyImage, assignment.anatomyImageList()) {
-        imagesArray.push_back(QTextCodec::codecForMib(1015)->toUnicode(anatomyImage.image()));
+        s_data = QString::fromLatin1(anatomyImage.image());
+        imagesArray.push_back(QString::fromLatin1(anatomyImage.image()));
     }
     recordObject.insert("Images", imagesArray);
 

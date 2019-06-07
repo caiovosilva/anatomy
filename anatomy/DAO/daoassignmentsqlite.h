@@ -15,6 +15,8 @@ public:
     QList<Assignment> getAllAssignments();
     QList<Assignment> getAssignmentsByAnatomicalRegion(int anatomicalRegionId);
     Assignment getAssignmentById(int id);
+    Assignment* getAssignmentByDescription(QString description);
+
 };
 
 #endif // DAOASSIGNMENTSQLITE_H

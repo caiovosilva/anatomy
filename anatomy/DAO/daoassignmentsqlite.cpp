@@ -92,3 +92,32 @@ Assignment DAOAssignmentSQLITE::getAssignmentById(int id)
     _mydb->commit();
     return item;
 }
+
+Assignment* DAOAssignmentSQLITE::getAssignmentByDescription(QString description)
+{
+    QSqlQuery query;
+    Assignment item;
+    Assignment *assignment = nullptr;
+    if(!_mydb->open())
+        return assignment;
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM assignment WHERE description = :description");
+    query.bindValue(":description", description);
+    if(query.exec()){
+        while(query.next())
+        {
+            item.setId(query.value(0).toInt());
+            item.setDescription(query.value(1).toString());
+            item.setAnatomicalRegionId(query.value(2).toInt());
+            DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+            item.setAnatomyImageList(daoAnatomyImage->getAllAnatomyImagesByAssignmentId(item.id()));
+            DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
+            item.setQuestionsList(daoQuestion->getQuestionsByAssignmentId(item.id()));
+            assignment = &item;
+        }
+    }
+
+    _mydb->commit();
+    return assignment;
+}

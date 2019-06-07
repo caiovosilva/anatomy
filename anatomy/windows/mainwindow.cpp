@@ -67,6 +67,8 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
 {
     DAOModality *daoModality = new DAOModalitySQLITE();
     DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE();
+    DAOAssignment *daoAssignment = new DAOAssignmentSQLITE();
+    DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE();
 
     Modality modality = Modality(jsonObject["ModalityDescription"].toString());
     daoModality->addModality(&modality);
@@ -75,8 +77,25 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
     anatomicalRegion.setModalityId(daoModality->getModalityByDescription(modality.description()).id());
     daoAnatomicalRegion->addAnatomicalRegion(&anatomicalRegion);
 
-//    Name = json["name"].toString();
-//      mLevel = json["level"].toDouble();
-//      mClassType = ClassType(qRound(json["classType"].toDouble()));
+    QString description = jsonObject["Description"].toString();
+    Assignment assignment = Assignment(description,
+            daoAnatomicalRegion->getAnatomicalRegionByDescription(anatomicalRegion.description()).id());
+    if(daoAssignment->getAssignmentByDescription(description) != nullptr)
+        for (int var = 2; var < 500; var++)
+            if(daoAssignment->getAssignmentByDescription(description+" ("+QString::number(var)+")") == nullptr) {
+                assignment.setDescription(description+" ("+QString::number(var)+")");
+                break;
+            }
+    daoAssignment->addAssignment(&assignment);
+
+    QJsonArray imagesArray = jsonObject["Images"].toArray();
+
+    for (int imageIndex = 0; imageIndex < imagesArray.size(); ++imageIndex) {
+        AnatomyImage image;
+        QByteArray img = imagesArray[imageIndex].toString().toLatin1();
+        image.setImage(img);
+        image.setAssignmentId(assignment.id());
+        daoAnatomyImage->addAnatomyImage(&image);
+    }
 }
 
