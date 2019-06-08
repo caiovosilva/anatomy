@@ -52,7 +52,7 @@ void MainWindow::on_init_clicked()
 
 void MainWindow::on_importPushButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Selecione a Tarefa"), "JSON (*.json)");
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Selecione a Tarefa"),"/home", "JSON (*.json)");
     QJsonDocument assignmentDocument = LoadJson(fileName);
     bool result = SaveAssignmentFromJSON(assignmentDocument.object());
 
