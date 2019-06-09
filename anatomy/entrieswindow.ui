@@ -26,28 +26,28 @@
     <item>
      <widget class="QPushButton" name="newModalityButton">
       <property name="text">
-       <string>Adicionar Modalidade</string>
+       <string>Modalidade</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="newAnatomicalRegionButton">
       <property name="text">
-       <string>Adicionar Região Anatômica</string>
+       <string>Região Anatômica</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="newAssignmentButton">
       <property name="text">
-       <string>Adicionar Tarefa</string>
+       <string>Tarefa</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="newQuestionButton">
       <property name="text">
-       <string>Adicionar Questão</string>
+       <string>Questão</string>
       </property>
      </widget>
     </item>
