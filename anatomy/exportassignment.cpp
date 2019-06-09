@@ -109,13 +109,13 @@ QJsonObject ExportAssignment::ConvertAssignmentToJson(Assignment &assignment)
 
 void ExportAssignment::DownloadAssignment(QJsonObject &jsonObject, QString title)
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Salvar Arquivo"), title+".json");
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Salvar Arquivo"), title+".dat");
 
     QFile saveFile(fileName);
     if (!saveFile.open(QIODevice::WriteOnly))
         qWarning("Couldn't open save file.");
     QJsonDocument saveDoc(jsonObject);
-    saveFile.write(saveDoc.toJson());
+    saveFile.write(saveDoc.toBinaryData());
 }
 
 void ExportAssignment::on_anatomicalRegionComboBox_currentIndexChanged(int index)
