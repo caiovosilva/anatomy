@@ -13,46 +13,40 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>105</y>
-     <width>621</width>
-     <height>241</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QPushButton" name="newModalityButton">
-      <property name="text">
-       <string>Modalidade</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="newAnatomicalRegionButton">
-      <property name="text">
-       <string>Região Anatômica</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="newAssignmentButton">
-      <property name="text">
-       <string>Tarefa</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="newQuestionButton">
-      <property name="text">
-       <string>Questão</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="newModalityButton">
+       <property name="text">
+        <string>Modalidade</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="newAnatomicalRegionButton">
+       <property name="text">
+        <string>Região Anatômica</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="newAssignmentButton">
+       <property name="text">
+        <string>Tarefa</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="newQuestionButton">
+       <property name="text">
+        <string>Questão</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
