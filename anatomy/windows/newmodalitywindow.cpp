@@ -11,6 +11,7 @@ NewModalityWindow::NewModalityWindow(QWidget *parent) :
     ui(new Ui::NewModalityWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Nova Modalidade");
 }
 
 NewModalityWindow::~NewModalityWindow()

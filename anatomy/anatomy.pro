@@ -89,6 +89,7 @@ HEADERS += \
 FORMS += \
     exportassignment.ui \
     mainwindow.ui \
+    modalitylist.ui \
     newquestionwindow.ui \
     playwindow.ui \
     entrieswindow.ui \
