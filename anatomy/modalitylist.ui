@@ -2,22 +2,19 @@
  <author/>
  <comment/>
  <exportmacro/>
- <class>modalityList</class>
- <widget class="QMainWindow" name="modalityList">
+ <class>ModalityList</class>
+ <widget name="ModalityList" class="QWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Form</string>
   </property>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <pixmapfunction/>
  <connections/>

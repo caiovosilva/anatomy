@@ -9,6 +9,7 @@ NewAssignmentWindow::NewAssignmentWindow(QWidget *parent) :
     ui(new Ui::NewAssignmentWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Nova Tarefa");
 
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;

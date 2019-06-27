@@ -16,7 +16,7 @@ public:
     ~EntriesWindow();
 
 private slots:
-    void on_newModalityButton_clicked();
+    void on_modalityButton_clicked();
 
     void on_newAnatomicalRegionButton_clicked();
 

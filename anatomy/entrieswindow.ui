@@ -17,9 +17,9 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="newModalityButton">
+      <widget class="QPushButton" name="modalityButton">
        <property name="text">
-        <string>Modalidade</string>
+        <string>Modalidades</string>
        </property>
       </widget>
      </item>
