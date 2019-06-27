@@ -32,9 +32,7 @@ SOURCES += \
     DAO/daoanswersqlite.cpp \
     DAO/daoquestionsqlite.cpp \
     DAO/dbconnection.cpp \
-    modalitylist.cpp \
     model/answer.cpp \
-    model/modalitymodel.cpp \
     model/question.cpp \
     model/anatomyimage.cpp \
     windows/mainwindow.cpp \
@@ -64,9 +62,7 @@ HEADERS += \
     DAO/daoquestionsqlite.h \
     DAO/dbconnection.h \
     exportassignment.h \
-    modalitylist.h \
     model/answer.h \
-    model/modalitymodel.h \
     model/question.h \
     model/anatomyimage.h \
     windows/mainwindow.h \
