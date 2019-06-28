@@ -12,7 +12,7 @@ bool DAOModalitySQLITE::addOrUpdateModality(Modality *modality)
         query.bindValue(":description", modality->description());
     }
     else {
-        query.prepare("UPDATE modality SET description=:description WHERE ROWID==:id");
+        query.prepare("UPDATE modality SET description=:description WHERE id==:id");
         query.bindValue(":id", QString::number(modality->id()));
         query.bindValue(":description", modality->description());
     }

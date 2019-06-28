@@ -7,16 +7,15 @@
 
 NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::NewModalityWindow),
-    _modality(modality)
+    ui(new Ui::NewModalityWindow)
 {
     ui->setupUi(this);
     setWindowTitle("Nova Modalidade");
-    if(_modality != nullptr)
-        ui->descriptionText->setText(_modality->description());
-    else
-        _modality = new Modality();
-
+    if(modality != nullptr) {
+        _modality.setDescription(modality->description());
+        _modality.setId(modality->id());
+        ui->descriptionText->setText(_modality.description());
+    }
 }
 
 //NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
@@ -42,9 +41,9 @@ void NewModalityWindow::on_saveButton_clicked()
         return;
     }
     //Modality modality = Modality(description);
-    _modality->setDescription(description);
+    _modality.setDescription(description);
     DAOModality *daoModality = new DAOModalitySQLITE;
-    bool result = daoModality->addOrUpdateModality(_modality);
+    bool result = daoModality->addOrUpdateModality(&_modality);
 
     if(!result)
     {
@@ -53,7 +52,6 @@ void NewModalityWindow::on_saveButton_clicked()
         return;
     }
 
-    delete _modality;
     delete daoModality;
     this->close();
 }

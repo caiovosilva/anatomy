@@ -22,7 +22,7 @@ private slots:
 
 private:
     Ui::NewModalityWindow *ui;
-    Modality *_modality = nullptr;
+    Modality _modality;
 };
 
 #endif // NEWMODALITYWINDOW_H

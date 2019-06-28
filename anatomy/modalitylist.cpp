@@ -17,7 +17,7 @@ ModalityList::ModalityList(QWidget *parent) :
     m_proxy.setSourceModel(&m_model);
     m_view.setModel(&m_proxy);
     m_view.resizeColumnsToContents();
-    connect(&m_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editModality(QModelIndex)));
+    connect(&m_view, SIGNAL(clicked(const QModelIndex &)), this, SLOT(editModality(QModelIndex)));
     //m_proxy.setFilterKeyColumn(2);
 //    m_dialog.setLabelText("Enter registration number fragment to filter on. Leave empty to clear filter.");
 //    m_dialog.setInputMode(QInputDialog::TextInput);
@@ -53,7 +53,8 @@ void ModalityList::newModalityButtonClicked()
 void ModalityList::editModality(QModelIndex model)
 {
     QVariant description = model.data(0);
-    QVariant id = model.data(1);
+    QModelIndex sib = model.siblingAtColumn(1);
+    QVariant id = sib.data(0).toInt();
     Modality modality(description.toString(), id.toInt());
 
     NewModalityWindow *newWindow = new NewModalityWindow(&modality);

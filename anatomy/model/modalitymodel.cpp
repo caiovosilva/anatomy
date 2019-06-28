@@ -24,13 +24,11 @@ QVariant ModalityModel::data(const QModelIndex &index, int role) const
 QVariant ModalityModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole) return {};
-//         switch (section) {
-//         case 0: return "Make";
-//         case 1: return "Model";
-//         case 2: return "Reg.#";
-//         default: return {};
-//         }
-    return "Descrição";
+         switch (section) {
+         case 0: return "Descrição";
+         case 1: return "Id";
+         default: return {};
+         }
 }
 
 void ModalityModel::append(const Modality &modality)
