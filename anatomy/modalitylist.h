@@ -20,6 +20,7 @@ public:
 
 public slots:
     void newModalityButtonClicked();
+    void editModality(QModelIndex model);
 
 private:
     void fillTable();

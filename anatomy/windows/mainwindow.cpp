@@ -89,7 +89,7 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
     bool result = true;
 
     Modality modality = Modality(jsonObject["ModalityDescription"].toString());
-    daoModality->addModality(&modality);
+    daoModality->addOrUpdateModality(&modality);
 
     AnatomicalRegion anatomicalRegion = AnatomicalRegion(jsonObject["AnatomicalRegionDescription"].toString());
     anatomicalRegion.setModalityId(daoModality->getModalityByDescription(modality.description()).id());

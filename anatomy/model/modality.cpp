@@ -1,11 +1,17 @@
 #include "modality.h"
 
 Modality::Modality(QString description):
-    _description(description)
+    _id(-1), _description(description)
 {
 }
 
-Modality::Modality()
+Modality::Modality(QString description, int id):
+    _id(id), _description(description)
+{
+}
+
+Modality::Modality():
+    _id(-1)
 {
 }
 

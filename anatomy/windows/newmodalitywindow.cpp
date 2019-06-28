@@ -3,16 +3,29 @@
 
 #include <QMessageBox>
 
-#include "model/modality.h"
 #include "DAO/daomodalitysqlite.h"
 
-NewModalityWindow::NewModalityWindow(QWidget *parent) :
+NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::NewModalityWindow)
+    ui(new Ui::NewModalityWindow),
+    _modality(modality)
 {
     ui->setupUi(this);
     setWindowTitle("Nova Modalidade");
+    if(_modality != nullptr)
+        ui->descriptionText->setText(_modality->description());
+    else
+        _modality = new Modality();
+
 }
+
+//NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
+//    QWidget(parent),
+//    ui(new Ui::NewModalityWindow),
+//    _modality(modality)
+//{
+//    NewModalityWindow();
+//}
 
 NewModalityWindow::~NewModalityWindow()
 {
@@ -28,10 +41,10 @@ void NewModalityWindow::on_saveButton_clicked()
         msg.exec();
         return;
     }
-    Modality modality = Modality(description);
-
+    //Modality modality = Modality(description);
+    _modality->setDescription(description);
     DAOModality *daoModality = new DAOModalitySQLITE;
-    bool result = daoModality->addModality(&modality);
+    bool result = daoModality->addOrUpdateModality(_modality);
 
     if(!result)
     {
@@ -40,6 +53,7 @@ void NewModalityWindow::on_saveButton_clicked()
         return;
     }
 
+    delete _modality;
     delete daoModality;
     this->close();
 }

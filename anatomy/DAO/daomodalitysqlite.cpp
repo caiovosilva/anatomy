@@ -1,14 +1,21 @@
 #include "daomodalitysqlite.h"
 
-bool DAOModalitySQLITE::addModality(Modality *modality)
+bool DAOModalitySQLITE::addOrUpdateModality(Modality *modality)
 {
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO modality (description) VALUES (:description)");
-    query.bindValue(":description", modality->description());
+    if(modality->id() < 0) {
+        query.prepare("INSERT INTO modality (description) VALUES (:description)");
+        query.bindValue(":description", modality->description());
+    }
+    else {
+        query.prepare("UPDATE modality SET description=:description WHERE ROWID==:id");
+        query.bindValue(":id", QString::number(modality->id()));
+        query.bindValue(":description", modality->description());
+    }
 
     bool result = query.exec();
     _mydb->commit();

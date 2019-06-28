@@ -2,6 +2,7 @@
 #define NEWMODALITYWINDOW_H
 
 #include <QWidget>
+#include "model/modality.h"
 
 namespace Ui {
 class NewModalityWindow;
@@ -12,7 +13,8 @@ class NewModalityWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit NewModalityWindow(QWidget *parent = 0);
+    explicit NewModalityWindow(Modality *_modality = nullptr, QWidget *parent = 0);
+    //explicit NewModalityWindow(Modality *_modality, QWidget *parent = 0);
     ~NewModalityWindow();
 
 private slots:
@@ -20,6 +22,7 @@ private slots:
 
 private:
     Ui::NewModalityWindow *ui;
+    Modality *_modality = nullptr;
 };
 
 #endif // NEWMODALITYWINDOW_H

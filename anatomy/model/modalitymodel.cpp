@@ -7,7 +7,7 @@ int ModalityModel::rowCount(const QModelIndex &) const
 
 int ModalityModel::columnCount(const QModelIndex &) const
 {
-    return 1;
+    return 2;
 }
 
 QVariant ModalityModel::data(const QModelIndex &index, int role) const
@@ -16,9 +16,8 @@ QVariant ModalityModel::data(const QModelIndex &index, int role) const
     const auto & modality = m_data[index.row()];
     switch (index.column()) {
     case 0: return modality.description();
-//          case 1: return vehicle.model();
-//          case 2: return vehicle.registrationNumber();
-    default: return {};
+    case 1: return modality.id();
+    //default: return {};
     };
 }
 

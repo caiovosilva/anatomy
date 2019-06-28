@@ -11,7 +11,7 @@ class DAOModalitySQLITE : public DAOModality, public DAOClass
 {
     // DAOModality interface
 public:
-    bool addModality(Modality *modality);
+    bool addOrUpdateModality(Modality *modality);
     QList<Modality> getAllModalities();
     Modality getModalityById(int id);
     Modality getModalityByDescription(QString description);

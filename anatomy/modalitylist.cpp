@@ -16,6 +16,8 @@ ModalityList::ModalityList(QWidget *parent) :
     fillTable();
     m_proxy.setSourceModel(&m_model);
     m_view.setModel(&m_proxy);
+    m_view.resizeColumnsToContents();
+    connect(&m_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editModality(QModelIndex)));
     //m_proxy.setFilterKeyColumn(2);
 //    m_dialog.setLabelText("Enter registration number fragment to filter on. Leave empty to clear filter.");
 //    m_dialog.setInputMode(QInputDialog::TextInput);
@@ -35,7 +37,7 @@ void ModalityList::fillTable()
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        m_model.append({item.description()});
+        m_model.append({item.description(), item.id()});
     }
 
     delete daoModality;
@@ -46,4 +48,14 @@ void ModalityList::newModalityButtonClicked()
     NewModalityWindow *newWindow = new NewModalityWindow;
     newWindow->show();
 
+}
+
+void ModalityList::editModality(QModelIndex model)
+{
+    QVariant description = model.data(0);
+    QVariant id = model.data(1);
+    Modality modality(description.toString(), id.toInt());
+
+    NewModalityWindow *newWindow = new NewModalityWindow(&modality);
+    newWindow->show();
 }

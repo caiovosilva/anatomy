@@ -7,6 +7,7 @@ class Modality
 {
 public:
     Modality(QString description);
+    Modality(QString description, int id);
     Modality();
     ~Modality();
 
