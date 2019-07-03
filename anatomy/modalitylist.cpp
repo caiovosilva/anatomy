@@ -27,8 +27,8 @@ ModalityList::ModalityList(QWidget *parent) :
     connect(&_btnAddModality, SIGNAL(clicked()), this, SLOT(newModalityButtonClicked()));
     connect(&_btnDeleteModality, SIGNAL(clicked()), this, SLOT(onDeleteModality()));
     fillTable();
-//    _proxy.setSourceModel(&_model);
-//    _view.setModel(&_proxy);
+    _proxy.setSourceModel(&_model);
+    _view.setModel(&_proxy);
     _view.resizeColumnsToContents();
     _view.setSelectionBehavior(QAbstractItemView::SelectRows);
     connect(&_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editModality(QModelIndex)));
@@ -55,17 +55,8 @@ void ModalityList::fillTable()
     foreach (Modality item, modalitiesList) {
         _model.append({item.description(), item.id()});
     }
-    _proxy.setSourceModel(&_model);
-    _view.setModel(&_proxy);
-    delete daoModality;
-}
 
-void ModalityList::updateTable()
-{
-    _model.clearData();
-    fillTable();
-    _proxy.setSourceModel(&_model);
-    _view.setModel(&_proxy);
+    delete daoModality;
 }
 
 void ModalityList::newModalityButtonClicked()
@@ -83,12 +74,6 @@ void ModalityList::editModality(QModelIndex model)
 
     NewModalityWindow *newWindow = new NewModalityWindow(&modality);
     newWindow->show();
-}
-
-void ModalityList::onFocus()
-{
-//    _model.clearData();
-//    fillTable();
 }
 
 void ModalityList::onDeleteModality()
@@ -119,7 +104,6 @@ void ModalityList::onDeleteModality()
                 return;
             }
             _model.removeRow(model.row());
-            //fillTable();
         }
     }
 }

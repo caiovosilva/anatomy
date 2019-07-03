@@ -23,11 +23,8 @@ public slots:
     void newModalityButtonClicked();
     void editModality(QModelIndex model);
     void onDeleteModality();
-    void onFocus();
-
 private:
     void fillTable();
-    void updateTable();
     Ui::ModalityList *ui;
     QGridLayout _layout{this};
     QTableView _view;
