@@ -37,3 +37,20 @@ void ModalityModel::append(const Modality &modality)
     m_data.append(modality);
     endInsertRows();
 }
+
+void ModalityModel::clearData()
+{
+    m_data.clear();
+}
+
+bool ModalityModel::removeRows(int position, int rows, const QModelIndex &index)
+{
+    beginRemoveRows(QModelIndex(), position, position+rows-1);
+    
+        for (int row = 0; row < rows; ++row) {
+            m_data.removeAt(position);
+        }
+    
+    endRemoveRows();
+    return true;
+}

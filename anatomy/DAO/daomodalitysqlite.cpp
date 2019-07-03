@@ -84,3 +84,19 @@ Modality DAOModalitySQLITE::getModalityByDescription(QString description)
     _mydb->commit();
     return item;
 }
+
+bool DAOModalitySQLITE::deleteModality(int id)
+{
+    QSqlQuery query;
+    bool sucess = false;
+    if(!_mydb->open())
+        return sucess;
+    _mydb->transaction();
+
+    query.prepare("DELETE FROM modality WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        sucess = true;
+    _mydb->commit();
+    return sucess;
+}

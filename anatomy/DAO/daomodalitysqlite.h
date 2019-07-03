@@ -15,6 +15,7 @@ public:
     QList<Modality> getAllModalities();
     Modality getModalityById(int id);
     Modality getModalityByDescription(QString description);
+    bool deleteModality(int id);
 };
 
 #endif // DAOMODALITYSQLITE_H

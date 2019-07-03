@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include <QIcon>
 #include <QDesktopWidget>
 #include "model/modalitymodel.h"
 
@@ -21,16 +22,20 @@ public:
 public slots:
     void newModalityButtonClicked();
     void editModality(QModelIndex model);
+    void onDeleteModality();
+    void onFocus();
 
 private:
     void fillTable();
+    void updateTable();
     Ui::ModalityList *ui;
-    QGridLayout m_layout{this};
-    QTableView m_view;
-    QPushButton m_button{"Adicionar Nova Modalidade"};
-    ModalityModel m_model;
-    QSortFilterProxyModel m_proxy;
-    QInputDialog m_dialog;
+    QGridLayout _layout{this};
+    QTableView _view;
+    QPushButton _btnAddModality{"Adicionar Nova Modalidade"};
+    QPushButton _btnDeleteModality{"Apagar"};
+    ModalityModel _model;
+    QSortFilterProxyModel _proxy;
+    QInputDialog _dialog;
 };
 
 #endif // MODALITYLIST_H

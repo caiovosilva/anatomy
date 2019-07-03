@@ -10,7 +10,7 @@ public:
     virtual QList<Modality> getAllModalities() = 0;
     virtual Modality getModalityById(int id) = 0;
     virtual Modality getModalityByDescription(QString description) = 0;
-//    virtual bool deleteModality(Modality* modality) = 0;
+    virtual bool deleteModality(int id) = 0;
 };
 
 #endif // DAOMODALITY_H

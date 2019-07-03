@@ -14,6 +14,8 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void append(const Modality & modality);
+    void clearData();
+    bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
 };
 
 #endif // MODALITYMODEL_H
