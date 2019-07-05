@@ -9,6 +9,7 @@ public:
     virtual QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId) = 0;
     virtual AnatomicalRegion getAnatomicalRegionById(int id) = 0;
     virtual AnatomicalRegion getAnatomicalRegionByDescription(QString description) = 0;
+    virtual QList<AnatomicalRegion> getAllAnatomicalRegion() = 0;
 };
 
 #endif // DAOANATOMICALREGION_H

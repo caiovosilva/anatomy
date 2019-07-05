@@ -16,8 +16,7 @@ public:
     QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId);
     AnatomicalRegion getAnatomicalRegionById(int id);
     AnatomicalRegion getAnatomicalRegionByDescription(QString description);
-
-
+    QList<AnatomicalRegion> getAllAnatomicalRegion();
 };
 
 #endif // DAOANATOMICALREGIONSQLITE_H

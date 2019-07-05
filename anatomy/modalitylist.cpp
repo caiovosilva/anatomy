@@ -107,4 +107,3 @@ void ModalityList::onDeleteModality()
         }
     }
 }
-

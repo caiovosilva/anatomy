@@ -1,11 +1,17 @@
 #include "anatomicalregion.h"
 
-AnatomicalRegion::AnatomicalRegion()
+AnatomicalRegion::AnatomicalRegion():
+    _id(-1)
 {
 }
 
 AnatomicalRegion::AnatomicalRegion(QString description):
     _description(description)
+{
+}
+
+AnatomicalRegion::AnatomicalRegion(QString description, int id):
+    _id(id), _description(description)
 {
 }
 

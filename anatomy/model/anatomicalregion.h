@@ -9,6 +9,7 @@ class AnatomicalRegion
 public:
     AnatomicalRegion();
     AnatomicalRegion(QString description);
+    AnatomicalRegion(QString description, int id);
 
     QString description() const;
     void setDescription(const QString &value);

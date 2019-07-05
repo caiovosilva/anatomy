@@ -3,10 +3,10 @@
 
 #include "newquestionwindow.h"
 #include "newmodalitywindow.h"
-#include "newanatomicalregionwindow.h"
 #include "newanatomyimagewindow.h"
 #include "newassignmentwindow.h"
 #include "modalitylist.h"
+#include "anatomicalregionlist.h"
 
 EntriesWindow::EntriesWindow(QWidget *parent) :
     QWidget(parent),
@@ -28,8 +28,9 @@ void EntriesWindow::on_modalityButton_clicked()
 }
 void EntriesWindow::on_newAnatomicalRegionButton_clicked()
 {
-    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow;
+    AnatomicalRegionList *newWindow = new AnatomicalRegionList;
     newWindow->show();
+
 }
 
 void EntriesWindow::on_newAssignmentButton_clicked()

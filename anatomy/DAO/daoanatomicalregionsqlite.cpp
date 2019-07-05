@@ -82,3 +82,26 @@ AnatomicalRegion DAOAnatomicalRegionSQLITE::getAnatomicalRegionByDescription(QSt
     _mydb->commit();
     return item;
 }
+
+QList<AnatomicalRegion> DAOAnatomicalRegionSQLITE::getAllAnatomicalRegion()
+{
+    QSqlQuery query;
+    QList<AnatomicalRegion> AnatomicalRegionList;
+    if(!_mydb->isOpen()){
+        return AnatomicalRegionList;
+    }
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM anatomicalregion");
+    if(query.exec()){
+        AnatomicalRegion item;
+        while(query.next()){
+            item.setId(query.value(0).toInt());
+            item.setDescription(query.value(1).toString());
+            item.setModalityId(query.value(2).toInt());
+            AnatomicalRegionList.append(item);
+        }
+    }
+    _mydb->commit();
+    return AnatomicalRegionList;
+}

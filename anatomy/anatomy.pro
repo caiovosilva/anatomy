@@ -26,17 +26,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    exportassignment.cpp \
+    anatomicalregionlist.cpp \
         main.cpp \
     DAO/daoanatomyimagesqlite.cpp \
     DAO/daoanswersqlite.cpp \
     DAO/daoquestionsqlite.cpp \
     DAO/dbconnection.cpp \
     modalitylist.cpp \
+    model/anatomicalregionmodel.cpp \
     model/answer.cpp \
     model/modalitymodel.cpp \
     model/question.cpp \
     model/anatomyimage.cpp \
+    windows/exportassignment.cpp \
     windows/mainwindow.cpp \
     windows/newquestionwindow.cpp \
     windows/playwindow.cpp \
@@ -63,12 +65,14 @@ HEADERS += \
     DAO/daoquestion.h \
     DAO/daoquestionsqlite.h \
     DAO/dbconnection.h \
-    exportassignment.h \
+    anatomicalregionlist.h \
     modalitylist.h \
+    model/anatomicalregionmodel.h \
     model/answer.h \
     model/modalitymodel.h \
     model/question.h \
     model/anatomyimage.h \
+    windows/exportassignment.h \
     windows/mainwindow.h \
     windows/playwindow.h \
     windows/newquestionwindow.h \
@@ -91,6 +95,7 @@ HEADERS += \
     windows/reportwindow.h
 
 FORMS += \
+    anatomicalregionlist.ui \
     exportassignment.ui \
     mainwindow.ui \
     modalitylist.ui \
