@@ -1,4 +1,5 @@
 #include "anatomicalregionmodel.h"
+#include "DAO/daomodalitysqlite.h"
 
 int AnatomicalRegionModel::rowCount(const QModelIndex &) const
 {
@@ -7,17 +8,19 @@ int AnatomicalRegionModel::rowCount(const QModelIndex &) const
 
 int AnatomicalRegionModel::columnCount(const QModelIndex &) const
 {
-    return 2;
+    return 3;
 }
 
 QVariant AnatomicalRegionModel::data(const QModelIndex &index, int role) const
 {
     if (role != Qt::DisplayRole && role != Qt::EditRole) return {};
-    const auto & modality = m_data[index.row()];
+    const auto & anatomicalRegion = m_data[index.row()];
+    DAOModality *daoModality = new DAOModalitySQLITE;
     switch (index.column()) {
-    case 0: return modality.description();
-    case 1: return modality.id();
-    //default: return {};
+    case 0: return anatomicalRegion.description();
+    case 1: return daoModality->getModalityById(anatomicalRegion.id()).description();
+    case 2: return anatomicalRegion.id();
+    default: return {};
     };
 }
 
@@ -26,7 +29,8 @@ QVariant AnatomicalRegionModel::headerData(int section, Qt::Orientation orientat
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole) return {};
          switch (section) {
          case 0: return "Descrição";
-         case 1: return "Id";
+         case 1: return "Modalidade";
+         case 2: return "Id";
          default: return {};
          }
 }

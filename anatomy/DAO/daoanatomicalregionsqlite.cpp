@@ -1,4 +1,5 @@
 #include "daoanatomicalregionsqlite.h"
+#include "daomodalitysqlite.h"
 
 bool DAOAnatomicalRegionSQLITE::addAnatomicalRegion(AnatomicalRegion *anatomicalRegion)
 {

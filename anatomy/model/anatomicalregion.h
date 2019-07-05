@@ -2,6 +2,7 @@
 #define ANATOMICALREGION_H
 
 #include "anatomyimage.h"
+#include "modality.h"
 #include "QString"
 
 class AnatomicalRegion
