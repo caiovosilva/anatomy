@@ -12,7 +12,7 @@ class DAOAnatomicalRegionSQLITE : public DAOAnatomicalRegion, public DAOClass
 {
     // DAOAnatomicalRegion interface
 public:
-    bool addAnatomicalRegion(AnatomicalRegion *anatomicalRegion);
+    bool addOrUpdateAnatomicalRegion(AnatomicalRegion *anatomicalRegion);
     QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId);
     AnatomicalRegion getAnatomicalRegionById(int id);
     AnatomicalRegion getAnatomicalRegionByDescription(QString description);

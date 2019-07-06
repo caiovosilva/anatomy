@@ -5,7 +5,7 @@
 class DAOAnatomicalRegion
 {
 public:
-    virtual bool addAnatomicalRegion(AnatomicalRegion *anatomicalRegion) = 0;
+    virtual bool addOrUpdateAnatomicalRegion(AnatomicalRegion *anatomicalRegion) = 0;
     virtual QList<AnatomicalRegion> getAnatomicalRegionByModalityId(int modalityId) = 0;
     virtual AnatomicalRegion getAnatomicalRegionById(int id) = 0;
     virtual AnatomicalRegion getAnatomicalRegionByDescription(QString description) = 0;

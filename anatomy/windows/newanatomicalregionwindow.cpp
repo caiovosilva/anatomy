@@ -44,12 +44,10 @@ void NewAnatomicalRegionWindow::on_saveButton_clicked()
     }
     int modalityId = ui->modalitiesComboBox->currentData().toInt();
 
-    AnatomicalRegion anatomicalRegion;
-    anatomicalRegion.setModalityId(modalityId);
-    anatomicalRegion.setDescription(description);
-
+    _anatomicalRegion.setModalityId(modalityId);
+    _anatomicalRegion.setDescription(description);
     DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
-    bool result = daoAnatomicalRegion->addAnatomicalRegion(&anatomicalRegion);
+    bool result = daoAnatomicalRegion->addOrUpdateAnatomicalRegion(&_anatomicalRegion);
 
     if(!result)
     {

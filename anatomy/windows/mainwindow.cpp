@@ -93,7 +93,7 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
 
     AnatomicalRegion anatomicalRegion = AnatomicalRegion(jsonObject["AnatomicalRegionDescription"].toString());
     anatomicalRegion.setModalityId(daoModality->getModalityByDescription(modality.description()).id());
-    daoAnatomicalRegion->addAnatomicalRegion(&anatomicalRegion);
+    daoAnatomicalRegion->addOrUpdateAnatomicalRegion(&anatomicalRegion);
 
     QString description = jsonObject["Description"].toString();
     Assignment assignment = Assignment(description,

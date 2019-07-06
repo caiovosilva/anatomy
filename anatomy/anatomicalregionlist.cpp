@@ -47,7 +47,7 @@ void AnatomicalRegionList::fillTable()
     anatomicalRegionList = daoModality->getAllAnatomicalRegion();
 
     foreach (AnatomicalRegion item, anatomicalRegionList) {
-        _model.append({item.description(), item.id()});
+        _model.append(item);
     }
 
     delete daoModality;
@@ -78,32 +78,32 @@ void AnatomicalRegionList::editItem(QModelIndex model)
 
 void AnatomicalRegionList::onDeleteItem()
 {
-//    QItemSelectionModel *select = _view.selectionModel();
+    QItemSelectionModel *select = _view.selectionModel();
 
-//    if(select->hasSelection())
-//    {
-//        QModelIndexList models = select->selectedRows();
+    if(select->hasSelection())
+    {
+        QModelIndexList models = select->selectedRows();
 
-//        QModelIndex model = select->selectedRows().takeAt(0);
-//        //select->selectedColumns(); // return selected column(s)
-//        QVariant description = model.data(0);
-//        QModelIndex sib = model.siblingAtColumn(1);
-//        QVariant id = sib.data(0).toInt();
+        QModelIndex model = select->selectedRows().takeAt(0);
+        //select->selectedColumns(); // return selected column(s)
+        QVariant description = model.data(0);
+        QModelIndex sib = model.siblingAtColumn(1);
+        QVariant id = sib.data(0).toInt();
 
-//        QMessageBox::StandardButton reply;
-//        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a modalidade "+description.toString()+"?",
-//                                     QMessageBox::Yes|QMessageBox::No);
-//        if (reply == QMessageBox::Yes)
-//        {
-//            DAOModality *daoModality = new DAOModalitySQLITE;
-//            bool result = daoModality->deleteModality(id.toInt());
-//            if(!result)
-//            {
-//                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");
-//                msg.exec();
-//                return;
-//            }
-//            _model.removeRow(model.row());
-//        }
-//    }
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a região anatomica "+description.toString()+"?",
+                                     QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            DAOModality *daoModality = new DAOModalitySQLITE;
+            bool result = daoModality->deleteModality(id.toInt());
+            if(!result)
+            {
+                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");
+                msg.exec();
+                return;
+            }
+            _model.removeRow(model.row());
+        }
+    }
 }

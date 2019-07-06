@@ -1,16 +1,24 @@
 #include "daoanatomicalregionsqlite.h"
 #include "daomodalitysqlite.h"
 
-bool DAOAnatomicalRegionSQLITE::addAnatomicalRegion(AnatomicalRegion *anatomicalRegion)
+bool DAOAnatomicalRegionSQLITE::addOrUpdateAnatomicalRegion(AnatomicalRegion *anatomicalRegion)
 {
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
-
     QSqlQuery query;
-    query.prepare("INSERT INTO anatomicalregion (description, modality_fk) VALUES (:description, :modality_fk)");
-    query.bindValue(":description", anatomicalRegion->description());
-    query.bindValue(":modality_fk", anatomicalRegion->modalityId());
+
+    if(anatomicalRegion->id() < 0) {
+        query.prepare("INSERT INTO anatomicalregion (description, modality_fk) VALUES (:description, :modality_fk)");
+        query.bindValue(":description", anatomicalRegion->description());
+        query.bindValue(":modality_fk", anatomicalRegion->modalityId());
+    }
+    else {
+        query.prepare("UPDATE anatomicalregion SET description=:description WHERE id==:id");
+        query.bindValue(":id", QString::number(anatomicalRegion->id()));
+        query.bindValue(":description", anatomicalRegion->description());
+    }
+
 
     bool result = query.exec();
     _mydb->commit();

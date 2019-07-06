@@ -53,7 +53,7 @@ void ModalityList::fillTable()
     modalitiesList = daoModality->getAllModalities();
 
     foreach (Modality item, modalitiesList) {
-        _model.append({item.description(), item.id()});
+        _model.append(item);
     }
 
     delete daoModality;

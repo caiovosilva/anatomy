@@ -40,7 +40,6 @@ void NewModalityWindow::on_saveButton_clicked()
         msg.exec();
         return;
     }
-    //Modality modality = Modality(description);
     _modality.setDescription(description);
     DAOModality *daoModality = new DAOModalitySQLITE;
     bool result = daoModality->addOrUpdateModality(&_modality);
