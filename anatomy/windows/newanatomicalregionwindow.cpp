@@ -3,13 +3,20 @@
 
 #include <QMessageBox>
 
-NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(QWidget *parent) :
+NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(AnatomicalRegion *anatomicalRegion, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NewAnatomicalRegionWindow)
 {
     ui->setupUi(this);
     setWindowTitle("Nova Região Anatômica");
 
+    if(anatomicalRegion != nullptr) {
+        QString description = anatomicalRegion->description();
+        _anatomicalRegion.setId(anatomicalRegion->id());
+        _anatomicalRegion.setModalityId(anatomicalRegion->modalityId());
+        _anatomicalRegion.setDescription(description);
+        ui->descriptionText->setText(description);
+    }
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;
     modalitiesList = daoModality->getAllModalities();

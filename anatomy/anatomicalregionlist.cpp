@@ -10,28 +10,28 @@ AnatomicalRegionList::AnatomicalRegionList(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPalette pal = _btnDeleteModality.palette();
+    QPalette pal = _btnDeleteItem.palette();
     pal.setColor(QPalette::Button, QColor(Qt::red));
-    _btnDeleteModality.setAutoFillBackground(true);
-    _btnDeleteModality.setPalette(pal);
-    _btnDeleteModality.update();
-    QPalette pal2 = _btnAddModality.palette();
+    _btnDeleteItem.setAutoFillBackground(true);
+    _btnDeleteItem.setPalette(pal);
+    _btnDeleteItem.update();
+    QPalette pal2 = _btnAddItem.palette();
     pal2.setColor(QPalette::Button, QColor(Qt::green));
-    _btnAddModality.setAutoFillBackground(true);
-    _btnAddModality.setPalette(pal2);
-    _btnAddModality.update();
+    _btnAddItem.setAutoFillBackground(true);
+    _btnAddItem.setPalette(pal2);
+    _btnAddItem.update();
 
     _layout.addWidget(&_view, 0, 0, 1, 1);
-    _layout.addWidget(&_btnAddModality, 1, 0, 1, 1);
-    _layout.addWidget(&_btnDeleteModality, 2, 0, 1, 1);
-    connect(&_btnAddModality, SIGNAL(clicked()), this, SLOT(newModalityButtonClicked()));
-    connect(&_btnDeleteModality, SIGNAL(clicked()), this, SLOT(onDeleteModality()));
+    _layout.addWidget(&_btnAddItem, 1, 0, 1, 1);
+    _layout.addWidget(&_btnDeleteItem, 2, 0, 1, 1);
+    connect(&_btnAddItem, SIGNAL(clicked()), this, SLOT(newItem()));
+    connect(&_btnDeleteItem, SIGNAL(clicked()), this, SLOT(onDeleteItem()));
     fillTable();
     _proxy.setSourceModel(&_model);
     _view.setModel(&_proxy);
     _view.resizeColumnsToContents();
     _view.setSelectionBehavior(QAbstractItemView::SelectRows);
-    connect(&_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editModality(QModelIndex)));
+    connect(&_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
 }
 
 AnatomicalRegionList::~AnatomicalRegionList()
@@ -53,26 +53,30 @@ void AnatomicalRegionList::fillTable()
     delete daoModality;
 }
 
-void AnatomicalRegionList::newModalityButtonClicked()
+void AnatomicalRegionList::newItem()
 {
     NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow;
     newWindow->show();
 }
 
-void AnatomicalRegionList::editModality(QModelIndex model)
+void AnatomicalRegionList::editItem(QModelIndex model)
 {
-    QVariant description = model.data(0);
-    QModelIndex sib = model.siblingAtColumn(1);
-    QVariant id = sib.data(0).toInt();
-    Modality modality(description.toString(), id.toInt());
+//    QString description = model.data(0).toString();
+//    QModelIndex sib = model.siblingAtColumn(1);
 
-        NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow;
-        newWindow->show();
-//    NewModalityWindow *newWindow = new NewModalityWindow(&modality);
-//    newWindow->show();
+//    DAOModality *daoModality = new DAOModalitySQLITE;
+//    Modality modality = daoModality->getModalityByDescription(sib.data(0).toString());
+    QModelIndex sib = model.siblingAtColumn(2);
+
+    int id = sib.data(0).toInt();
+    DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
+    AnatomicalRegion anatomicalRegion = daoAnatomicalRegion->getAnatomicalRegionById(id);
+
+    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow(&anatomicalRegion);
+    newWindow->show();
 }
 
-void AnatomicalRegionList::onDeleteModality()
+void AnatomicalRegionList::onDeleteItem()
 {
 //    QItemSelectionModel *select = _view.selectionModel();
 

@@ -20,17 +20,17 @@ public:
     ~AnatomicalRegionList();
 
 public slots:
-    void newModalityButtonClicked();
-    void editModality(QModelIndex model);
-    void onDeleteModality();
+    void newItem();
+    void editItem(QModelIndex model);
+    void onDeleteItem();
 
 private:
     Ui::AnatomicalRegionList *ui;
     void fillTable();
     QGridLayout _layout{this};
     QTableView _view;
-    QPushButton _btnAddModality{"Adicionar Nova Modalidade"};
-    QPushButton _btnDeleteModality{"Apagar"};
+    QPushButton _btnAddItem{"Adicionar Nova Modalidade"};
+    QPushButton _btnDeleteItem{"Apagar"};
     AnatomicalRegionModel _model;
     QSortFilterProxyModel _proxy;
     QInputDialog _dialog;

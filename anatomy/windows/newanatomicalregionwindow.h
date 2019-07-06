@@ -17,7 +17,7 @@ class NewAnatomicalRegionWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit NewAnatomicalRegionWindow(QWidget *parent = 0);
+    explicit NewAnatomicalRegionWindow(AnatomicalRegion *anatomicalRegion = nullptr, QWidget *parent = 0);
     ~NewAnatomicalRegionWindow();
 
 private slots:
@@ -25,6 +25,7 @@ private slots:
 
 private:
     Ui::NewAnatomicalRegionWindow *ui;
+    AnatomicalRegion _anatomicalRegion;
 };
 
 #endif // NEWANATOMICALREGIONWINDOW_H
