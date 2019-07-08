@@ -93,7 +93,7 @@ void AnatomicalRegionList::onDeleteItem()
         QVariant id = sib.data(0).toInt();
 
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a região anatômica '"+description.toString()+"'?",
+        reply = QMessageBox::question(this, "Confirme", "Apagar região anatômica '"+description.toString()+"'?",
                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {

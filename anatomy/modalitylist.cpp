@@ -63,6 +63,7 @@ void ModalityList::newModalityButtonClicked()
 {
     NewModalityWindow *newWindow = new NewModalityWindow;
     newWindow->show();
+    this->close();
 }
 
 void ModalityList::editModality(QModelIndex model)
@@ -74,6 +75,7 @@ void ModalityList::editModality(QModelIndex model)
 
     NewModalityWindow *newWindow = new NewModalityWindow(&modality);
     newWindow->show();
+    this->close();
 }
 
 void ModalityList::onDeleteModality()
@@ -91,7 +93,7 @@ void ModalityList::onDeleteModality()
         QVariant id = sib.data(0).toInt();
 
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a modalidade "+description.toString()+"?",
+        reply = QMessageBox::question(this, "Confirme", "Apagar modalidade '"+description.toString()+"'?",
                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
