@@ -47,7 +47,6 @@ ModalityList::~ModalityList()
 
 void ModalityList::fillTable()
 {
-    _model.clearData();
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;
     modalitiesList = daoModality->getAllModalities();

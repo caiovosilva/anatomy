@@ -26,7 +26,7 @@ QVariant ModalityModel::headerData(int section, Qt::Orientation orientation, int
     if (orientation != Qt::Horizontal || role != Qt::DisplayRole) return {};
          switch (section) {
          case 0: return "Descrição";
-         case 1: return "Id";
+         case 1: return "Identificador";
          default: return {};
          }
 }
@@ -36,11 +36,6 @@ void ModalityModel::append(const Modality &modality)
     beginInsertRows({}, m_data.count(), m_data.count());
     m_data.append(modality);
     endInsertRows();
-}
-
-void ModalityModel::clearData()
-{
-    m_data.clear();
 }
 
 bool ModalityModel::removeRows(int position, int rows, const QModelIndex &index)

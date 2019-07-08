@@ -41,7 +41,6 @@ AnatomicalRegionList::~AnatomicalRegionList()
 
 void AnatomicalRegionList::fillTable()
 {
-    _model.clearData();
     QList<AnatomicalRegion> anatomicalRegionList;
     DAOAnatomicalRegion *daoModality = new DAOAnatomicalRegionSQLITE;
     anatomicalRegionList = daoModality->getAllAnatomicalRegion();

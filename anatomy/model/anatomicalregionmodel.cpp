@@ -31,7 +31,7 @@ QVariant AnatomicalRegionModel::headerData(int section, Qt::Orientation orientat
          switch (section) {
          case 0: return "Descrição";
          case 1: return "Modalidade";
-         case 2: return "Id";
+         case 2: return "Identificador";
          default: return {};
          }
 }
@@ -41,11 +41,6 @@ void AnatomicalRegionModel::append(const AnatomicalRegion &anatomicalRegion)
     beginInsertRows({}, m_data.count(), m_data.count());
     m_data.append(anatomicalRegion);
     endInsertRows();
-}
-
-void AnatomicalRegionModel::clearData()
-{
-    m_data.clear();
 }
 
 bool AnatomicalRegionModel::removeRows(int position, int rows, const QModelIndex &index)

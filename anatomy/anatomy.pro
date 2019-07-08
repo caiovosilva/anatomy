@@ -35,6 +35,7 @@ SOURCES += \
     modalitylist.cpp \
     model/anatomicalregionmodel.cpp \
     model/answer.cpp \
+    model/assignmentmodel.cpp \
     model/modalitymodel.cpp \
     model/question.cpp \
     model/anatomyimage.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     modalitylist.h \
     model/anatomicalregionmodel.h \
     model/answer.h \
+    model/assignmentmodel.h \
     model/modalitymodel.h \
     model/question.h \
     model/anatomyimage.h \
