@@ -9,6 +9,7 @@ ModalityList::ModalityList(QWidget *parent) :
     ui(new Ui::ModalityList)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Modalidades");
 
     QPalette pal = _btnDeleteModality.palette();
     pal.setColor(QPalette::Button, QColor(Qt::red));

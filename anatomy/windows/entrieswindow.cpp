@@ -4,7 +4,7 @@
 #include "newquestionwindow.h"
 #include "newmodalitywindow.h"
 #include "newanatomyimagewindow.h"
-#include "newassignmentwindow.h"
+#include "assignmentlist.h"
 #include "modalitylist.h"
 #include "anatomicalregionlist.h"
 
@@ -23,19 +23,17 @@ EntriesWindow::~EntriesWindow()
 void EntriesWindow::on_modalityButton_clicked()
 {
     ModalityList *newWindow = new ModalityList;
-    newWindow->setWindowTitle("Modalidades");
     newWindow->show();
 }
 void EntriesWindow::on_newAnatomicalRegionButton_clicked()
 {
     AnatomicalRegionList *newWindow = new AnatomicalRegionList;
     newWindow->show();
-
 }
 
 void EntriesWindow::on_newAssignmentButton_clicked()
 {
-    NewAssignmentWindow *newWindow = new NewAssignmentWindow;
+    AssignmentList *newWindow = new AssignmentList;
     newWindow->show();
 }
 

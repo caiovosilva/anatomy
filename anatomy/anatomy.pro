@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     anatomicalregionlist.cpp \
+    assignmentlist.cpp \
         main.cpp \
     DAO/daoanatomyimagesqlite.cpp \
     DAO/daoanswersqlite.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
     DAO/daoquestionsqlite.h \
     DAO/dbconnection.h \
     anatomicalregionlist.h \
+    assignmentlist.h \
     modalitylist.h \
     model/anatomicalregionmodel.h \
     model/answer.h \
@@ -98,6 +100,7 @@ HEADERS += \
 
 FORMS += \
     anatomicalregionlist.ui \
+    assignmentlist.ui \
     exportassignment.ui \
     mainwindow.ui \
     modalitylist.ui \

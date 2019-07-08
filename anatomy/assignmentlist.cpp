@@ -1,15 +1,15 @@
-#include "anatomicalregionlist.h"
-#include "ui_anatomicalregionlist.h"
+#include "assignmentlist.h"
+#include "ui_assignmentlist.h"
 
-#include "DAO/daoanatomicalregionsqlite.h"
-#include "windows/newanatomicalregionwindow.h"
+#include "DAO/daoassignmentsqlite.h"
+#include "windows/newassignmentwindow.h"
 
-AnatomicalRegionList::AnatomicalRegionList(QWidget *parent) :
+AssignmentList::AssignmentList(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::AnatomicalRegionList)
+    ui(new Ui::AssignmentList)
 {
     ui->setupUi(this);
-    this->setWindowTitle("Regiões Anatômicas");
+    this->setWindowTitle("Tarefas");
 
     QPalette pal = _btnDeleteItem.palette();
     pal.setColor(QPalette::Button, QColor(Qt::red));
@@ -35,32 +35,31 @@ AnatomicalRegionList::AnatomicalRegionList(QWidget *parent) :
     connect(&_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
 }
 
-AnatomicalRegionList::~AnatomicalRegionList()
+AssignmentList::~AssignmentList()
 {
     delete ui;
 }
 
-void AnatomicalRegionList::fillTable()
+void AssignmentList::fillTable()
 {
-    QList<AnatomicalRegion> anatomicalRegionList;
-    DAOAnatomicalRegion *dao = new DAOAnatomicalRegionSQLITE;
-    anatomicalRegionList = dao->getAllAnatomicalRegion();
+    DAOAssignment *dao = new DAOAssignmentSQLITE;
+    QList<Assignment> assignmentList = dao->getAllAssignments();
 
-    foreach (AnatomicalRegion item, anatomicalRegionList) {
+    foreach (Assignment item, assignmentList) {
         _model.append(item);
     }
 
     delete dao;
 }
 
-void AnatomicalRegionList::newItem()
+void AssignmentList::newItem()
 {
-    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow;
+    NewAssignmentWindow *newWindow = new NewAssignmentWindow;
     newWindow->show();
     this->close();
 }
 
-void AnatomicalRegionList::editItem(QModelIndex model)
+void AssignmentList::editItem(QModelIndex model)
 {
 //    QString description = model.data(0).toString();
 //    QModelIndex sib = model.siblingAtColumn(1);
@@ -73,12 +72,12 @@ void AnatomicalRegionList::editItem(QModelIndex model)
     DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
     AnatomicalRegion anatomicalRegion = daoAnatomicalRegion->getAnatomicalRegionById(id);
 
-    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow(&anatomicalRegion);
-    newWindow->show();
+//    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow(&anatomicalRegion);
+//    newWindow->show();
     this->close();
 }
 
-void AnatomicalRegionList::onDeleteItem()
+void AssignmentList::onDeleteItem()
 {
     QItemSelectionModel *select = _view.selectionModel();
 
