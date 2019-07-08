@@ -16,9 +16,10 @@ QVariant AnatomicalRegionModel::data(const QModelIndex &index, int role) const
     if (role != Qt::DisplayRole && role != Qt::EditRole) return {};
     const auto & anatomicalRegion = m_data[index.row()];
     DAOModality *daoModality = new DAOModalitySQLITE;
+    QString modalityDescription = daoModality->getModalityById(anatomicalRegion.modalityId()).description();
     switch (index.column()) {
     case 0: return anatomicalRegion.description();
-    case 1: return daoModality->getModalityById(anatomicalRegion.id()).description();
+    case 1: return modalityDescription;
     case 2: return anatomicalRegion.id();
     default: return {};
     };
