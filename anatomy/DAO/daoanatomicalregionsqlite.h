@@ -17,6 +17,7 @@ public:
     AnatomicalRegion getAnatomicalRegionById(int id);
     AnatomicalRegion getAnatomicalRegionByDescription(QString description);
     QList<AnatomicalRegion> getAllAnatomicalRegion();
+    bool deleteAnatomicalRegion(int id);
 };
 
 #endif // DAOANATOMICALREGIONSQLITE_H

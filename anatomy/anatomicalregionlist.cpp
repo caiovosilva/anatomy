@@ -57,6 +57,7 @@ void AnatomicalRegionList::newItem()
 {
     NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow;
     newWindow->show();
+    this->close();
 }
 
 void AnatomicalRegionList::editItem(QModelIndex model)
@@ -74,6 +75,7 @@ void AnatomicalRegionList::editItem(QModelIndex model)
 
     NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow(&anatomicalRegion);
     newWindow->show();
+    this->close();
 }
 
 void AnatomicalRegionList::onDeleteItem()
@@ -87,16 +89,16 @@ void AnatomicalRegionList::onDeleteItem()
         QModelIndex model = select->selectedRows().takeAt(0);
         //select->selectedColumns(); // return selected column(s)
         QVariant description = model.data(0);
-        QModelIndex sib = model.siblingAtColumn(1);
+        QModelIndex sib = model.siblingAtColumn(2);
         QVariant id = sib.data(0).toInt();
 
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a região anatomica "+description.toString()+"?",
+        reply = QMessageBox::question(this, "Confirme", "Tem certeza que deseja apagar a região anatômica '"+description.toString()+"'?",
                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
-            DAOModality *daoModality = new DAOModalitySQLITE;
-            bool result = daoModality->deleteModality(id.toInt());
+            DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
+            bool result = daoAnatomicalRegion->deleteAnatomicalRegion(id.toInt());
             if(!result)
             {
                 QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");

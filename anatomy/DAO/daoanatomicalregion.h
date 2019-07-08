@@ -10,6 +10,7 @@ public:
     virtual AnatomicalRegion getAnatomicalRegionById(int id) = 0;
     virtual AnatomicalRegion getAnatomicalRegionByDescription(QString description) = 0;
     virtual QList<AnatomicalRegion> getAllAnatomicalRegion() = 0;
+    virtual bool deleteAnatomicalRegion(int id) = 0;
 };
 
 #endif // DAOANATOMICALREGION_H

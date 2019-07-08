@@ -114,3 +114,19 @@ QList<AnatomicalRegion> DAOAnatomicalRegionSQLITE::getAllAnatomicalRegion()
     _mydb->commit();
     return AnatomicalRegionList;
 }
+
+bool DAOAnatomicalRegionSQLITE::deleteAnatomicalRegion(int id)
+{
+    QSqlQuery query;
+    bool sucess = false;
+    if(!_mydb->open())
+        return sucess;
+    _mydb->transaction();
+
+    query.prepare("DELETE FROM anatomicalregion WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        sucess = true;
+    _mydb->commit();
+    return sucess;
+}
