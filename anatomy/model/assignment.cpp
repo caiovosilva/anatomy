@@ -42,6 +42,16 @@ void Assignment::setAnatomyImageList(const QList<AnatomyImage> &value)
     _anatomyImageList = value;
 }
 
+void Assignment::addnatomyImage(AnatomyImage item)
+{
+    _anatomyImageList.append(item);
+}
+
+void Assignment::removenatomyImage(AnatomyImage item)
+{
+    _anatomyImageList.removeOne(item);
+}
+
 int Assignment::anatomicalRegionId() const
 {
     return _anatomicalRegionId;

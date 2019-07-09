@@ -25,7 +25,7 @@ QVariant AssignmentModel::data(const QModelIndex &index, int role) const
     case 0: return assignment.description();
     case 1: return modalityDescription;
     case 2: return anatomicalRegion.description();
-    case 3: return anatomicalRegion.id();
+    case 3: return assignment.id();
     default: return {};
     };
 }

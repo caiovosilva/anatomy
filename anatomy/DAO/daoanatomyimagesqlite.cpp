@@ -64,12 +64,18 @@ QList<AnatomyImage> DAOAnatomyImageSQLITE::getAllAnatomyImagesByAssignmentId(int
     return anatomyList;
 }
 
-//AnatomyImage DAOAnatomyImageSQLITE::getAnatomyImage(int id)
-//{
+bool DAOAnatomyImageSQLITE::deleteAnatomyImagesByAssignmentId(int id)
+{
+    QSqlQuery query;
+    bool sucess = false;
+    if(!_mydb->open())
+        return sucess;
+    _mydb->transaction();
 
-//}
-
-//bool DAOAnatomyImageSQLITE::deleteAnatomyImage(AnatomyImage *anatomyImage)
-//{
-
-//}
+    query.prepare("DELETE FROM anatomyimage WHERE assignment_fk = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        sucess = true;
+    _mydb->commit();
+    return sucess;
+}

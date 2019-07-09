@@ -23,6 +23,8 @@ public:
 
     QList<AnatomyImage> anatomyImageList() const;
     void setAnatomyImageList(const QList<AnatomyImage> &value);
+    void addnatomyImage(AnatomyImage item);
+    void removenatomyImage(AnatomyImage item);
 
     int anatomicalRegionId() const;
     void setAnatomicalRegionId(int value);

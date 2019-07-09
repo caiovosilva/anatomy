@@ -7,6 +7,11 @@ AnatomyImage::AnatomyImage(QByteArray image, int assignmentId):
 
 }
 
+AnatomyImage::AnatomyImage(QByteArray image):
+    _image(image)
+{
+}
+
 AnatomyImage::AnatomyImage()
 {
 }

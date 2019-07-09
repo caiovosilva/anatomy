@@ -24,7 +24,15 @@ bool DAOAssignmentSQLITE::addOrUpdateAssignment(Assignment *assignment)
     bool result = query.exec();
     if(assignment->id() < 0)
         assignment->setId(query.lastInsertId().toInt());
-    _mydb->commit();
+    if(result){
+        DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+        foreach (AnatomyImage item, assignment->anatomyImageList()) {
+            item.setAssignmentId(assignment->id());
+            result = result && daoAnatomyImage->addAnatomyImage(&item);
+        }
+    }
+    if(!result)
+        _mydb->commit();
     return result;
 }
 
@@ -38,16 +46,24 @@ QList<Assignment> DAOAssignmentSQLITE::getAllAssignments()
 
     query.prepare("SELECT * FROM assignment");
     if(query.exec()){
-        Assignment item;
         while(query.next()){
+            Assignment item;
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             item.setAnatomicalRegionId(query.value(2).toInt());
             assignmentsList.append(item);
         }
     }
+    QList<Assignment> assignmentsDefinitiveList;
+    foreach (Assignment item, assignmentsList) {
+        DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+        item.setAnatomyImageList(daoAnatomyImage->getAllAnatomyImagesByAssignmentId(item.id()));
+        DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
+        item.setQuestionsList(daoQuestion->getQuestionsByAssignmentId(item.id()));
+        assignmentsDefinitiveList.append(item);
+    }
     _mydb->commit();
-    return assignmentsList;
+    return assignmentsDefinitiveList;
 }
 
 QList<Assignment> DAOAssignmentSQLITE::getAssignmentsByAnatomicalRegion(int anatomicalRegionId)
@@ -139,13 +155,19 @@ bool DAOAssignmentSQLITE::deleteAssignment(Assignment *assignment)
 
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
     foreach (Question item, assignment->questionsList()) {
-        sucess = sucess && daoQuestion->deleteQuestion(&item);
+        sucess &= daoQuestion->deleteQuestion(&item);
     }
+    DAOAnatomyImage *daoImage = new DAOAnatomyImageSQLITE;
+    foreach (AnatomyImage item, assignment->anatomyImageList()) {
+        sucess &= daoImage->deleteAnatomyImagesByAssignmentId(assignment->id());
+    }
+
     if(sucess){
         query.prepare("DELETE FROM assignment WHERE id = :id");
         query.bindValue(":id", assignment->id());
-        sucess = sucess && query.exec();
+        sucess &= query.exec();
     }
-    _mydb->commit();
+    if(sucess)
+        _mydb->commit();
     return sucess;
 }

@@ -64,23 +64,22 @@ void NewAssignmentWindow::on_saveButton_clicked()
     int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
     _model.setDescription(ui->descriptionText->toPlainText());
     _model.setAnatomicalRegionId(anatomicalRegionId);
-
-    DAOAssignment *daoAssignment = new DAOAssignmentSQLITE;
-    bool result = daoAssignment->addOrUpdateAssignment(&_model);
-
-    int assignmentId =  _model.id();
-    DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
-    for( int i=0; i<anatomyImagesPath.size(); i++)
-    {
+    bool result = true;
+    if(anatomyImagesPath.size()>0 && _model.anatomyImageList().size()>0){
+        DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+        result &= daoAnatomyImage->deleteAnatomyImagesByAssignmentId(_model.id());
+    }
+    for( int i=0; i<anatomyImagesPath.size(); i++){
         QPixmap inPixmap = QPixmap(anatomyImagesPath[i]);
         QByteArray inByteArray;
         QBuffer inBuffer( &inByteArray );
         inBuffer.open( QIODevice::WriteOnly );
         inPixmap.save( &inBuffer, "PNG" ); // write inPixmap into inByteArray in PNG format
-        AnatomyImage anatomyImage(inByteArray, assignmentId);
-        result = result && daoAnatomyImage->addAnatomyImage(&anatomyImage);
+        _model.addnatomyImage(AnatomyImage(inByteArray));
     }
 
+    DAOAssignment *daoAssignment = new DAOAssignmentSQLITE;
+    result = result && daoAssignment->addOrUpdateAssignment(&_model);
     if(!result)
     {
         QMessageBox msg(QMessageBox::Critical, "Erro", "Ocorreu um erro ao adicionar tarefa!");
@@ -88,5 +87,4 @@ void NewAssignmentWindow::on_saveButton_clicked()
         return;
     }
     this->close();
-
 }

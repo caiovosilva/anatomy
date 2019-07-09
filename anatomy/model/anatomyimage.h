@@ -11,6 +11,7 @@ class AnatomyImage
 {
 public:
     AnatomyImage(QByteArray image, int assignmentId);
+    AnatomyImage(QByteArray image);
     AnatomyImage();
     bool operator==(const AnatomyImage &image) const;
 
