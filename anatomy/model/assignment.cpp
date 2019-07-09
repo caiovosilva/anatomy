@@ -1,11 +1,12 @@
 #include "assignment.h"
 
-Assignment::Assignment()
+Assignment::Assignment():
+    _id(-1)
 {
-
 }
 
 Assignment::Assignment(QString description, int anatomicalRegionId):
+    _id(-1),
     _description(description),
     _anatomicalRegionId(anatomicalRegionId)
 {

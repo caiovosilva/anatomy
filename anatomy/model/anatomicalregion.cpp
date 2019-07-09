@@ -6,6 +6,7 @@ AnatomicalRegion::AnatomicalRegion():
 }
 
 AnatomicalRegion::AnatomicalRegion(QString description):
+    _id(-1),
     _description(description)
 {
 }
