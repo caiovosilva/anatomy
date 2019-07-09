@@ -13,8 +13,8 @@ class DAOAnswerSQLITE : public DAOAnswer, public DAOClass
 public:
     bool addAnswer(Answer *answer);
     QList<Answer> getAnswersByQuestionId(int id);
-//    Answer getAnswer(int id);
-//    bool deleteAnswer(Answer *answer);
+    bool deleteAnswer(int id);
+
 
 };
 

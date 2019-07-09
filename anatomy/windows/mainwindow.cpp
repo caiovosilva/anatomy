@@ -104,7 +104,7 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
                 assignment.setDescription(description+" ("+QString::number(var)+")");
                 break;
             }
-    result = result && daoAssignment->addAssignment(&assignment);
+    result = result && daoAssignment->addOrUpdateAssignment(&assignment);
 
     QJsonArray imagesArray = jsonObject["Images"].toArray();
     for (int imageIndex = 0; imageIndex < imagesArray.size(); ++imageIndex) {

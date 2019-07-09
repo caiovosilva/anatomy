@@ -23,7 +23,7 @@ class NewAssignmentWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit NewAssignmentWindow(QWidget *parent = 0);
+    explicit NewAssignmentWindow(Assignment *model = nullptr, QWidget *parent = 0);
     ~NewAssignmentWindow();
 
 private slots:
@@ -36,6 +36,7 @@ private slots:
 private:
     Ui::NewAssignmentWindow *ui;
     QStringList anatomyImagesPath;
+    Assignment _model;
 };
 
 #endif // NEWASSIGNMENTWINDOW_H

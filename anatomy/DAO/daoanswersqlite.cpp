@@ -19,11 +19,6 @@ bool DAOAnswerSQLITE::addAnswer(Answer *answer)
     return result;
 }
 
-//Answer DAOAnswerSQLITE::getAnswer(int id)
-//{
-
-//}
-
 QList<Answer> DAOAnswerSQLITE::getAnswersByQuestionId(int id)
 {
     QSqlQuery query;
@@ -49,7 +44,18 @@ QList<Answer> DAOAnswerSQLITE::getAnswersByQuestionId(int id)
     return answerList;
 }
 
-//bool DAOAnswerSQLITE::deleteAnswer(Answer *answer)
-//{
+bool DAOAnswerSQLITE::deleteAnswer(int id)
+{
+    QSqlQuery query;
+    bool sucess = false;
+    if(!_mydb->open())
+        return sucess;
+    _mydb->transaction();
 
-//}
+    query.prepare("DELETE FROM answer WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        sucess = true;
+    _mydb->commit();
+    return sucess;
+}

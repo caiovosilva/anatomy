@@ -10,19 +10,22 @@ NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(AnatomicalRegion *anatomica
     ui->setupUi(this);
     setWindowTitle("Nova Região Anatômica");
 
+    QList<Modality> modalitiesList;
+    DAOModality *daoModality = new DAOModalitySQLITE;
+    modalitiesList = daoModality->getAllModalities();
+    foreach (Modality item, modalitiesList) {
+        ui->modalitiesComboBox->addItem(item.description(), item.id());
+    }
+
     if(anatomicalRegion != nullptr) {
         QString description = anatomicalRegion->description();
         _anatomicalRegion.setId(anatomicalRegion->id());
         _anatomicalRegion.setModalityId(anatomicalRegion->modalityId());
         _anatomicalRegion.setDescription(description);
         ui->descriptionText->setText(description);
-    }
-    QList<Modality> modalitiesList;
-    DAOModality *daoModality = new DAOModalitySQLITE;
-    modalitiesList = daoModality->getAllModalities();
-
-    foreach (Modality item, modalitiesList) {
-        ui->modalitiesComboBox->addItem(item.description(), item.id());
+        int index = ui->modalitiesComboBox->findData(anatomicalRegion->modalityId());
+        if ( index != -1 )
+            ui->modalitiesComboBox->setCurrentIndex(index);
     }
 
     delete daoModality;

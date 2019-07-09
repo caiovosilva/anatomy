@@ -77,3 +77,23 @@ bool DAOQuestionSQLITE::updateQuestion(Question *question)
     _mydb->commit();
     return result;
 }
+
+bool DAOQuestionSQLITE::deleteQuestion(Question *question)
+{
+    QSqlQuery query;
+    bool sucess = true;
+    if(!_mydb->open())
+        return false;
+    _mydb->transaction();
+    DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
+    foreach (Answer item, question->answers()) {
+        sucess = sucess && daoAnswer->deleteAnswer(item.id());
+    }
+    if(sucess){
+        query.prepare("DELETE FROM question WHERE id = :id");
+        query.bindValue(":id", question->id());
+        sucess = sucess && query.exec();
+    }
+    _mydb->commit();
+    return sucess;
+}

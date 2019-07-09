@@ -11,12 +11,12 @@ class DAOAssignmentSQLITE : public DAOAssignment, public DAOClass
 {
     // DAOAssignment interface
 public:
-    bool addAssignment(Assignment *assignment);
+    bool addOrUpdateAssignment(Assignment *assignment);
     QList<Assignment> getAllAssignments();
     QList<Assignment> getAssignmentsByAnatomicalRegion(int anatomicalRegionId);
     Assignment getAssignmentById(int id);
     Assignment* getAssignmentByDescription(QString description);
-
+    bool deleteAssignment(Assignment *assignment);
 };
 
 #endif // DAOASSIGNMENTSQLITE_H

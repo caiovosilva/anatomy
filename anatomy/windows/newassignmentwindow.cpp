@@ -4,12 +4,20 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-NewAssignmentWindow::NewAssignmentWindow(QWidget *parent) :
+NewAssignmentWindow::NewAssignmentWindow(Assignment *model, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NewAssignmentWindow)
 {
     ui->setupUi(this);
     setWindowTitle("Nova Tarefa");
+
+    if(model != nullptr) {
+        QString description = model->description();
+        _model.setId(model->id());
+        _model.setAnatomicalRegionId(model->anatomicalRegionId());
+        _model.setDescription(description);
+        ui->descriptionText->setText(description);
+    }
 
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;
@@ -33,11 +41,6 @@ void NewAssignmentWindow::on_findFileButton_clicked()
     anatomyImagesPath = QFileDialog::getOpenFileNames(this, tr("Selecione as Imagens"),
                                                           applicationDirPath+"/images",
                                                           "Image Files (*.png)");
-//    QDir dir(applicationDirPath);
-//    for( int i=0; i<anatomyImagesPath.size(); i++)
-//    {
-//        anatomyImagesPath[i] =  dir.relativeFilePath(anatomyImagesPath[i]);
-//    }
 }
 
 void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
@@ -59,12 +62,13 @@ void NewAssignmentWindow::on_modalityComboBox_currentIndexChanged(int index)
 void NewAssignmentWindow::on_saveButton_clicked()
 {
     int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
-    Assignment assignment = Assignment(ui->descriptionText->toPlainText(), anatomicalRegionId);
+    _model.setDescription(ui->descriptionText->toPlainText());
+    _model.setAnatomicalRegionId(anatomicalRegionId);
 
     DAOAssignment *daoAssignment = new DAOAssignmentSQLITE;
-    bool result = daoAssignment->addAssignment(&assignment);
+    bool result = daoAssignment->addOrUpdateAssignment(&_model);
 
-    int assignmentId =  assignment.id();
+    int assignmentId =  _model.id();
     DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
     for( int i=0; i<anatomyImagesPath.size(); i++)
     {

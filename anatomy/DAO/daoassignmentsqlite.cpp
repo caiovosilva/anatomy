@@ -2,19 +2,28 @@
 #include "daoanatomyimagesqlite.h"
 #include "daoquestionsqlite.h"
 
-bool DAOAssignmentSQLITE::addAssignment(Assignment *assignment)
+bool DAOAssignmentSQLITE::addOrUpdateAssignment(Assignment *assignment)
 {
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO assignment (description, anatomicalRegion_fk) VALUES (:description, :anatomicalRegion_fk)");
-    query.bindValue(":description", assignment->description());
-    query.bindValue(":anatomicalRegion_fk", assignment->anatomicalRegionId());
+    if(assignment->id() < 0) {
+        query.prepare("INSERT INTO assignment (description, anatomicalRegion_fk) VALUES (:description, :anatomicalRegion_fk)");
+        query.bindValue(":description", assignment->description());
+        query.bindValue(":anatomicalRegion_fk", assignment->anatomicalRegionId());
+    }
+    else {
+        query.prepare("UPDATE assignment SET description=:description, anatomicalRegion_fk=:anatomicalRegion_fk WHERE id==:id");
+        query.bindValue(":id", QString::number(assignment->id()));
+        query.bindValue(":description", assignment->description());
+        query.bindValue(":anatomicalRegion_fk", assignment->anatomicalRegionId());
+    }
 
     bool result = query.exec();
-    assignment->setId(query.lastInsertId().toInt());
+    if(assignment->id() < 0)
+        assignment->setId(query.lastInsertId().toInt());
     _mydb->commit();
     return result;
 }
@@ -23,7 +32,6 @@ QList<Assignment> DAOAssignmentSQLITE::getAllAssignments()
 {
     QSqlQuery query;
     QList<Assignment> assignmentsList;
-    //DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
     if(!_mydb->open())
         return assignmentsList;
     _mydb->transaction();
@@ -35,7 +43,6 @@ QList<Assignment> DAOAssignmentSQLITE::getAllAssignments()
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             item.setAnatomicalRegionId(query.value(2).toInt());
-            //item.setQuestionsList(questionsDAO->getQuestionsByAssignmentId(item.id()));
             assignmentsList.append(item);
         }
     }
@@ -120,4 +127,25 @@ Assignment* DAOAssignmentSQLITE::getAssignmentByDescription(QString description)
 
     _mydb->commit();
     return assignment;
+}
+
+bool DAOAssignmentSQLITE::deleteAssignment(Assignment *assignment)
+{
+    QSqlQuery query;
+    bool sucess = true;
+    if(!_mydb->open())
+        return false;
+    _mydb->transaction();
+
+    DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
+    foreach (Question item, assignment->questionsList()) {
+        sucess = sucess && daoQuestion->deleteQuestion(&item);
+    }
+    if(sucess){
+        query.prepare("DELETE FROM assignment WHERE id = :id");
+        query.bindValue(":id", assignment->id());
+        sucess = sucess && query.exec();
+    }
+    _mydb->commit();
+    return sucess;
 }

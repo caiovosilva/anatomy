@@ -61,19 +61,14 @@ void AssignmentList::newItem()
 
 void AssignmentList::editItem(QModelIndex model)
 {
-//    QString description = model.data(0).toString();
-//    QModelIndex sib = model.siblingAtColumn(1);
-
-//    DAOModality *daoModality = new DAOModalitySQLITE;
-//    Modality modality = daoModality->getModalityByDescription(sib.data(0).toString());
-    QModelIndex sib = model.siblingAtColumn(2);
+    QModelIndex sib = model.siblingAtColumn(3);
 
     int id = sib.data(0).toInt();
-    DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
-    AnatomicalRegion anatomicalRegion = daoAnatomicalRegion->getAnatomicalRegionById(id);
+    DAOAssignment *dao = new DAOAssignmentSQLITE;
+    Assignment assignment = dao->getAssignmentById(id);
 
-//    NewAnatomicalRegionWindow *newWindow = new NewAnatomicalRegionWindow(&anatomicalRegion);
-//    newWindow->show();
+    NewAssignmentWindow *newWindow = new NewAssignmentWindow(&assignment);
+    newWindow->show();
     this->close();
 }
 
@@ -86,9 +81,8 @@ void AssignmentList::onDeleteItem()
         QModelIndexList models = select->selectedRows();
 
         QModelIndex model = select->selectedRows().takeAt(0);
-        //select->selectedColumns(); // return selected column(s)
         QVariant description = model.data(0);
-        QModelIndex sib = model.siblingAtColumn(2);
+        QModelIndex sib = model.siblingAtColumn(3);
         QVariant id = sib.data(0).toInt();
 
         QMessageBox::StandardButton reply;
@@ -96,9 +90,9 @@ void AssignmentList::onDeleteItem()
                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
-            DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE;
-            bool result = daoAnatomicalRegion->deleteAnatomicalRegion(id.toInt());
-            if(!result)
+            DAOAssignment *dao = new DAOAssignmentSQLITE;
+            Assignment assignment = dao->getAssignmentById(id.toInt());
+            if(!dao->deleteAssignment(&assignment))
             {
                 QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");
                 msg.exec();
