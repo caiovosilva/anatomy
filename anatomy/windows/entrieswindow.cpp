@@ -1,7 +1,7 @@
 #include "entrieswindow.h"
 #include "ui_entrieswindow.h"
 
-#include "newquestionwindow.h"
+#include "questionlist.h"
 #include "newmodalitywindow.h"
 #include "newanatomyimagewindow.h"
 #include "assignmentlist.h"
@@ -39,7 +39,6 @@ void EntriesWindow::on_newAssignmentButton_clicked()
 
 void EntriesWindow::on_newQuestionButton_clicked()
 {
-    NewQuestionWindow *newWindow = new NewQuestionWindow;
-    newWindow->setWindowTitle("Nova Questão");
+    QuestionList *newWindow = new QuestionList;
     newWindow->show();
 }

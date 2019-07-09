@@ -40,6 +40,8 @@ SOURCES += \
     model/modalitymodel.cpp \
     model/question.cpp \
     model/anatomyimage.cpp \
+    model/questionmodel.cpp \
+    questionlist.cpp \
     windows/exportassignment.cpp \
     windows/mainwindow.cpp \
     windows/newquestionwindow.cpp \
@@ -76,6 +78,8 @@ HEADERS += \
     model/modalitymodel.h \
     model/question.h \
     model/anatomyimage.h \
+    model/questionmodel.h \
+    questionlist.h \
     windows/exportassignment.h \
     windows/mainwindow.h \
     windows/playwindow.h \
@@ -112,4 +116,5 @@ FORMS += \
     newanatomyimagewindow.ui \
     newassignmentwindow.ui \
     assignmentchooser.ui \
+    questionlist.ui \
     reportwindow.ui

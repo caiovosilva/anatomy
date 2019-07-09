@@ -28,10 +28,10 @@ bool DAOAssignmentSQLITE::addOrUpdateAssignment(Assignment *assignment)
         DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
         foreach (AnatomyImage item, assignment->anatomyImageList()) {
             item.setAssignmentId(assignment->id());
-            result = result && daoAnatomyImage->addAnatomyImage(&item);
+            result &= daoAnatomyImage->addAnatomyImage(&item);
         }
     }
-    if(!result)
+    if(result)
         _mydb->commit();
     return result;
 }
