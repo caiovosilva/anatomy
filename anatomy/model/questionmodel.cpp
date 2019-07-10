@@ -52,3 +52,8 @@ bool QuestionModel::removeRows(int position, int rows, const QModelIndex &index)
     endRemoveRows();
     return true;
 }
+
+void QuestionModel::resetData()
+{
+    m_data.clear();
+}

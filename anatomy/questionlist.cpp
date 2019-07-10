@@ -42,6 +42,11 @@ QuestionList::QuestionList(QWidget *parent) :
     _btnAddItem->update();
 
     on_searchButton_clicked();
+    _proxy.setSourceModel(&_model);
+    _view->setModel(&_model);
+    _view->resizeColumnsToContents();
+    _view->setSelectionBehavior(QAbstractItemView::SelectRows);
+    connect(_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
     delete daoModality;
 }
 
@@ -96,15 +101,10 @@ void QuestionList::on_searchButton_clicked()
     DAOQuestion *dao = new DAOQuestionSQLITE;
     questionList = dao->getQuestionsByAssignmentId(assignmentId);
 
+    _model.resetData();
     foreach (Question item, questionList) {
         _model.append(item);
     }
-
-    _proxy.setSourceModel(&_model);
-    _view->setModel(&_proxy);
-    _view->resizeColumnsToContents();
-    _view->setSelectionBehavior(QAbstractItemView::SelectRows);
-    connect(_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
 
     delete dao;
 }

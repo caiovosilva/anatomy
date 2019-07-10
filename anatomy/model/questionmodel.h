@@ -16,6 +16,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     void append(const Question & question);
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
+    void resetData();
 };
 
 #endif // QUESTIONMODEL_H

@@ -37,8 +37,6 @@ private slots:
 
 private:
     Ui::QuestionList *ui;
-    //void fillTable();
-    //QGridLayout _layout{this};
     QTableView *_view;
     QPushButton *_btnAddItem;
     QPushButton *_btnDeleteItem;
