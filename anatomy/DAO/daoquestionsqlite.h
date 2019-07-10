@@ -12,7 +12,7 @@ class DAOQuestionSQLITE : public DAOQuestion, public DAOClass
 {
     // DAOQuestion interface
 public:
-    bool addQuestion(Question *question);
+    bool addOrUpdateQuestion(Question *question);
     QList<Question> getQuestionsByAssignmentId(int id);
     bool updateQuestion(Question *question);
     bool deleteQuestion(Question *question);

@@ -23,9 +23,6 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
         _model.setId(model->id());
         _model.setAnswers(model->answers());
         _model.setAssignmentId(model->assignmentId());
-        ui->question->setText(_model.description());
-//        QList<Answer> answers = _model.answers();
-//        Answer answer = answers.takeAt(0);
         _answer1.setId(_model.answers().at(0).id());
         _answer1.setQuestionId(_model.id());
         _answer1.setDescription(_model.answers().at(0).description());
@@ -43,13 +40,14 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
         _answer4.setDescription(_model.answers().at(3).description());
         _answer4.setIsCorrectAnswer(_model.answers().at(3).isCorrectAnswer());
 
+        ui->question->setText(_model.description());
         ui->answer1->setText(_answer1.description());
         ui->correctAnswer1->setChecked(_answer1.isCorrectAnswer());
-        ui->answer2->setText(_answer1.description());
+        ui->answer2->setText(_answer2.description());
         ui->correctAnswer2->setChecked(_answer2.isCorrectAnswer());
-        ui->answer3->setText(_answer1.description());
+        ui->answer3->setText(_answer3.description());
         ui->correctAnswer3->setChecked(_answer3.isCorrectAnswer());
-        ui->answer4->setText(_answer1.description());
+        ui->answer4->setText(_answer4.description());
         ui->correctAnswer4->setChecked(_answer4.isCorrectAnswer());
     }
     QList<Modality> modalitiesList;
@@ -112,23 +110,23 @@ bool NewQuestionWindow::saveQuestion()
     }
 
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
-    Question question = Question(ui->question->toPlainText(), assignmentId);
-
+    _model.setDescription(ui->question->toPlainText());
+    _model.setAssignmentId(assignmentId);
+    _answer1.setDescription(ui->answer1->toPlainText());
+    _answer1.setIsCorrectAnswer(ui->correctAnswer1->isChecked());
+    _answer2.setDescription(ui->answer2->toPlainText());
+    _answer2.setIsCorrectAnswer(ui->correctAnswer2->isChecked());
+    _answer3.setDescription(ui->answer3->toPlainText());
+    _answer3.setIsCorrectAnswer(ui->correctAnswer3->isChecked());
+    _answer4.setDescription(ui->answer4->toPlainText());
+    _answer4.setIsCorrectAnswer(ui->correctAnswer4->isChecked());
+    _model.setAnswers(QList<Answer>());
+    _model.addAnswer(_answer1);
+    _model.addAnswer(_answer2);
+    _model.addAnswer(_answer3);
+    _model.addAnswer(_answer4);
     DAOQuestion *daoQuestion = new DAOQuestionSQLITE;
-    if(daoQuestion->addQuestion(&question))
-    {
-            DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
-            Answer answer;
-            answer = Answer(ui->answer1->toPlainText(), ui->correctAnswer1->isChecked(), question.id());
-            daoAnswer->addAnswer(&answer);
-            answer = Answer(ui->answer2->toPlainText(), ui->correctAnswer2->isChecked(), question.id());
-            daoAnswer->addAnswer(&answer);
-            answer = Answer(ui->answer3->toPlainText(), ui->correctAnswer3->isChecked(), question.id());
-            daoAnswer->addAnswer(&answer);
-            answer = Answer(ui->answer4->toPlainText(), ui->correctAnswer4->isChecked(), question.id());
-            daoAnswer->addAnswer(&answer);
-    }
-    return true;
+    return (daoQuestion->addOrUpdateQuestion(&_model));
 }
 
 void NewQuestionWindow::on_saveAndContinueButton_clicked()

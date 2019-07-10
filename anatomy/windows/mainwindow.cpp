@@ -122,14 +122,14 @@ bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
         QJsonObject questionObj = questionsArray.at(i).toObject();
         QString questionDescription = questionObj["Description"].toString();
         Question question = Question(questionDescription, assignment.id());
-        result = result && daoQuestion->addQuestion(&question);
+        result = result && daoQuestion->addOrUpdateQuestion(&question);
 
         QJsonArray answersArray = questionObj["Answers"].toArray();
         for(int i=0;i < answersArray.size();i++) {
             QJsonObject answerObj = answersArray.at(i).toObject();
             QString answerDescription = answerObj["Description"].toString();
             Answer answer = Answer(answerObj["Description"].toString(), answerObj["IsCorrectAnswer"].toBool(), question.id());
-            result = result && daoAnswer->addAnswer(&answer);
+            result = result && daoAnswer->addOrUpdateAnswer(&answer);
         }
     }
     return result;

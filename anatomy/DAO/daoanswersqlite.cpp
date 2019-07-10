@@ -1,17 +1,26 @@
 #include "daoanswersqlite.h"
 
-bool DAOAnswerSQLITE::addAnswer(Answer *answer)
+bool DAOAnswerSQLITE::addOrUpdateAnswer(Answer *answer)
 {
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO answer (description, isCorrectAnswer, question_fk) "
-                  "VALUES (:description, :isCorrectAnswer, :question_fk)");
-    query.bindValue(":description", answer->description());
-    query.bindValue(":isCorrectAnswer", answer->isCorrectAnswer());
-    query.bindValue(":question_fk", answer->questionId());
+    if(answer->id() < 0) {
+        query.prepare("INSERT INTO answer (description, isCorrectAnswer, question_fk) "
+                      "VALUES (:description, :isCorrectAnswer, :question_fk)");
+        query.bindValue(":description", answer->description());
+        query.bindValue(":isCorrectAnswer", answer->isCorrectAnswer());
+        query.bindValue(":question_fk", answer->questionId());
+    }
+    else {
+        query.prepare("UPDATE answer SET description=:description, isCorrectAnswer=:isCorrectAnswer, question_fk=:question_fk WHERE id==:id");
+        query.bindValue(":description", answer->description());
+        query.bindValue(":isCorrectAnswer", answer->isCorrectAnswer());
+        query.bindValue(":question_fk", answer->questionId());
+        query.bindValue(":id", answer->id());
+    }
 
     bool result = query.exec();
     answer->setId(query.lastInsertId().toInt());

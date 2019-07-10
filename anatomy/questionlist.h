@@ -33,6 +33,8 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_deleteQuestionButton_clicked();
+
 private:
     Ui::QuestionList *ui;
     //void fillTable();

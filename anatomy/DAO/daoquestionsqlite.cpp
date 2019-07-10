@@ -1,33 +1,44 @@
 #include "daoquestionsqlite.h"
 #include "daoanswersqlite.h"
 
-bool DAOQuestionSQLITE::addQuestion(Question *question)
+bool DAOQuestionSQLITE::addOrUpdateQuestion(Question *question)
 {
     if(!_mydb->isOpen())
         return false;
     _mydb->transaction();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO question (description, assignment_fk) "
-                  "VALUES (:description, :assignment_fk)");
-    query.bindValue(":description", question->description());
-    query.bindValue(":assignment_fk", question->assignmentId());
+    if(question->id() < 0)
+    {
+        query.prepare("INSERT INTO question (description, assignment_fk) "
+                      "VALUES (:description, :assignment_fk)");
+        query.bindValue(":description", question->description());
+        query.bindValue(":assignment_fk", question->assignmentId());
+    }
+    else
+    {
+        query.prepare("UPDATE question SET description=:description, assignment_fk=:assignment_fk WHERE id==:id");
+        query.bindValue(":id", QString::number(question->id()));
+        query.bindValue(":description", question->description());
+        query.bindValue(":assignment_fk", question->assignmentId());
+    }
 
     bool result = query.exec();
-    question->setId(query.lastInsertId().toInt());
-    _mydb->commit();
+    if(question->id() < 0)
+        question->setId(query.lastInsertId().toInt());
+    if(result)
+    {
+        DAOAnswer *dao = new DAOAnswerSQLITE;
+        foreach (Answer item, question->answers())
+        {
+            item.setQuestionId(question->id());
+            result &= dao->addOrUpdateAnswer(&item);
+        }
+    }
+    if(result)
+        _mydb->commit();
     return result;
 }
-
-//Question DAOQuestionSQLITE::getQuestion(int id)
-//{
-
-//}
-
-//bool DAOQuestionSQLITE::deleteQuestion(Question *question)
-//{
-
-//}
 
 QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
 {

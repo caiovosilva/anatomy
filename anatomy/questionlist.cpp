@@ -50,18 +50,6 @@ QuestionList::~QuestionList()
     delete ui;
 }
 
-void QuestionList::editItem(QModelIndex model)
-{
-    QVariant description = model.data(0);
-    QModelIndex sib = model.siblingAtColumn(1);
-    QVariant id = sib.data(0).toInt();
-    DAOQuestion *dao = new DAOQuestionSQLITE;
-    Question question = dao->getQuestionById(id.toInt());
-    NewQuestionWindow *newWindow = new NewQuestionWindow(&question);
-    newWindow->show();
-    this->close();
-}
-
 void QuestionList::on_modalitiesComboBox_currentIndexChanged(int index)
 {
     int modalityId = ui->modalitiesComboBox->currentData().toInt();
@@ -119,4 +107,48 @@ void QuestionList::on_searchButton_clicked()
     connect(_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
 
     delete dao;
+}
+
+void QuestionList::editItem(QModelIndex model)
+{
+    QVariant description = model.data(0);
+    QModelIndex sib = model.siblingAtColumn(1);
+    QVariant id = sib.data(0).toInt();
+    DAOQuestion *dao = new DAOQuestionSQLITE;
+    Question question = dao->getQuestionById(id.toInt());
+    NewQuestionWindow *newWindow = new NewQuestionWindow(&question);
+    newWindow->show();
+    this->close();
+}
+
+void QuestionList::on_deleteQuestionButton_clicked()
+{
+    QItemSelectionModel *select = _view->selectionModel();
+
+    if(select->hasSelection())
+    {
+        QModelIndexList models = select->selectedRows();
+
+        QModelIndex model = select->selectedRows().takeAt(0);
+        //select->selectedColumns(); // return selected column(s)
+        QVariant description = model.data(0);
+        QModelIndex sib = model.siblingAtColumn(1);
+        QVariant id = sib.data(0).toInt();
+
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Confirme", "Apagar a questão '"+description.toString()+"'?",
+                                     QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            DAOQuestion *dao = new DAOQuestionSQLITE;
+            Question question = dao->getQuestionById(id.toInt());
+            if(!dao->deleteQuestion(&question))
+            {
+                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar questão!");
+                msg.exec();
+                return;
+            }
+            _model.removeRow(model.row());
+        }
+    }
 }

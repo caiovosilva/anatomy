@@ -86,7 +86,7 @@ void AssignmentList::onDeleteItem()
         QVariant id = sib.data(0).toInt();
 
         QMessageBox::StandardButton reply;
-        reply = QMessageBox::question(this, "Confirme", "Apagar região anatômica '"+description.toString()+"'?",
+        reply = QMessageBox::question(this, "Confirme", "Apagar a tarefa '"+description.toString()+"'?",
                                      QMessageBox::Yes|QMessageBox::No);
         if (reply == QMessageBox::Yes)
         {
@@ -94,7 +94,7 @@ void AssignmentList::onDeleteItem()
             Assignment assignment = dao->getAssignmentById(id.toInt());
             if(!dao->deleteAssignment(&assignment))
             {
-                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");
+                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar tarefa!");
                 msg.exec();
                 return;
             }

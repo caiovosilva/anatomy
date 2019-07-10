@@ -11,7 +11,7 @@ class DAOAnswerSQLITE : public DAOAnswer, public DAOClass
 {
     // DAOAnswer interface
 public:
-    bool addAnswer(Answer *answer);
+    bool addOrUpdateAnswer(Answer *answer);
     QList<Answer> getAnswersByQuestionId(int id);
     bool deleteAnswer(int id);
 

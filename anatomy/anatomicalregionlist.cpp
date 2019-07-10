@@ -101,7 +101,7 @@ void AnatomicalRegionList::onDeleteItem()
             bool result = daoAnatomicalRegion->deleteAnatomicalRegion(id.toInt());
             if(!result)
             {
-                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar modalidade!");
+                QMessageBox msg(QMessageBox::Critical, "Erro", "Erro ao apagar região anatômica!");
                 msg.exec();
                 return;
             }
