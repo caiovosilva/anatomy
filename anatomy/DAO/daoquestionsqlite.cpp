@@ -97,3 +97,30 @@ bool DAOQuestionSQLITE::deleteQuestion(Question *question)
     _mydb->commit();
     return sucess;
 }
+
+Question DAOQuestionSQLITE::getQuestionById(int id)
+{
+    QSqlQuery query;
+    Question question;
+    if(!_mydb->isOpen())
+        return question;
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM question WHERE id = :id");
+    query.bindValue(":id", id);
+
+    if(query.exec())
+    {
+        while(query.next())
+        {
+            question.setId(query.value(0).toInt());
+            question.setDescription(query.value(1).toString());
+            question.setAssignmentId(query.value(2).toInt());
+        }
+    }
+    DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
+    QList<Answer> ans = daoAnswer->getAnswersByQuestionId(question.id());
+    question.setAnswers(ans);
+    _mydb->commit();
+    return question;
+}

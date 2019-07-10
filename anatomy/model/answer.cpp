@@ -1,13 +1,15 @@
 #include "answer.h"
 
 Answer::Answer(QString description, bool isCorrectAnswer, int questionId) :
-    _description(description),
+    _id(-1),
+    _questionId(questionId),
     _isCorrectAnswer(isCorrectAnswer),
-    _questionId(questionId)
+    _description(description)
 {
 }
 
-Answer::Answer()
+Answer::Answer():
+    _id(-1)
 {
 }
 

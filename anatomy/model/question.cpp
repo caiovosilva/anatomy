@@ -1,13 +1,14 @@
 #include "question.h"
 
 Question::Question(QString description, int assignmentId):
+    _id(-1),
     _description(description),
     _assignmentId(assignmentId)
 {
-
 }
 
-Question::Question()
+Question::Question():
+    _id(-1)
 {
 }
 

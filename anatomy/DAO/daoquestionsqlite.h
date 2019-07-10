@@ -16,6 +16,7 @@ public:
     QList<Question> getQuestionsByAssignmentId(int id);
     bool updateQuestion(Question *question);
     bool deleteQuestion(Question *question);
+    Question getQuestionById(int id);
 };
 
 #endif // DAOQUESTIONSQLITE_H

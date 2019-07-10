@@ -3,7 +3,6 @@
 
 #include <QMessageBox>
 
-#include "model/question.h"
 #include "model/answer.h"
 #include "model/assignment.h"
 #include "model/modality.h"
@@ -13,13 +12,46 @@
 #include "DAO/daomodalitysqlite.h"
 #include "DAO/daoanatomicalregionsqlite.h"
 
-NewQuestionWindow::NewQuestionWindow(QWidget *parent) :
+NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::NewQuestionWindow)
 {
     ui->setupUi(this);
 
+    if(model != nullptr) {
+        _model.setDescription(model->description());
+        _model.setId(model->id());
+        _model.setAnswers(model->answers());
+        _model.setAssignmentId(model->assignmentId());
+        ui->question->setText(_model.description());
+//        QList<Answer> answers = _model.answers();
+//        Answer answer = answers.takeAt(0);
+        _answer1.setId(_model.answers().at(0).id());
+        _answer1.setQuestionId(_model.id());
+        _answer1.setDescription(_model.answers().at(0).description());
+        _answer1.setIsCorrectAnswer(_model.answers().at(0).isCorrectAnswer());
+        _answer2.setId(_model.answers().at(1).id());
+        _answer2.setQuestionId(_model.id());
+        _answer2.setDescription(_model.answers().at(1).description());
+        _answer2.setIsCorrectAnswer(_model.answers().at(1).isCorrectAnswer());
+        _answer3.setId(_model.answers().at(2).id());
+        _answer3.setQuestionId(_model.id());
+        _answer3.setDescription(_model.answers().at(2).description());
+        _answer3.setIsCorrectAnswer(_model.answers().at(2).isCorrectAnswer());
+        _answer4.setId(_model.answers().at(3).id());
+        _answer4.setQuestionId(_model.id());
+        _answer4.setDescription(_model.answers().at(3).description());
+        _answer4.setIsCorrectAnswer(_model.answers().at(3).isCorrectAnswer());
 
+        ui->answer1->setText(_answer1.description());
+        ui->correctAnswer1->setChecked(_answer1.isCorrectAnswer());
+        ui->answer2->setText(_answer1.description());
+        ui->correctAnswer2->setChecked(_answer2.isCorrectAnswer());
+        ui->answer3->setText(_answer1.description());
+        ui->correctAnswer3->setChecked(_answer3.isCorrectAnswer());
+        ui->answer4->setText(_answer1.description());
+        ui->correctAnswer4->setChecked(_answer4.isCorrectAnswer());
+    }
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;
     modalitiesList = daoModality->getAllModalities();
@@ -60,7 +92,7 @@ void NewQuestionWindow::on_cancelButton_clicked()
 void NewQuestionWindow::on_saveButton_clicked()
 {
     if(saveQuestion())
-        on_cancelButton_clicked();
+        close();
 }
 
 bool NewQuestionWindow::saveQuestion()

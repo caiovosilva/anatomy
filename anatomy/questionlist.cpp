@@ -41,8 +41,7 @@ QuestionList::QuestionList(QWidget *parent) :
     _btnAddItem->setPalette(pal2);
     _btnAddItem->update();
 
-
-
+    on_searchButton_clicked();
     delete daoModality;
 }
 
@@ -56,10 +55,10 @@ void QuestionList::editItem(QModelIndex model)
     QVariant description = model.data(0);
     QModelIndex sib = model.siblingAtColumn(1);
     QVariant id = sib.data(0).toInt();
-    Modality modality(description.toString(), id.toInt());
-
-//    NewModalityWindow *newWindow = new NewModalityWindow(&modality);
-//    newWindow->show();
+    DAOQuestion *dao = new DAOQuestionSQLITE;
+    Question question = dao->getQuestionById(id.toInt());
+    NewQuestionWindow *newWindow = new NewQuestionWindow(&question);
+    newWindow->show();
     this->close();
 }
 
@@ -120,5 +119,4 @@ void QuestionList::on_searchButton_clicked()
     connect(_view, SIGNAL(doubleClicked(const QModelIndex &)), this, SLOT(editItem(QModelIndex)));
 
     delete dao;
-
 }
