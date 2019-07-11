@@ -16,6 +16,7 @@ NewAssignmentWindow::NewAssignmentWindow(Assignment *model, QWidget *parent) :
         _model.setId(model->id());
         _model.setAnatomicalRegionId(model->anatomicalRegionId());
         _model.setDescription(description);
+        _model.setAnatomyImageList(model->anatomyImageList());
         ui->descriptionText->setText(description);
     }
 
@@ -64,12 +65,14 @@ void NewAssignmentWindow::on_saveButton_clicked()
     int anatomicalRegionId = ui->anatomicalRegionComboBox->currentData().toInt();
     _model.setDescription(ui->descriptionText->toPlainText());
     _model.setAnatomicalRegionId(anatomicalRegionId);
-    bool result = true;
-    if(anatomyImagesPath.size()>0 && _model.anatomyImageList().size()>0){
-        DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
-        result &= daoAnatomyImage->deleteAnatomyImagesByAssignmentId(_model.id());
+    QList<AnatomyImage> oldImages;
+    if(anatomyImagesPath.size()>0 && _model.anatomyImageList().size()>0)
+    {
+        oldImages = _model.anatomyImageList();
+        _model.setAnatomyImageList(QList<AnatomyImage>());
     }
-    for( int i=0; i<anatomyImagesPath.size(); i++){
+    for( int i=0; i<anatomyImagesPath.size(); i++)
+    {
         QPixmap inPixmap = QPixmap(anatomyImagesPath[i]);
         QByteArray inByteArray;
         QBuffer inBuffer( &inByteArray );
@@ -77,14 +80,25 @@ void NewAssignmentWindow::on_saveButton_clicked()
         inPixmap.save( &inBuffer, "PNG" ); // write inPixmap into inByteArray in PNG format
         _model.addnatomyImage(AnatomyImage(inByteArray));
     }
-
+    if(_model.anatomyImageList().size()<1)
+    {
+        QMessageBox msg(QMessageBox::Critical, "Erro", "Selecione pelo menos uma imagem!");
+        msg.exec();
+        return;
+    }
     DAOAssignment *daoAssignment = new DAOAssignmentSQLITE;
-    result = result && daoAssignment->addOrUpdateAssignment(&_model);
-    if(!result)
+    if(daoAssignment->addOrUpdateAssignment(&_model))
+    {
+        DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
+        foreach (AnatomyImage item, oldImages)
+            daoAnatomyImage->deleteAnatomyImage(item.id());
+    }
+    else
     {
         QMessageBox msg(QMessageBox::Critical, "Erro", "Ocorreu um erro ao adicionar tarefa!");
         msg.exec();
         return;
     }
+
     this->close();
 }

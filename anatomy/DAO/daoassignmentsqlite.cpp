@@ -23,12 +23,20 @@ bool DAOAssignmentSQLITE::addOrUpdateAssignment(Assignment *assignment)
 
     bool result = query.exec();
     if(assignment->id() < 0)
+    {
         assignment->setId(query.lastInsertId().toInt());
-    if(result){
+
+    }
+    if(result)
+    {
         DAOAnatomyImage *daoAnatomyImage = new DAOAnatomyImageSQLITE;
-        foreach (AnatomyImage item, assignment->anatomyImageList()) {
-            item.setAssignmentId(assignment->id());
-            result &= daoAnatomyImage->addAnatomyImage(&item);
+        foreach (AnatomyImage item, assignment->anatomyImageList())
+        {
+            if(item.id() < 1)
+            {
+                item.setAssignmentId(assignment->id());
+                result &= daoAnatomyImage->addAnatomyImage(&item);
+            }
         }
     }
     if(result)

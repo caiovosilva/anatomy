@@ -1,6 +1,7 @@
 #include "anatomyimage.h"
 
 AnatomyImage::AnatomyImage(QByteArray image, int assignmentId):
+    _id(-1),
     _image(image),
     _assignmentId(assignmentId)
 {
@@ -8,11 +9,13 @@ AnatomyImage::AnatomyImage(QByteArray image, int assignmentId):
 }
 
 AnatomyImage::AnatomyImage(QByteArray image):
+    _id(-1),
     _image(image)
 {
 }
 
-AnatomyImage::AnatomyImage()
+AnatomyImage::AnatomyImage():
+    _id(-1)
 {
 }
 

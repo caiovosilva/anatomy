@@ -15,6 +15,7 @@ public:
     QList<AnatomyImage> getAllAnatomyImages();
     QList<AnatomyImage> getAllAnatomyImagesByAssignmentId(int id);
     bool deleteAnatomyImagesByAssignmentId(int id);
+    bool deleteAnatomyImage(int id);
 };
 
 #endif // DAOANATOMYIMAGESQLITE_H

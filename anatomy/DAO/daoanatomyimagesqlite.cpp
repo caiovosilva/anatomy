@@ -79,3 +79,19 @@ bool DAOAnatomyImageSQLITE::deleteAnatomyImagesByAssignmentId(int id)
     _mydb->commit();
     return sucess;
 }
+
+bool DAOAnatomyImageSQLITE::deleteAnatomyImage(int id)
+{
+    QSqlQuery query;
+    bool sucess = false;
+    if(!_mydb->open())
+        return sucess;
+    _mydb->transaction();
+
+    query.prepare("DELETE FROM anatomyimage WHERE id = :id");
+    query.bindValue(":id", id);
+    if(query.exec())
+        sucess = true;
+    _mydb->commit();
+    return sucess;
+}

@@ -12,6 +12,7 @@ public:
     virtual bool addAnatomyImage(AnatomyImage *anatomyImage) = 0;
     virtual QList<AnatomyImage> getAllAnatomyImagesByAssignmentId(int id) = 0;
     virtual bool deleteAnatomyImagesByAssignmentId(int id) = 0;
+    virtual bool deleteAnatomyImage(int id) = 0;
 };
 
 #endif // DAOANATOMYIMAGE_H
