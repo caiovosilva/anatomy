@@ -26,8 +26,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QJsonDocument LoadJson(QString &fileName);
-    bool SaveAssignmentFromJSON(QJsonObject jsonObject);
+    QJsonDocument loadJson(QString &fileName);
+    bool saveAssignmentFromJSON(QJsonObject jsonObject);
 
 };
 

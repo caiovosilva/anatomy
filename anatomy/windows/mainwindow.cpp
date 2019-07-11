@@ -57,8 +57,10 @@ void MainWindow::on_init_clicked()
 void MainWindow::on_importPushButton_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Selecione a Tarefa"),"/home", "DAT (*.dat)");
-    QJsonDocument assignmentDocument = LoadJson(fileName);
-    bool result = SaveAssignmentFromJSON(assignmentDocument.object());
+    if(fileName.isEmpty())
+        return;
+    QJsonDocument assignmentDocument = loadJson(fileName);
+    bool result = saveAssignmentFromJSON(assignmentDocument.object());
 
     if(result){
         QMessageBox msg(QMessageBox::Information, "Sucesso", "Tarefa importada!");
@@ -68,17 +70,16 @@ void MainWindow::on_importPushButton_clicked()
         QMessageBox msg(QMessageBox::Critical, "Erro", "Ocorreu um erro ao importar tarefa.");
         msg.exec();
     }
-
 }
 
-QJsonDocument MainWindow::LoadJson(QString &fileName)
+QJsonDocument MainWindow::loadJson(QString &fileName)
 {
     QFile jsonFile(fileName);
     jsonFile.open(QFile::ReadOnly);
     return QJsonDocument().fromBinaryData(jsonFile.readAll());
 }
 
-bool MainWindow::SaveAssignmentFromJSON(QJsonObject jsonObject)
+bool MainWindow::saveAssignmentFromJSON(QJsonObject jsonObject)
 {
     DAOModality *daoModality = new DAOModalitySQLITE();
     DAOAnatomicalRegion *daoAnatomicalRegion = new DAOAnatomicalRegionSQLITE();
