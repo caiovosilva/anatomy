@@ -17,7 +17,7 @@ QVariant ModalityModel::data(const QModelIndex &index, int role) const
     switch (index.column()) {
     case 0: return modality.description();
     case 1: return modality.id();
-    //default: return {};
+    default: return {};
     };
 }
 

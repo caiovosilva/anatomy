@@ -12,6 +12,8 @@ public:
     virtual Assignment getAssignmentById(int id) = 0;
     virtual Assignment* getAssignmentByDescription(QString description) = 0;
     virtual bool deleteAssignment(Assignment *assignment) = 0;
+    virtual ~DAOAssignment(){ }
+
 };
 
 #endif // DAOASSIGNMENT_H

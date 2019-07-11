@@ -13,6 +13,7 @@ public:
     virtual QList<AnatomyImage> getAllAnatomyImagesByAssignmentId(int id) = 0;
     virtual bool deleteAnatomyImagesByAssignmentId(int id) = 0;
     virtual bool deleteAnatomyImage(int id) = 0;
+    virtual ~DAOAnatomyImage(){ }
 };
 
 #endif // DAOANATOMYIMAGE_H

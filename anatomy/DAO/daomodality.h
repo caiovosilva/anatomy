@@ -11,6 +11,7 @@ public:
     virtual Modality getModalityById(int id) = 0;
     virtual Modality getModalityByDescription(QString description) = 0;
     virtual bool deleteModality(int id) = 0;
+    virtual ~DAOModality(){ }
 };
 
 #endif // DAOMODALITY_H

@@ -4,8 +4,8 @@
 
 ReportWindow::ReportWindow(QString text, QWidget *parent) :
     QWidget(parent),
-    _text(text),
-    ui(new Ui::ReportWindow)
+    ui(new Ui::ReportWindow),
+    _text(text)
 {
     ui->setupUi(this);
 
@@ -47,7 +47,7 @@ void ReportWindow::on_saveButtonTxt_clicked()
 
 void ReportWindow::on_pushButtonPdf_clicked()
 {
-    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )nullptr, "Export PDF", QString(), "*.pdf");
     if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
 
     QPrinter printer(QPrinter::PrinterResolution);
