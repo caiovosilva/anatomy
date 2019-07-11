@@ -13,10 +13,9 @@
 #include "DAO/daoquestionsqlite.h"
 #include "DAO/daoanswersqlite.h"
 #include <QDesktopWidget>
-#include <QGuiApplication>
 #include <QDialog>
 #include <QDialogButtonBox>
-#include <QScreen>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,8 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Início");
-
-    this->resize(QGuiApplication::primaryScreen()->size());
 }
 
 MainWindow::~MainWindow()

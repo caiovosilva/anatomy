@@ -1,12 +1,15 @@
 #include "playwindow.h"
 #include "ui_playwindow.h"
+#include <QGuiApplication>
+#include <QScreen>
 
 PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
-    _studentName(studentName),
     QWidget(parent),
-    ui(new Ui::PlayWindow)
+    ui(new Ui::PlayWindow),
+    _studentName(studentName)
 {
     ui->setupUi(this);
+    resize(QGuiApplication::primaryScreen()->size());
 
     DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
     _assignment = daoAssignmet->getAssignmentById(assignmentId);
