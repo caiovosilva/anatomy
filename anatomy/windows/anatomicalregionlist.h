@@ -29,7 +29,7 @@ private:
     void fillTable();
     QGridLayout _layout{this};
     QTableView _view;
-    QPushButton _btnAddItem{"Adicionar Nova Modalidade"};
+    QPushButton _btnAddItem{"Adicionar Nova Região Anatômica"};
     QPushButton _btnDeleteItem{"Apagar"};
     AnatomicalRegionModel _model;
     QSortFilterProxyModel _proxy;
