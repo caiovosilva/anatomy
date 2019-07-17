@@ -26,14 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    anatomicalregionlist.cpp \
-    assignmentlist.cpp \
         main.cpp \
     DAO/daoanatomyimagesqlite.cpp \
     DAO/daoanswersqlite.cpp \
     DAO/daoquestionsqlite.cpp \
     DAO/dbconnection.cpp \
-    modalitylist.cpp \
     model/anatomicalregionmodel.cpp \
     model/answer.cpp \
     model/assignmentmodel.cpp \
@@ -41,9 +38,11 @@ SOURCES += \
     model/question.cpp \
     model/anatomyimage.cpp \
     model/questionmodel.cpp \
-    questionlist.cpp \
+    windows/anatomicalregionlist.cpp \
+    windows/assignmentlist.cpp \
     windows/exportassignment.cpp \
     windows/mainwindow.cpp \
+    windows/modalitylist.cpp \
     windows/newquestionwindow.cpp \
     windows/playwindow.cpp \
     model/modality.cpp \
@@ -59,6 +58,7 @@ SOURCES += \
     DAO/daoclass.cpp \
     windows/newassignmentwindow.cpp \
     windows/assignmentchooser.cpp \
+    windows/questionlist.cpp \
     windows/reportwindow.cpp
 
 HEADERS += \
@@ -69,9 +69,6 @@ HEADERS += \
     DAO/daoquestion.h \
     DAO/daoquestionsqlite.h \
     DAO/dbconnection.h \
-    anatomicalregionlist.h \
-    assignmentlist.h \
-    modalitylist.h \
     model/anatomicalregionmodel.h \
     model/answer.h \
     model/assignmentmodel.h \
@@ -79,9 +76,11 @@ HEADERS += \
     model/question.h \
     model/anatomyimage.h \
     model/questionmodel.h \
-    questionlist.h \
+    windows/anatomicalregionlist.h \
+    windows/assignmentlist.h \
     windows/exportassignment.h \
     windows/mainwindow.h \
+    windows/modalitylist.h \
     windows/playwindow.h \
     windows/newquestionwindow.h \
     model/modality.h \
@@ -100,6 +99,7 @@ HEADERS += \
     DAO/daoclass.h \
     windows/newassignmentwindow.h \
     windows/assignmentchooser.h \
+    windows/questionlist.h \
     windows/reportwindow.h
 
 FORMS += \
