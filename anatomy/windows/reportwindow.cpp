@@ -8,6 +8,7 @@ ReportWindow::ReportWindow(QString text, QWidget *parent) :
     _text(text)
 {
     ui->setupUi(this);
+    setWindowTitle("Relatório");
 
     QVBoxLayout *layout = new QVBoxLayout;
     QLabel *textLabel = new QLabel(text);

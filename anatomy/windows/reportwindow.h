@@ -19,13 +19,12 @@ class ReportWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit ReportWindow(QString text, QWidget *parent = 0);
+    explicit ReportWindow(QString text, QWidget *parent = nullptr);
     ~ReportWindow();
 
 private slots:
 
     void on_saveButtonTxt_clicked();
-
     void on_pushButtonPdf_clicked();
 
 private:

@@ -41,7 +41,6 @@ QuestionList::QuestionList(QWidget *parent) :
     _btnAddItem->setPalette(pal2);
     _btnAddItem->update();
 
-    on_searchButton_clicked();
     _proxy.setSourceModel(&_model);
     _view->setModel(&_model);
     _view->resizeColumnsToContents();

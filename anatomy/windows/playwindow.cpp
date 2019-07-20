@@ -90,6 +90,7 @@ void PlayWindow::on_buttonBox_accepted()
     int correctAnswers = 0;
     QDateTime dateTime = QDateTime::currentDateTime();
     result = "Aluno: " + _studentName+"\n";
+    result += "Tarefa: " + _assignment.description()+"\n";
     result += "Data: " + dateTime.date().toString("dd/MM/yyyy")+"\n";
     result += "Horário: " + dateTime.time().toString("HH:mm")+"\n";
     int secondsToFinish = _startTime.secsTo(dateTime.time());
@@ -114,7 +115,6 @@ void PlayWindow::on_buttonBox_accepted()
     result += "Você acertou "+QString::number(correctAnswers)+" de "+QString::number(questions.size())+" perguntas.";
 
     ReportWindow *newWindow = new ReportWindow(result);
-    newWindow->setWindowTitle("Relatório");
     newWindow->show();
     this->close();
 }
