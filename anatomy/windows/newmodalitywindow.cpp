@@ -10,21 +10,14 @@ NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
     ui(new Ui::NewModalityWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("Nova Modalidade");
+    setWindowTitle("Modalidade");
+
     if(modality != nullptr) {
         _modality.setDescription(modality->description());
         _modality.setId(modality->id());
         ui->descriptionText->setText(_modality.description());
     }
 }
-
-//NewModalityWindow::NewModalityWindow(Modality *modality, QWidget *parent) :
-//    QWidget(parent),
-//    ui(new Ui::NewModalityWindow),
-//    _modality(modality)
-//{
-//    NewModalityWindow();
-//}
 
 NewModalityWindow::~NewModalityWindow()
 {

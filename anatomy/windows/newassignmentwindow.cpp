@@ -9,7 +9,7 @@ NewAssignmentWindow::NewAssignmentWindow(Assignment *model, QWidget *parent) :
     ui(new Ui::NewAssignmentWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("Nova Tarefa");
+    setWindowTitle("Tarefa");
 
     if(model != nullptr) {
         QString description = model->description();

@@ -8,7 +8,7 @@ NewAnatomicalRegionWindow::NewAnatomicalRegionWindow(AnatomicalRegion *anatomica
     ui(new Ui::NewAnatomicalRegionWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("Nova Região Anatômica");
+    setWindowTitle("Região Anatômica");
 
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;

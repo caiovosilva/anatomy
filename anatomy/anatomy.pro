@@ -52,7 +52,6 @@ SOURCES += \
     windows/newmodalitywindow.cpp \
     windows/newanatomicalregionwindow.cpp \
     DAO/daoanatomicalregionsqlite.cpp \
-    windows/newanatomyimagewindow.cpp \
     model/assignment.cpp \
     DAO/daoassignmentsqlite.cpp \
     DAO/daoclass.cpp \
@@ -92,7 +91,6 @@ HEADERS += \
     windows/newanatomicalregionwindow.h \
     DAO/daoanatomicalregion.h \
     DAO/daoanatomicalregionsqlite.h \
-    windows/newanatomyimagewindow.h \
     model/assignment.h \
     DAO/daoassignment.h \
     DAO/daoassignmentsqlite.h \

@@ -17,6 +17,7 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
     ui(new Ui::NewQuestionWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Questão");
 
     if(model != nullptr) {
         _model.setDescription(model->description());
