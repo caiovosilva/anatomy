@@ -26,14 +26,10 @@ public slots:
 
 private slots:
     void on_modalitiesComboBox_currentIndexChanged(int index);
-
     void on_anatomicalRegionComboBox_currentIndexChanged(int index);
-
     void on_addNewQuestionButton_clicked();
-
-    void on_searchButton_clicked();
-
     void on_deleteQuestionButton_clicked();
+    void on_assignmentComboBox_currentIndexChanged(int index);
 
 private:
     Ui::QuestionList *ui;

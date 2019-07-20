@@ -94,21 +94,6 @@ void QuestionList::on_addNewQuestionButton_clicked()
     close();
 }
 
-void QuestionList::on_searchButton_clicked()
-{
-    int assignmentId = ui->assignmentComboBox->currentData().toInt();
-    QList<Question> questionList;
-    DAOQuestion *dao = new DAOQuestionSQLITE;
-    questionList = dao->getQuestionsByAssignmentId(assignmentId);
-
-    _model.resetData();
-    foreach (Question item, questionList) {
-        _model.append(item);
-    }
-
-    delete dao;
-}
-
 void QuestionList::editItem(QModelIndex model)
 {
     QVariant description = model.data(0);
@@ -151,4 +136,19 @@ void QuestionList::on_deleteQuestionButton_clicked()
             _model.removeRow(model.row());
         }
     }
+}
+
+void QuestionList::on_assignmentComboBox_currentIndexChanged(int index)
+{
+    int assignmentId = ui->assignmentComboBox->currentData().toInt();
+    QList<Question> questionList;
+    DAOQuestion *dao = new DAOQuestionSQLITE;
+    questionList = dao->getQuestionsByAssignmentId(assignmentId);
+
+    _model.resetData();
+    foreach (Question item, questionList) {
+        _model.append(item);
+    }
+
+    delete dao;
 }
