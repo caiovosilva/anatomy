@@ -110,14 +110,14 @@ void PlayWindow::on_buttonBox_accepted()
                 correctAnswer = aws;
         if(correctAnswer.id()==_answers[i]->checkedId())
         {
-            result += "Ponto "+questions[i].description()+ " Correto.\n";
+            result += "Questão "+questions[i].description()+ " Correta.\n";
             correctAnswers++;
         }
         else
-            result += "Ponto "+questions[i].description()+ " Errado! A resposta certa é "+correctAnswer.description()+".\n";
+            result += "Questão "+questions[i].description()+ " Errada! A resposta certa é "+correctAnswer.description()+".\n";
     }
 
-    result += "Você acertou "+QString::number(correctAnswers)+" de "+QString::number(questions.size())+" perguntas.";
+    result += "Você acertou "+QString::number(correctAnswers)+" de "+QString::number(questions.size())+" questões.";
 
     ReportWindow *newWindow = new ReportWindow(result);
     newWindow->show();
