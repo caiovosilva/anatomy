@@ -51,6 +51,7 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
         ui->answer4->setText(_answer4.description());
         ui->correctAnswer4->setChecked(_answer4.isCorrectAnswer());
     }
+
     QList<Modality> modalitiesList;
     DAOModality *daoModality = new DAOModalitySQLITE;
     modalitiesList = daoModality->getAllModalities();
@@ -60,6 +61,20 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
     }
 
     delete daoModality;
+}
+
+NewQuestionWindow::NewQuestionWindow(Assignment model, QWidget *parent): NewQuestionWindow(){
+
+    AnatomicalRegion anatomicalRegion = (new DAOAnatomicalRegionSQLITE)->getAnatomicalRegionById(model.anatomicalRegionId());
+    int assignmentId = model.id();
+    int anatomicalRegionId = anatomicalRegion.id();
+    int modalityId = anatomicalRegion.modalityId();
+    int index = ui->modalitiesComboBox->findData(modalityId);
+    ui->modalitiesComboBox->setCurrentIndex(index);
+    index = ui->anatomicalRegionComboBox->findData(anatomicalRegionId);
+    ui->anatomicalRegionComboBox->setCurrentIndex(index);
+    index = ui->assignmentComboBox->findData(assignmentId);
+    ui->assignmentComboBox->setCurrentIndex(index);
 }
 
 NewQuestionWindow::~NewQuestionWindow()

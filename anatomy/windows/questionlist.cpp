@@ -88,7 +88,8 @@ void QuestionList::on_anatomicalRegionComboBox_currentIndexChanged(int index)
 
 void QuestionList::on_addNewQuestionButton_clicked()
 {
-    NewQuestionWindow *newWindow = new NewQuestionWindow;
+    Assignment assignment = (new DAOAssignmentSQLITE)->getAssignmentById(ui->assignmentComboBox->currentData().toInt());
+    NewQuestionWindow *newWindow = new NewQuestionWindow(assignment);
     newWindow->show();
     close();
 }

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "model/question.h"
+#include "model/assignment.h"
 
 namespace Ui {
 class NewQuestionWindow;
@@ -13,7 +14,8 @@ class NewQuestionWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit NewQuestionWindow(Question *model = nullptr, QWidget *parent = 0);
+    explicit NewQuestionWindow(Question *model = nullptr, QWidget *parent = nullptr);
+    explicit NewQuestionWindow(Assignment model, QWidget *parent = nullptr);
     ~NewQuestionWindow();
 
 private slots:
