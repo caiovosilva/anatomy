@@ -148,6 +148,7 @@ bool NewQuestionWindow::saveQuestion()
 void NewQuestionWindow::on_saveAndContinueButton_clicked()
 {
     if(saveQuestion()){
+        _model = Question();
         ui->answer1->clear();
         ui->answer2->clear();
         ui->answer3->clear();
