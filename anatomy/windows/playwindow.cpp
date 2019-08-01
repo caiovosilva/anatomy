@@ -2,6 +2,7 @@
 #include "ui_playwindow.h"
 #include <QGuiApplication>
 #include <QScreen>
+#include <random>
 
 PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     QWidget(parent),
@@ -57,12 +58,16 @@ void PlayWindow::fillQuestions()
         _buttonGroup = new QButtonGroup;
         _groupBox = new QGroupBox(item.description());
         _hbox = new QHBoxLayout;
+        QList<Answer> answers = item.answers();
+        std::random_device rd; // obtain a random number from hardware
+        std::mt19937 eng(rd()); // seed the generator
 
-        foreach (Answer answer, item.answers())
-        {
-            QRadioButton *aws = new QRadioButton(answer.description());
-            _buttonGroup->addButton(aws, answer.id());
+        while (answers.size()>0) {
+            int index = std::uniform_int_distribution<>(0, answers.size()-1)(eng);
+            QRadioButton *aws = new QRadioButton(answers[index].description());
+            _buttonGroup->addButton(aws, answers[index].id());
             _hbox->addWidget(aws);
+            answers.removeAt(index);
         }
         _groupBox->setLayout(_hbox);
         _grid->addWidget(_groupBox,line++, column);
