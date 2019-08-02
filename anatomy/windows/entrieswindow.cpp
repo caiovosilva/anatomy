@@ -3,7 +3,6 @@
 
 #include "questionlist.h"
 #include "newmodalitywindow.h"
-#include "newanatomyimagewindow.h"
 #include "assignmentlist.h"
 #include "modalitylist.h"
 #include "anatomicalregionlist.h"

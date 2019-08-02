@@ -23,6 +23,7 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     ui->image->setScaledContents(true);
     ui->image->setPixmap(_images[0]);
     ui->image->show();
+    ui->assignmentLabel->setText(_assignment.description());
     _currentImageIndex = 0;
     fillQuestions();
     _startTime = QTime::currentTime();
