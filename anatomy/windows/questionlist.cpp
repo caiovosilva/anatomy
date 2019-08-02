@@ -115,7 +115,6 @@ void QuestionList::on_deleteQuestionButton_clicked()
         QModelIndexList models = select->selectedRows();
 
         QModelIndex model = select->selectedRows().takeAt(0);
-        //select->selectedColumns(); // return selected column(s)
         QVariant description = model.data(0);
         QModelIndex sib = model.siblingAtColumn(1);
         QVariant id = sib.data(0).toInt();
@@ -149,6 +148,7 @@ void QuestionList::on_assignmentComboBox_currentIndexChanged(int index)
     foreach (Question item, questionList) {
         _model.append(item);
     }
+    _view->viewport()->update();
 
     delete dao;
 }
