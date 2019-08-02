@@ -23,6 +23,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Início");
+
+    QPixmap gteclogo(":/images/images/gtecradlogo.png");
+    int w = ui->gtecradlogo->width();
+    int h = ui->gtecradlogo->height();
+    ui->gtecradlogo->setPixmap(gteclogo.scaled(w,h,Qt::KeepAspectRatio));
+    QPixmap ifbalogo(":/images/images/ifbalogo.jpg");
+    w = ui->ifbalogo->width();
+    h = ui->ifbalogo->height();
+    ui->ifbalogo->setPixmap(ifbalogo.scaled(w,h,Qt::KeepAspectRatio));
 }
 
 MainWindow::~MainWindow()

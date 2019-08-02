@@ -116,3 +116,6 @@ FORMS += \
     assignmentchooser.ui \
     questionlist.ui \
     reportwindow.ui
+
+RESOURCES += \
+    resource.qrc

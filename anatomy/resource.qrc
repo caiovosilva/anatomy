@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/ifbalogo.jpg</file>
+        <file>images/gtecradlogo.png</file>
+    </qresource>
+</RCC>
