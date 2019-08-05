@@ -68,8 +68,16 @@ void AssignmentChooser::on_anatomicalRegionComboBox_currentIndexChanged(int inde
 
 void AssignmentChooser::on_buttonBox_accepted()
 {
+    QString studentName = ui->studentName->toPlainText();
+    if(studentName.isEmpty()){
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Confirme", "Você não informou seu nome. Deseja continuar mesmo assim?",
+                                     QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::No)
+            return;
+    }
+
     int assignmentId = ui->assignmentComboBox->currentData().toInt();
-    PlayWindow *newWindow = new PlayWindow(assignmentId, ui->studentName->toPlainText());
-    newWindow->setWindowTitle("Tarefa");
+    PlayWindow *newWindow = new PlayWindow(assignmentId, studentName);
     newWindow->show();
 }

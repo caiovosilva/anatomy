@@ -10,6 +10,7 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
     _studentName(studentName)
 {
     ui->setupUi(this);
+    setWindowTitle("Tarefa");
     resize(QGuiApplication::primaryScreen()->size());
 
     DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
