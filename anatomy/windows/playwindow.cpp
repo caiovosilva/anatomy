@@ -11,7 +11,9 @@ PlayWindow::PlayWindow(int assignmentId, QString studentName, QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle("Tarefa");
-    resize(QGuiApplication::primaryScreen()->size());
+    //resize(size);
+    showMaximized();
+    ui->questionsScrollArea->setMinimumSize(0,QGuiApplication::primaryScreen()->size().rheight()-170);
 
     DAOAssignment *daoAssignmet = new DAOAssignmentSQLITE;
     _assignment = daoAssignmet->getAssignmentById(assignmentId);

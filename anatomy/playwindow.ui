@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>428</width>
-    <height>682</height>
+    <height>702</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,7 +54,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>TextLabel</string>
+        <string>Tarefa:</string>
        </property>
       </widget>
      </item>
@@ -72,7 +72,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>620</height>
+           <height>0</height>
           </size>
          </property>
          <property name="widgetResizable">
@@ -83,8 +83,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>222</width>
-            <height>618</height>
+            <width>206</width>
+            <height>68</height>
            </rect>
           </property>
          </widget>
