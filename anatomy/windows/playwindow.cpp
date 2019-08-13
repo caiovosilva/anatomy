@@ -63,10 +63,11 @@ void PlayWindow::fillQuestions()
         _groupBox = new QGroupBox(item.description());
         _hbox = new QHBoxLayout;
         QList<Answer> answers = item.answers();
-        std::random_device rd; // obtain a random number from hardware
-        std::mt19937 eng(rd()); // seed the generator
+
 
         while (answers.size()>0) {
+            std::random_device rd; // obtain a random number from hardware
+            std::mt19937 eng(rd()); // seed the generator
             int index = std::uniform_int_distribution<>(0, answers.size()-1)(eng);
             QRadioButton *aws = new QRadioButton(answers[index].description());
             _buttonGroup->addButton(aws, answers[index].id());
