@@ -45,7 +45,7 @@ private:
     QGridLayout *_grid;
     QButtonGroup *_buttonGroup;
     QGroupBox *_groupBox;
-    QHBoxLayout *_hbox;
+    QVBoxLayout *_hbox;
 };
 
 #endif // PLAYWINDOW_H
