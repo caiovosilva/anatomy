@@ -54,25 +54,29 @@ void PlayWindow::on_leftArrowButton_clicked()
 
 void PlayWindow::fillQuestions()
 {
-    int line =0;
+    int line = 0;
     int column = 0;
+    int questiosIndex = 1;
     _grid = new QGridLayout;
     std::random_device rd; // obtain a random number from hardware
     std::mt19937 eng(rd()); // seed the generator
 
     foreach (Question item, _assignment.questionsList()) {
+        QString options[26] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+        int optionsIndex = 0;
         _buttonGroup = new QButtonGroup;
-        _groupBox = new QGroupBox(item.description());
+        _groupBox = new QGroupBox("Questão " + item.description());
         _hbox = new QHBoxLayout;
         QList<Answer> answers = item.answers();
-
+        questiosIndex++;
 
         while (answers.size()>0) {
             int index = std::uniform_int_distribution<>(0, answers.size()-1)(eng);
-            QRadioButton *aws = new QRadioButton(answers[index].description());
+            QRadioButton *aws = new QRadioButton(options[optionsIndex]+ ") " + answers[index].description());
             _buttonGroup->addButton(aws, answers[index].id());
             _hbox->addWidget(aws);
             answers.removeAt(index);
+            optionsIndex++;
         }
         _groupBox->setLayout(_hbox);
         _grid->addWidget(_groupBox,line++, column);
