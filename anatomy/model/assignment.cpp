@@ -47,7 +47,7 @@ void Assignment::addnatomyImage(AnatomyImage item)
     _anatomyImageList.append(item);
 }
 
-void Assignment::removenatomyImage(AnatomyImage item)
+void Assignment::removAnatomyImage(AnatomyImage item)
 {
     _anatomyImageList.removeOne(item);
 }
