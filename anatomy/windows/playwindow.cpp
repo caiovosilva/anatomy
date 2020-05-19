@@ -66,7 +66,7 @@ void PlayWindow::fillQuestions()
         int optionsIndex = 0;
         _buttonGroup = new QButtonGroup;
         _groupBox = new QGroupBox("Questão " + item.description());
-        _hbox = new QHBoxLayout;
+        _hbox = new QVBoxLayout;
         QList<Answer> answers = item.answers();
         questiosIndex++;
 
