@@ -65,7 +65,7 @@ void PlayWindow::fillQuestions()
         QString options[26] = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         int optionsIndex = 0;
         _buttonGroup = new QButtonGroup;
-        _groupBox = new QGroupBox("Questão " + item.description());
+        _groupBox = new QGroupBox(item.description());
         _hbox = new QVBoxLayout;
         QList<Answer> answers = item.answers();
         questiosIndex++;
