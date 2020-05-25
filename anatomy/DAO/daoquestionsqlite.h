@@ -14,6 +14,7 @@ class DAOQuestionSQLITE : public DAOQuestion, public DAOClass
 public:
     bool addOrUpdateQuestion(Question *question);
     QList<Question> getQuestionsByAssignmentId(int id);
+    QList<Question> getQuestionsByAnatomyImageId(int id);
     bool updateQuestion(Question *question);
     bool deleteQuestion(Question *question);
     Question getQuestionById(int id);

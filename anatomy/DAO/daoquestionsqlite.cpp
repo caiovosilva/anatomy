@@ -10,17 +10,19 @@ bool DAOQuestionSQLITE::addOrUpdateQuestion(Question *question)
     QSqlQuery query;
     if(question->id() < 0)
     {
-        query.prepare("INSERT INTO question (description, assignment_fk) "
-                      "VALUES (:description, :assignment_fk)");
+        query.prepare("INSERT INTO question (description, assignment_fk, anatomyImage_fk) "
+                      "VALUES (:description, :assignment_fk, :anatomyImage_fk)");
         query.bindValue(":description", question->description());
         query.bindValue(":assignment_fk", question->assignmentId());
+        query.bindValue(":anatomyImage_fk", question->anatomyImageId());
     }
     else
     {
-        query.prepare("UPDATE question SET description=:description, assignment_fk=:assignment_fk WHERE id==:id");
+        query.prepare("UPDATE question SET description=:description, assignment_fk=:assignment_fk, anatomyImage_fk=:anatomyImage_fk WHERE id==:id");
         query.bindValue(":id", QString::number(question->id()));
         query.bindValue(":description", question->description());
         query.bindValue(":assignment_fk", question->assignmentId());
+        query.bindValue(":anatomyImage_fk", question->anatomyImageId());
     }
 
     bool result = query.exec();
@@ -59,6 +61,38 @@ QList<Question> DAOQuestionSQLITE::getQuestionsByAssignmentId(int id)
             item.setId(query.value(0).toInt());
             item.setDescription(query.value(1).toString());
             item.setAssignmentId(query.value(2).toInt());
+            questionsList.append(item);
+        }
+    }
+    DAOAnswer *daoAnswer = new DAOAnswerSQLITE;
+    for (int var = 0; var < questionsList.size(); var++)
+    {
+        questionsList[var].setAnswers(daoAnswer->getAnswersByQuestionId(questionsList[var].id()));
+    }
+    _mydb->commit();
+    return questionsList;
+}
+
+QList<Question> DAOQuestionSQLITE::getQuestionsByAnatomyImageId(int id)
+{
+    QSqlQuery query;
+    QList<Question> questionsList;
+    if(!_mydb->isOpen())
+        return questionsList;
+    _mydb->transaction();
+
+    query.prepare("SELECT * FROM question WHERE anatomyImage_fk = :id");
+    query.bindValue(":id", id);
+
+    if(query.exec())
+    {
+        Question item;
+        while(query.next())
+        {
+            item.setId(query.value(0).toInt());
+            item.setDescription(query.value(1).toString());
+            item.setAssignmentId(query.value(2).toInt());
+            item.setAnatomyImageId(query.value(3).toInt());
             questionsList.append(item);
         }
     }

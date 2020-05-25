@@ -32,11 +32,15 @@ public:
     QList<Answer> answers() const;
     void setAnswers(const QList<Answer> &answers);
 
+    int anatomyImageId() const;
+    void setAnatomyImageId(int anatomyImageId);
+
 private:
     int _id;
     QString _description;
     QList<Answer> _answers;
     int _assignmentId;
+    int _anatomyImageId;
 };
 
 #endif // QUESTION_H

@@ -66,3 +66,13 @@ void Question::setDescription(const QString &description)
 {
     _description = description;
 }
+
+int Question::anatomyImageId() const
+{
+    return _anatomyImageId;
+}
+
+void Question::setAnatomyImageId(int anatomyImageId)
+{
+    _anatomyImageId = anatomyImageId;
+}

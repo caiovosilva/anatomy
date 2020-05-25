@@ -41,7 +41,7 @@ void DBConnection::CreateTables()
     qry.prepare( "CREATE TABLE IF NOT EXISTS `anatomyimage` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `image` BLOB NOT NULL, `assignment_fk` INTEGER NOT NULL, FOREIGN KEY(`assignment_fk`) REFERENCES `assignment`(`id`) )" );
     if( !qry.exec() )
             qDebug() << qry.lastError();
-    qry.prepare( "CREATE TABLE IF NOT EXISTS `question` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description`	TEXT NOT NULL, `assignment_fk` INTEGER NOT NULL, FOREIGN KEY(`assignment_fk`) REFERENCES `assignment`(`id`) )" );
+    qry.prepare( "CREATE TABLE  IF NOT EXISTS `question` ( `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL, `assignment_fk`	INTEGER NOT NULL, `correctAnswer_fk` INTEGER, `anatomyImage_fk`	INTEGER NOT NULL, FOREIGN KEY(`anatomyImage_fk`) REFERENCES `anatomyimage`(`id`),                 FOREIGN KEY(`correctAnswer_fk`) REFERENCES `answer`(`id`), FOREIGN KEY(`assignment_fk`) REFERENCES `anatomyimage`(`id`) )" );
     if( !qry.exec() )
             qDebug() << qry.lastError();
     qry.prepare( "CREATE TABLE IF NOT EXISTS `answer` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` TEXT NOT NULL, `isCorrectAnswer`	INTEGER NOT NULL, `question_fk`	INTEGER NOT NULL, FOREIGN KEY(`question_fk`) REFERENCES `question`(`id`) )" );
