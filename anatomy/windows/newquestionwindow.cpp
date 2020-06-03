@@ -6,11 +6,14 @@
 #include "model/answer.h"
 #include "model/assignment.h"
 #include "model/modality.h"
+#include "model/anatomyimage.h"
 #include "DAO/daoassignmentsqlite.h"
 #include "DAO/daoquestionsqlite.h"
 #include "DAO/daoanswersqlite.h"
 #include "DAO/daomodalitysqlite.h"
 #include "DAO/daoanatomicalregionsqlite.h"
+#include "DAO/daoanatomyimagesqlite.h"
+
 
 NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
     QWidget(parent),
@@ -59,6 +62,8 @@ NewQuestionWindow::NewQuestionWindow(Question *model, QWidget *parent) :
     foreach (Modality item, modalitiesList) {
         ui->modalitiesComboBox->addItem(item.description(), item.id());
     }
+
+
 
     delete daoModality;
 }
@@ -178,6 +183,22 @@ void NewQuestionWindow::on_anatomicalRegionComboBox_currentIndexChanged(int inde
 
     QList<Assignment> assignmentList;
     DAOAssignment *assignmentDAO = new DAOAssignmentSQLITE;
+    DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
+    assignmentList = assignmentDAO->getAssignmentsByAnatomicalRegion(anatomicalRegionId);
+
+    ui->assignmentComboBox->clear();
+    foreach (Assignment item, assignmentList) {
+        item.setQuestionsList(questionsDAO->getQuestionsByAssignmentId(item.id()));
+        ui->assignmentComboBox->addItem(item.description(), item.id());
+    }
+}
+
+void NewQuestionWindow::on_assignmentComboBox_currentIndexChanged(int index)
+{
+    int assignmentId = ui->assignmentComboBox->currentData().toInt();
+
+    QList<AnatomyImage> anatomyImageList;
+    DAOAna *assignmentDAO = new DAOAssignmentSQLITE;
     DAOQuestion *questionsDAO = new DAOQuestionSQLITE;
     assignmentList = assignmentDAO->getAssignmentsByAnatomicalRegion(anatomicalRegionId);
 
